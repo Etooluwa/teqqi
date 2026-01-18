@@ -1,568 +1,1823 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Teqqi — Product-Led Excellence</title>
-  
-   <!-- Core Dependencies -->
-   <script src="https://cdn.tailwindcss.com"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-   <script src="https://unpkg.com/lucide@latest"></script>
-  
-   <style>
-       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-      
-       :root {
-           --bg-color: #080808;
-           --zinc-700: #3f3f46;
-           --text-main: #f4f4f5;
-       }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teqqi — Product-Led Excellence</title>
+
+    <!-- Core Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://unpkg.com/split-type"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        /* CUSTOM FONT: ABCDiatype */
+        /* Please ensure font files are in a 'fonts' folder relative to this file */
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Regular.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Bold.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            background-color: var(--bg-color);
+        }
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Black.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Black.woff') format('woff');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-color: #fafafa;
+            /* Light Gray Background */
+            --zinc-700: #3f3f46;
+            --text-main: #18181b;
+            /* Almost Black Text */
+        }
+
+        /* RESTORE INTER FOR TITLES */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .hero-title,
+        .menu-link,
+        .font-black,
+        .font-bold {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: 'ABCDiatype', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
 
-       body {
-           font-family: 'Inter', sans-serif;
-           background-color: var(--bg-color);
-           color: var(--text-main);
-           overflow-x: hidden;
-           -webkit-font-smoothing: antialiased;
-       }
+        /* TYPOGRAPHY OVERRIDES - Adjusted to fit and overlap perfectly */
+        .hero-title {
+            font-size: clamp(3rem, 15vw, 30rem);
+            font-weight: 900;
+            line-height: 0.8;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+        }
 
 
-       /* TYPOGRAPHY OVERRIDES - Adjusted to fit and overlap perfectly */
-       .hero-title {
-           font-size: clamp(3rem, 14.5vw, 18rem);
-           font-weight: 900;
-           line-height: 0.8;
-           letter-spacing: -0.06em;
-           text-transform: uppercase;
-       }
+        /* The Zinc-to-White Gradient for "PRODUCT-LED" */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--zinc-700) 0%, #ffffff 50%, var(--zinc-700) 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* Hero Gradient (Dark Grey to White) matching user request */
+        .gradient-text-hero {
+            background: linear-gradient(90deg, #52525b 0%, #ffffff 100%);
+            /* Zinc-600 to White */
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            /* Ensure gradient covers the text properly */
+            width: fit-content;
+            padding-right: 0.2em;
+        }
+
+        /* TEXT REVEAL ANIMATION */
+        .reveal-text {
+            kerning: none;
+        }
+
+        .reveal-text .line {
+            overflow: hidden;
+            padding-bottom: 0.1em;
+            /* Prevent descender clipping */
+        }
+
+        .reveal-text .word {
+            transform-origin: 0% 100%;
+            will-change: transform, opacity;
+        }
 
 
-       /* The Zinc-to-White Gradient for "PRODUCT-LED" */
-       .gradient-text {
-           background: linear-gradient(90deg, var(--zinc-700) 0%, #ffffff 50%, var(--zinc-700) 100%);
-           background-size: 200% auto;
-           -webkit-background-clip: text;
-           -webkit-text-fill-color: transparent;
-           display: inline-block;
-       }
 
 
-       /* The Minimalist Outline for "EXCELLENCE" */
-       .stroke-text {
-           -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.2);
-           color: transparent !important;
-           display: inline-block;
-       }
+        /* The Minimalist Outline for "EXCELLENCE" */
+        .stroke-text {
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.2);
+            color: transparent !important;
+            display: inline-block;
+        }
 
 
-       /* NOISE TEXTURE */
-       .noise-overlay {
-           position: fixed;
-           inset: 0;
-           z-index: 9999;
-           pointer-events: none;
-           opacity: 0.035;
-           background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-       }
+        /* NOISE TEXTURE */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            mix-blend-mode: overlay;
+            /* Better blending on light bg */
+        }
 
 
-       /* MENU ANIMATIONS */
-       .menu-link-wrapper { overflow: hidden; }
-       .menu-link { transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1); }
-       .menu-open .menu-link { transform: translateY(0); }
+        /* MENU ANIMATIONS */
+        .menu-link-wrapper {
+            overflow: hidden;
+        }
+
+        .menu-link {
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .menu-open .menu-link {
+            transform: translateY(0);
+        }
 
 
-       /* Menu Indicator Styles */
-       .menu-indicator {
-           opacity: 0;
-           transform: translateX(-30px);
-           transition: all 0.5s cubic-bezier(0.85, 0, 0.15, 1);
-           display: inline-flex;
-           align-items: center;
-           margin-right: 0.2em;
-       }
-       .menu-link:hover .menu-indicator {
-           opacity: 1;
-           transform: translateX(0);
-       }
+        /* Menu Indicator Styles */
+        .menu-indicator {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+            display: inline-flex;
+            align-items: center;
+            margin-right: 0.2em;
+        }
+
+        .menu-link:hover .menu-indicator {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
 
-       /* SCROLL INDICATOR */
-       .scroll-line {
-           width: 1px;
-           height: 60px;
-           background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
-       }
+        /* SCROLL INDICATOR */
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+            /* Darker for light mode */
+        }
 
 
-       /* MASKING FOR REVEALS */
-       .mask-wrap {
-           overflow: hidden;
-           padding: 0.2em 0; /* Added padding to prevent clipping of high/low letters and stroke */
-       }
-       .mask-inner { display: block; transform: translateY(105%); }
+        /* MASKING FOR REVEALS */
+        .mask-wrap {
+            overflow: hidden;
+            padding: 0.2em 0;
+            /* Added padding to prevent clipping of high/low letters and stroke */
+        }
+
+        .mask-inner {
+            display: block;
+            transform: translateY(105%);
+        }
 
 
-       .hidden-section { display: none; }
+        .hidden-section {
+            display: none;
+        }
 
 
-       /* BRUTALIST BORDERS */
-       .b-white-10 { border-color: rgba(255, 255, 255, 0.1); }
-   </style>
+        /* BRUTALIST BORDERS - ADAPTIVE */
+        .b-border-10 {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode-section .b-border-10,
+        .bg-zinc-950 .b-border-10,
+        .bg-black .b-border-10 {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Legacy support if needed, or specific for Hero/Nav overlays */
+        .b-white-10 {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* PINNED PANELS CSS */
+
+        .slides-wrapper {
+            position: relative;
+            width: 100%;
+            /* margin-top: 63px; Removed fixed margin as we control layout */
+            padding-top: 10vh;
+            /* Add breathing room from previous section */
+            padding-bottom: 0;
+        }
+
+        .pinned-section {
+            width: 100%;
+            height: 100vh;
+            /* Full viewport height for pinning */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* text-align: center; */
+            position: relative;
+            box-sizing: border-box;
+            background: var(--bg-color);
+            /* Default to bg-color */
+            overflow: hidden;
+            /* border-radius: 10px; Removed border radius for full-width feel, or keep if desired */
+        }
+
+        .pinned-section-inner {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ensure content fits nicely */
+        .pinned-content-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 4vw;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* VERTICAL MARQUEE CSS */
+        .marquee-container {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+            /* Adjust as needed */
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            /* Spacing between items */
+            animation: marquee-vertical 20s linear infinite;
+        }
+
+
+
+        @keyframes marquee-vertical {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+
+            /* Moves up by 50% because we will duplicate the content once. 
+               The content height is 100% (original) + 100% (duplicate) = 200%. 
+               Moving 50% of 200% = 100% (the length of original content), seamless loop. */
+        }
+
+        .marquee-track>div {
+            font-family: 'ABCDiatype', sans-serif !important;
+        }
+    </style>
 </head>
+
 <body class="selection:bg-white selection:text-black">
 
 
-   <div class="noise-overlay"></div>
+    <div class="noise-overlay"></div>
 
 
-   <!-- Navigation -->
-   <nav class="fixed top-0 w-full z-[150] flex justify-between items-center px-6 py-8 md:px-12 mix-blend-difference">
-       <div class="flex items-center gap-3 cursor-pointer group" onclick="navigate('home')">
-           <div class="w-2.5 h-2.5 bg-white rounded-full group-hover:scale-150 transition-transform duration-300"></div>
-           <span class="text-xl font-black tracking-tighter uppercase">Teqqi</span>
-       </div>
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 w-full z-[150] flex justify-between items-center px-6 py-8 md:px-12 mix-blend-difference text-white">
+        <div class="flex items-center gap-3 cursor-pointer group" onclick="navigate('home')">
+            <div class="w-2.5 h-2.5 bg-white rounded-full group-hover:scale-150 transition-transform duration-300">
+            </div>
+            <span class="text-xl font-black tracking-tighter uppercase">Teqqi</span>
+        </div>
 
 
-       <button id="nav-trigger" class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all">
-           <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
-           <div id="nav-icon" class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
-               <i data-lucide="plus" stroke-width="3"></i>
-           </div>
-       </button>
-   </nav>
+        <button id="nav-trigger"
+            class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all">
+            <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
+            <div id="nav-icon"
+                class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
+                <i data-lucide="plus" stroke-width="3"></i>
+            </div>
+        </button>
+    </nav>
 
 
-   <!-- Off-Canvas Split Menu -->
-   <div id="menu-container" class="fixed inset-0 bg-[#0c0c0c] z-[140] flex pointer-events-none translate-y-[-100%] overflow-hidden">
-       <!-- Left Side: Nav -->
-       <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-24">
-           <div class="space-y-4">
-               <div class="menu-link-wrapper">
-                   <a href="javascript:void(0)" class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4" data-idx="0" onclick="navigate('home')">
-                       <span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>
-                       Work
-                   </a>
-               </div>
-               <div class="menu-link-wrapper">
-                   <a href="javascript:void(0)" class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4" data-idx="1" onclick="navigate('about')">
-                       <span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>
-                       About
-                   </a>
-               </div>
-               <div class="menu-link-wrapper">
-                   <a href="javascript:void(0)" class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4" data-idx="2" onclick="navigate('home')">
-                       <span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>
-                       Process
-                   </a>
-               </div>
-               <div class="menu-link-wrapper">
-                   <a href="javascript:void(0)" class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4" data-idx="3" onclick="navigate('home')">
-                       <span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>
-                       Connect
-                   </a>
-               </div>
-           </div>
-          
-           <div class="absolute bottom-12 left-8 md:left-24 right-8 md:right-24">
-               <a href="mailto:hello@theteqqi.com" class="flex items-center justify-between py-8 border-t b-white-10 group hover:border-white transition-colors">
-                   <span class="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500 group-hover:text-white">Start a project — hello@theteqqi.com</span>
-                   <i data-lucide="arrow-right" class="group-hover:translate-x-4 transition-transform"></i>
-               </a>
-           </div>
-       </div>
+    <!-- Off-Canvas Split Menu -->
+    <div id="menu-container"
+        class="fixed inset-0 bg-[#0c0c0c] z-[140] flex pointer-events-none translate-y-[-100%] overflow-hidden">
+        <!-- Left Side: Nav -->
+        <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-24">
+            <div class="space-y-4">
+                <div class="menu-link-wrapper">
+                    <a href="javascript:void(0)"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4 text-white"
+                        data-idx="0" onclick="navigate('home')">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Work
+                    </a>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="services.html"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4 text-white"
+                        data-idx="1">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Services
+                    </a>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="javascript:void(0)"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4 text-white"
+                        data-idx="2" onclick="navigate('about')">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        About
+                    </a>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="javascript:void(0)"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4 text-white"
+                        data-idx="3" onclick="navigate('home')">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Process
+                    </a>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="javascript:void(0)"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4 text-white"
+                        data-idx="4" onclick="navigate('home')">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Connect
+                    </a>
+                </div>
+            </div>
+
+            <div class="absolute bottom-12 left-8 md:left-24 right-8 md:right-24">
+                <a href="mailto:hello@theteqqi.com"
+                    class="flex items-center justify-between py-8 border-t b-white-10 group hover:border-white transition-colors">
+                    <span
+                        class="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500 group-hover:text-white">Start
+                        a project — hello@theteqqi.com</span>
+                    <i data-lucide="arrow-right" class="group-hover:translate-x-4 transition-transform text-white"></i>
+                </a>
+            </div>
+        </div>
 
 
-       <!-- Right Side: Imagery -->
-       <div class="hidden lg:block w-1/2 h-full relative bg-zinc-950 border-l b-white-10 overflow-hidden">
-           <div id="img-0" class="menu-img absolute inset-0 opacity-100 transition-all duration-700 scale-100">
-               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale brightness-50">
-           </div>
-           <div id="img-1" class="menu-img absolute inset-0 opacity-0 transition-all duration-700 scale-110">
-               <img src="https://images.unsplash.com/photo-1522071823991-b5ae7264040d?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale brightness-50">
-           </div>
-           <div id="img-2" class="menu-img absolute inset-0 opacity-0 transition-all duration-700 scale-110">
-               <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale brightness-50">
-           </div>
-           <div id="img-3" class="menu-img absolute inset-0 opacity-0 transition-all duration-700 scale-110">
-               <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale brightness-50">
-           </div>
-           <div class="absolute inset-0 bg-gradient-to-l from-transparent to-[#0c0c0c]/40"></div>
-       </div>
-   </div>
+        <!-- Right Side: Imagery -->
+        <div class="hidden lg:block w-1/2 h-full relative bg-zinc-950 border-l b-white-10 overflow-hidden">
+            <div id="img-0" class="menu-img absolute inset-0 opacity-100 transition-all duration-700 scale-100">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
+                    class="w-full h-full object-cover grayscale brightness-50">
+            </div>
+            <!-- Services Image -->
+            <div id="img-1" class="menu-img absolute inset-0 opacity-0 transition-all duration-700 scale-110">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
+                    class="w-full h-full object-cover grayscale brightness-50">
+            </div>
+            <div id="img-2" class="menu-img absolute inset-0 opacity-0 transition-all duration-700 scale-110">
+                <img src="https://images.unsplash.com/photo-1522071823991-b5ae7264040d?auto=format&fit=crop&q=80&w=1200"
+                    class="w-full h-full object-cover grayscale brightness-50">
+            </div>
+            <div id="img-3" class="menu-img absolute inset-0 opacity-0 transition-all duration-700 scale-110">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200"
+                    class="w-full h-full object-cover grayscale brightness-50">
+            </div>
+            <div id="img-4" class="menu-img absolute inset-0 opacity-0 transition-all duration-700 scale-110">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200"
+                    class="w-full h-full object-cover grayscale brightness-50">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-l from-transparent to-[#0c0c0c]/40"></div>
+        </div>
+    </div>
 
 
-   <!-- Main Container -->
-   <div id="page-wrapper">
-      
-       <!-- HOME PAGE -->
-       <div id="home-view">
-           <section class="relative min-h-screen flex flex-col justify-end p-6 md:p-12 pb-24 overflow-hidden">
-               <div class="absolute top-[10%] right-[-10%] w-[60vw] h-[60vw] bg-zinc-800/10 blur-[180px] rounded-full -z-10 animate-pulse"></div>
-              
-               <div class="max-w-[1600px] w-full mx-auto">
-                   <!-- HERO TYPOGRAPHY: PRODUCT-LED EXCELLENCE -->
-                   <div class="flex flex-col mb-16">
-                       <div class="mask-wrap">
-                           <div class="mask-inner hero-title gradient-text">Product-Led</div>
-                       </div>
-                       <div class="mask-wrap">
-                           <div class="mask-inner hero-title stroke-text">Excellence.</div>
-                       </div>
-                   </div>
+    <!-- Main Container -->
+    <div id="page-wrapper">
+
+        <!-- HOME PAGE -->
+        <div id="home-view">
+            <!-- 1. HERO SECTION (DARK MODE PRESERVED) -->
+            <section class="relative bg-[#080808] dark-mode-section" id="hero-wrapper" style="height: 300vh;">
+                <div class="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center">
+
+                    <!-- BACKGROUND NOISE (Kept dark for consistency with dark bg) -->
+                    <div class="absolute inset-0 noise-overlay opacity-30"></div>
+
+                    <!-- HERO TEXT CONTAINER -->
+                    <!-- Initial state: Centered, huge. Will shrink and move top-left. -->
+                    <div id="hero-text-container"
+                        class="absolute z-20 flex flex-col items-center justify-center pointer-events-none mix-blend-difference">
+                        <h1 class="hero-title gradient-text-hero leading-none whitespace-nowrap text-center">
+                            Let's
+                        </h1>
+                        <h1 class="hero-title gradient-text-hero leading-none whitespace-nowrap text-center">
+                            Build.
+                        </h1>
+                    </div>
+
+                    <!-- HERO IMAGE CONTAINER -->
+                    <!-- Initial state: Translated down 100%. Will slide up. -->
+                    <div id="hero-image-container"
+                        class="absolute inset-0 z-10 w-full h-full translate-y-full will-change-transform">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000"
+                            class="w-full h-full object-cover grayscale brightness-75" alt="Building Architecture">
+                        <div class="absolute inset-0 bg-black/60"></div>
+
+                        <!-- Content on Image -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                            <h2 class="text-white text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
+                                Teqqi
+                            </h2>
+                            <p class="text-zinc-200 text-lg md:text-xl max-w-2xl font-light leading-relaxed mb-10">
+                                We are a tech consulting company that helps small businesses launch, scale, and operate
+                                more efficiently by building modern websites, custom applications, and AI-powered
+                                workflows.
+                            </p>
+
+                            <div class="flex flex-wrap gap-6 justify-center">
+                                <a href="#"
+                                    class="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-xs hover:bg-zinc-200 transition-colors">
+                                    Book a Free Strategy Call
+                                </a>
+                                <a href="services.html"
+                                    class="px-8 py-4 border border-zinc-500 text-white font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-colors">
+                                    See Our Services
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SCROLL INDICATOR -->
+                    <div id="hero-scroll-indicator"
+                        class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40 z-30">
+                        <span class="text-[8px] font-mono tracking-[0.6em] uppercase text-zinc-600">Scroll</span>
+                        <div class="scroll-line"></div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 2. MISSION / TRUST SECTION -->
+            <section class="py-32 px-6 md:px-12 bg-white border-t b-border-10">
+                <div class="max-w-[1400px] mx-auto">
+                    <!-- Heading -->
+                    <div class="mb-24 max-w-3xl">
+                        <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">Our
+                            Mission</span>
+                        <h2
+                            class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] mb-8 text-zinc-900">
+                            More Than Just<br><span class="text-zinc-400">Code & Pixels.</span>
+                        </h2>
+                        <p class="text-zinc-600 text-lg leading-relaxed max-w-xl">
+                            We don't just build websites. We build the systems that help your business grow.
+                        </p>
+                    </div>
+
+                    <!-- Card Grid (Creative Layout) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-200 border b-border-10">
+
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-white p-10 min-h-[400px] flex flex-col justify-between group hover:bg-zinc-50 transition-all duration-500 relative overflow-hidden">
+                            <div
+                                class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 text-blue-600">
+                                <i data-lucide="plus" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-zinc-900 mb-6 leading-tight">
+                                    High-Performance<br>Websites</h3>
+                            </div>
+                            <div
+                                class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <p class="text-zinc-500 group-hover:text-zinc-600 text-sm leading-relaxed mb-6">
+                                    Fast, search-ready websites built to turn visitors into paying customers.
+                                </p>
+                                <span
+                                    class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors">01
+                                    / Foundation</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div
+                            class="bg-white p-10 min-h-[400px] flex flex-col justify-between group hover:bg-zinc-50 transition-all duration-500 relative overflow-hidden">
+                            <div
+                                class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 text-blue-600">
+                                <i data-lucide="plus" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-zinc-900 mb-6 leading-tight">Custom<br>Applications
+                                </h3>
+                            </div>
+                            <div
+                                class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <p class="text-zinc-500 group-hover:text-zinc-600 text-sm leading-relaxed mb-6">
+                                    Software built specifically for your business when generic apps limit you.
+                                </p>
+                                <span
+                                    class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors">02
+                                    / Development</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div
+                            class="bg-white p-10 min-h-[400px] flex flex-col justify-between group hover:bg-zinc-50 transition-all duration-500 relative overflow-hidden">
+                            <div
+                                class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 text-blue-600">
+                                <i data-lucide="plus" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-zinc-900 mb-6 leading-tight">AI<br>Workflows</h3>
+                            </div>
+                            <div
+                                class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <p class="text-zinc-500 group-hover:text-zinc-600 text-sm leading-relaxed mb-6">
+                                    Smart automation that handles repetitive work so you don't have to.
+                                </p>
+                                <span
+                                    class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors">03
+                                    / Intelligence</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div
+                            class="bg-white p-10 min-h-[400px] flex flex-col justify-between group hover:bg-zinc-50 transition-all duration-500 relative overflow-hidden">
+                            <div
+                                class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 text-blue-600">
+                                <i data-lucide="plus" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-zinc-900 mb-6 leading-tight">Automated<br>Operations
+                                </h3>
+                            </div>
+                            <div
+                                class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <p class="text-zinc-500 group-hover:text-zinc-600 text-sm leading-relaxed mb-6">
+                                    Systems that run your business processes automatically, letting you focus on growth.
+                                </p>
+                                <span
+                                    class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors">04
+                                    / Efficiency</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div
+                            class="bg-white p-10 min-h-[400px] flex flex-col justify-between group hover:bg-zinc-50 transition-all duration-500 relative overflow-hidden">
+                            <div
+                                class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 text-blue-600">
+                                <i data-lucide="plus" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-bold text-zinc-900 mb-6 leading-tight">Strategic<br>Consulting
+                                </h3>
+                            </div>
+                            <div
+                                class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <p class="text-zinc-500 group-hover:text-zinc-600 text-sm leading-relaxed mb-6">
+                                    Expert guidance to help you make the right tech choices without the confusion.
+                                </p>
+                                <span
+                                    class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 transition-colors">05
+                                    / Strategy</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 (Contact/CTA) -->
+                        <div
+                            class="bg-zinc-900 p-10 min-h-[400px] flex flex-col justify-center items-center text-center group hover:bg-black transition-all duration-500 relative overflow-hidden">
+                            <h3 class="text-3xl font-black text-white mb-6 leading-tight">Ready to<br>Transform?</h3>
+                            <a href="#"
+                                class="inline-flex items-center gap-2 border-b-2 border-white pb-1 text-white font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all">
+                                Let's Talk <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. SERVICES OVERVIEW (Refactored to Pinned Panels) -->
+            <section id="services" class="bg-zinc-50 border-t b-border-10">
+                <!-- Header remains outside or constitutes the start? 
+                     User provided code calls for 'slides-wrapper' containing 'sections'. 
+                     I will wrap the header in the first section or Keep header separate?
+                     The sample has h1 inside the section. I will put the main intro in the scroll flow?
+                     Actually, keeping the header separate before the pinned sections might be better context, 
+                     but the effect works best if it takes over the screen.
+                     I will put the intro in a standard section above, or inside the first panel if it fits.
+                     Let's keep the standard header above the panels for context, then the panels start.
+                -->
+                <div class="py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+                    <span
+                        class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-6 block">Capabilities</span>
+                    <h2 class="hero-title !text-[8vw] md:!text-[5vw] gradient-text text-zinc-900">Our
+                        Technology<br>Consulting
+                        Services</h2>
+                </div>
+
+                <div class="slides-wrapper">
+                    <!-- Section 1: Website Design & Development -->
+                    <section class="pinned-section bg-white text-zinc-900 border-t b-border-10">
+                        <div class="pinned-section-inner">
+                            <div class="pinned-content-wrapper p-8 md:p-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
+                                    <div class="lg:col-span-5">
+                                        <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">
+                                            Website<br>Design</h1>
+                                        <p class="text-xl md:text-2xl text-zinc-600 font-light leading-relaxed mb-8">
+                                            We design and develop fast, scalable, search-ready websites that support
+                                            your business goals—not just your brand image.
+                                        </p>
+                                        <div class="flex flex-col gap-4">
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-600 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> Custom
+                                                Development
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-600 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> Performance
+                                                Optimization
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-600 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> CMS &
+                                                Migrations
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="lg:col-span-7 h-[50vh] w-full bg-zinc-100 rounded-lg overflow-hidden relative">
+                                        <!-- Placeholder Image or element -->
+                                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80&w=1200"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 2: Custom Web Apps -->
+                    <section class="pinned-section bg-zinc-100 text-zinc-900 border-t b-border-10">
+                        <div class="pinned-section-inner">
+                            <div class="pinned-content-wrapper p-8 md:p-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
+                                    <div class="lg:col-span-5">
+                                        <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">
+                                            Custom<br>Web Apps</h1>
+                                        <p class="text-xl md:text-2xl text-zinc-600 font-light leading-relaxed mb-8">
+                                            When off-the-shelf tools don’t fit your business, we build custom solutions.
+                                        </p>
+                                        <div class="flex flex-col gap-4">
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-600 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> Portals &
+                                                Dashboards
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-600 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> Booking Systems
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-600 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> SaaS Products
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="lg:col-span-7 h-[50vh] w-full bg-white rounded-lg overflow-hidden relative">
+                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 3: AI Consulting -->
+                    <section class="pinned-section bg-zinc-900 text-white border-t b-white-10">
+                        <div class="pinned-section-inner">
+                            <div class="pinned-content-wrapper p-8 md:p-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
+                                    <div class="lg:col-span-5">
+                                        <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">
+                                            AI<br>Automation</h1>
+                                        <p class="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed mb-8">
+                                            We help businesses use AI where it actually adds value—without unnecessary
+                                            complexity.
+                                        </p>
+                                        <div class="flex flex-col gap-4">
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-400 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div> Workflow Audits
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-400 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div> Task Automation
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-3 text-zinc-400 text-sm font-mono uppercase tracking-wide">
+                                                <div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div> Data Processing
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="lg:col-span-7 h-[50vh] w-full bg-zinc-800 rounded-lg overflow-hidden relative">
+                                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1200"
+                                            class="w-full h-full object-cover opacity-80">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 4: Ongoing Consulting -->
+                    <section class="pinned-section bg-white text-zinc-900 border-t b-border-10">
+                        <div class="pinned-section-inner">
+                            <div class="pinned-content-wrapper p-8 md:p-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
+                                    <div class="lg:col-span-12 text-center flex flex-col items-center">
+                                        <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">
+                                            Ongoing<br>Support</h1>
+                                        <p id="ongoing-support-text"
+                                            class="reveal-text text-xl md:text-3xl text-zinc-600 font-light leading-relaxed max-w-4xl mb-12">
+                                            We don’t disappear after launch. We provide ongoing consulting and support
+                                            to help businesses adapt, improve, and scale their technology as they grow.
+                                        </p>
+                                        <a href="#"
+                                            class="text-sm font-bold uppercase tracking-widest border-b-2 border-zinc-900 pb-2 hover:gap-4 transition-all inline-flex items-center gap-2">
+                                            Learn about our support packages <i data-lucide="arrow-right"
+                                                class="w-4 h-4"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <!-- 4. WHO WE HELP (Redesigned with Vertical Marquee) -->
+            <section class="py-24 px-6 md:px-12 bg-white border-t b-border-10">
+                <div class="max-w-[1400px] mx-auto">
+                    <span
+                        class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">Audience</span>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h2
+                                class="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight mb-8 text-zinc-900">
+                                Who We Work With
+                            </h2>
+                            <p class="text-zinc-600 text-lg leading-relaxed">
+                                If your business is growing and your systems are holding you back—we help you fix that.
+                            </p>
+                        </div>
+
+                        <!-- Scrolling Business Types List -->
+                        <div class="marquee-container border-l b-border-10 pl-8 md:pl-16">
+                            <div class="marquee-track">
+                                <!-- Original List -->
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-storefront text-3xl md:text-4xl text-zinc-400"></i> Small
+                                    Businesses
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-rocket-launch text-3xl md:text-4xl text-blue-600"></i>
+                                    Startups
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-lightbulb text-3xl md:text-4xl text-zinc-400"></i>
+                                    Founders
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-user text-3xl md:text-4xl text-blue-600"></i> Solo
+                                    Operators
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-briefcase text-3xl md:text-4xl text-zinc-400"></i>
+                                    Service Companies
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-users text-3xl md:text-4xl text-blue-600"></i>
+                                    Non-Technical Teams
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-buildings text-3xl md:text-4xl text-zinc-400"></i>
+                                    Agencies
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-chat-circle-text
+                                        text-3xl md:text-4xl text-blue-600"></i> Consultancies
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-bag text-3xl md:text-4xl text-zinc-400"></i>
+                                    E-commerce Brands
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-heartbeat text-3xl md:text-4xl text-blue-600"></i>
+                                    Healthcare
+                                </div>
+
+                                <!-- Duplicate List for Seamless Loop -->
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-storefront text-3xl md:text-4xl text-zinc-400"></i> Small
+                                    Businesses
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-rocket-launch text-3xl md:text-4xl text-blue-600"></i>
+                                    Startups
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-lightbulb text-3xl md:text-4xl text-zinc-400"></i>
+                                    Founders
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-user text-3xl md:text-4xl text-blue-600"></i> Solo
+                                    Operators
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-briefcase text-3xl md:text-4xl text-zinc-400"></i>
+                                    Service Companies
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-users text-3xl md:text-4xl text-blue-600"></i>
+                                    Non-Technical Teams
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-buildings text-3xl md:text-4xl text-zinc-400"></i>
+                                    Agencies
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-chat-circle-text
+                                        text-3xl md:text-4xl text-blue-600"></i> Consultancies
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-bag text-3xl md:text-4xl text-zinc-400"></i>
+                                    E-commerce Brands
+                                </div>
+                                <div
+                                    class="flex items-center gap-6 text-xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 border b-border-10 rounded-full px-8 py-6 bg-white shadow-sm w-fit">
+                                    <i class="ph-duotone ph-heartbeat text-3xl md:text-4xl text-blue-600"></i>
+                                    Healthcare
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. HOW YOU WORK -->
+            <!-- 5. METHODICAL PROCESS -->
+            <!-- 5. METHODICAL PROCESS -->
+            <section id="approach" class="py-24 bg-black text-white border-t border-zinc-900">
+                <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+                    <span
+                        class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">Process</span>
+                    <h2 class="text-4xl md:text-6xl font-black mb-24 tracking-tighter uppercase">
+                        A look into our<br>methodical process
+                    </h2>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[500px] border-t border-zinc-900">
+                        <!-- Left: Navigation -->
+                        <div class="lg:col-span-4 flex flex-col border-r border-zinc-900">
+                            <!-- Step 1 -->
+                            <button onclick="setProcessStep(0)" id="process-btn-0"
+                                class="process-btn group flex items-center gap-16 py-8 px-6 border-b border-zinc-900 transition-all hover:bg-zinc-900/50 text-left">
+                                <div id="process-num-0"
+                                    class="w-10 h-10 rounded-full border border-blue-600 text-blue-600 flex items-center justify-center text-sm opacity-100 transition-all">
+                                    1</div>
+                                <span id="process-txt-0"
+                                    class="text-xl font-medium text-white transition-colors">Discovery</span>
+                            </button>
+                            <!-- Step 2 -->
+                            <button onclick="setProcessStep(1)" id="process-btn-1"
+                                class="process-btn group flex items-center gap-16 py-8 px-6 border-b border-zinc-900 transition-all hover:bg-zinc-900/50 text-left">
+                                <div id="process-num-1"
+                                    class="w-10 h-10 rounded-full border border-zinc-800 text-zinc-500 flex items-center justify-center text-sm opacity-60 group-hover:border-zinc-600 transition-all">
+                                    2</div>
+                                <span id="process-txt-1"
+                                    class="text-xl font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors">Advisory</span>
+                            </button>
+                            <!-- Step 3 -->
+                            <button onclick="setProcessStep(2)" id="process-btn-2"
+                                class="process-btn group flex items-center gap-16 py-8 px-6 border-b border-zinc-900 transition-all hover:bg-zinc-900/50 text-left">
+                                <div id="process-num-2"
+                                    class="w-10 h-10 rounded-full border border-zinc-800 text-zinc-500 flex items-center justify-center text-sm opacity-60 group-hover:border-zinc-600 transition-all">
+                                    3</div>
+                                <span id="process-txt-2"
+                                    class="text-xl font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors">Design</span>
+                            </button>
+                            <!-- Step 4 -->
+                            <button onclick="setProcessStep(3)" id="process-btn-3"
+                                class="process-btn group flex items-center gap-16 py-8 px-6 border-b border-zinc-900 transition-all hover:bg-zinc-900/50 text-left">
+                                <div id="process-num-3"
+                                    class="w-10 h-10 rounded-full border border-zinc-800 text-zinc-500 flex items-center justify-center text-sm opacity-60 group-hover:border-zinc-600 transition-all">
+                                    4</div>
+                                <span id="process-txt-3"
+                                    class="text-xl font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors">Dev
+                                    & QA</span>
+                            </button>
+                            <!-- Step 5 -->
+                            <button onclick="setProcessStep(4)" id="process-btn-4"
+                                class="process-btn group flex items-center gap-16 py-8 px-6 border-b border-zinc-900 transition-all hover:bg-zinc-900/50 text-left">
+                                <div id="process-num-4"
+                                    class="w-10 h-10 rounded-full border border-zinc-800 text-zinc-500 flex items-center justify-center text-sm opacity-60 group-hover:border-zinc-600 transition-all">
+                                    5</div>
+                                <span id="process-txt-4"
+                                    class="text-xl font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors">Support</span>
+                            </button>
+                        </div>
+
+                        <!-- Right: Content -->
+                        <div class="lg:col-span-8 p-12 lg:p-24 flex flex-col justify-center relative min-h-[400px]">
+                            <!-- Loading / Transition Indicator (Optional) -->
+                            <div id="process-content" class="transition-opacity duration-300">
+                                <h4 id="process-phase" class="text-blue-600 mb-12"
+                                    style="font-family: 'ABCDiatype', sans-serif;">Phase 1</h4>
+                                <h3 id="process-title" class="text-5xl md:text-7xl font-medium mb-12 text-white"
+                                    style="font-family: 'ABCDiatype', sans-serif;">
+                                    Discovery</h3>
+                                <p id="process-desc" class="text-xl text-zinc-400 max-w-2xl leading-relaxed">
+                                    We dive deep into your workflow, data structres, and pain points to find specific
+                                    opportunities to increase efficiency.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. SELECTED WORK (New Section) -->
+            <section class="py-24 px-6 md:px-12 bg-white border-t b-border-10">
+                <div class="max-w-[1400px] mx-auto">
+                    <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">Selected
+                        Work</span>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+                        <!-- Sticky Title -->
+                        <div class="lg:col-span-4 lg:sticky lg:top-32 h-fit">
+                            <h2
+                                class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 leading-none text-zinc-900">
+                                Digital<br>Excellence
+                            </h2>
+                            <p class="text-zinc-600 text-lg leading-relaxed mb-8">
+                                We partner with ambitious brands to create digital experiences that define their
+                                category.
+                            </p>
+                            <a href="#"
+                                class="inline-flex items-center gap-2 border-b-2 border-zinc-900 pb-1 text-zinc-900 font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all">
+                                View All Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+
+                        <!-- Project List -->
+                        <div class="lg:col-span-8 flex flex-col gap-16 md:gap-32">
+                            <!-- Project 1 -->
+                            <div class="group cursor-pointer">
+                                <div class="relative overflow-hidden rounded-xl bg-zinc-100 aspect-[4/3] mb-8">
+                                    <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&q=80&w=1200"
+                                        alt="Project 1"
+                                        class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                                    <div
+                                        class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500">
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-end border-b border-zinc-200 pb-6">
+                                    <div>
+                                        <h3 class="text-3xl font-bold text-zinc-900 mb-2">Lumina</h3>
+                                        <span
+                                            class="text-sm font-mono uppercase tracking-widest text-zinc-500">E-Commerce
+                                            Experience</span>
+                                    </div>
+                                    <div
+                                        class="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-zinc-900 group-hover:text-white group-hover:border-zinc-900 transition-all">
+                                        <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 2 -->
+                            <div class="group cursor-pointer">
+                                <div class="relative overflow-hidden rounded-xl bg-zinc-100 aspect-[4/3] mb-8">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200"
+                                        alt="Project 2"
+                                        class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                                    <div
+                                        class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500">
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-end border-b border-zinc-200 pb-6">
+                                    <div>
+                                        <h3 class="text-3xl font-bold text-zinc-900 mb-2">Vantage</h3>
+                                        <span class="text-sm font-mono uppercase tracking-widest text-zinc-500">FinTech
+                                            Dashboard</span>
+                                    </div>
+                                    <div
+                                        class="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-zinc-900 group-hover:text-white group-hover:border-zinc-900 transition-all">
+                                        <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 3 -->
+                            <div class="group cursor-pointer">
+                                <div class="relative overflow-hidden rounded-xl bg-zinc-100 aspect-[4/3] mb-8">
+                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
+                                        alt="Project 3"
+                                        class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                                    <div
+                                        class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500">
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-end border-b border-zinc-200 pb-6">
+                                    <div>
+                                        <h3 class="text-3xl font-bold text-zinc-900 mb-2">Elevate</h3>
+                                        <span class="text-sm font-mono uppercase tracking-widest text-zinc-500">SaaS
+                                            Platform</span>
+                                    </div>
+                                    <div
+                                        class="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-zinc-900 group-hover:text-white group-hover:border-zinc-900 transition-all">
+                                        <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. AI CONSULTING HIGHLIGHT -->
+                <section class="py-24 px-6 md:px-12 bg-white border-t b-border-10 relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-[40vw] h-[40vw] bg-blue-100/30 blur-[150px] rounded-full -z-10">
+                    </div>
+                    <div
+                        class="max-w-[1400px] mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h2
+                                class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 leading-none text-zinc-900">
+                                AI Consulting<br><span class="text-blue-600">For Small Businesses</span>
+                            </h2>
+                            <p class="text-zinc-600 text-lg leading-relaxed mb-8">
+                                Artificial intelligence doesn’t have to be complicated or expensive. We help small
+                                businesses integrate AI into their workflows in practical ways—saving time, improving
+                                efficiency, and reducing operational friction.
+                            </p>
+                            <ul class="text-left space-y-4 mb-8 inline-block">
+                                <li class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> <span
+                                        class="text-zinc-600 font-mono text-sm uppercase">Automating Emails</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> <span
+                                        class="text-zinc-600 font-mono text-sm uppercase">Processing Data</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div> <span
+                                        class="text-zinc-600 font-mono text-sm uppercase">Improving Customer
+                                        Interactions</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            class="relative aspect-square md:aspect-auto md:h-full bg-zinc-50 border b-border-10 flex items-center justify-center">
+                            <!-- Abstract AI Viz -->
+                            <div
+                                class="w-32 h-32 border border-blue-600/30 rounded-full flex items-center justify-center animate-pulse">
+                                <div class="w-20 h-20 bg-blue-600/20 rounded-full blur-xl"></div>
+                                <i data-lucide="bot" class="w-12 h-12 text-blue-600 absolute"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. WHY CHOOSE YOU -->
+                <!-- 7. WHY CHOOSE YOU (V3: Scroll Interaction) -->
+                <section id="why-scroll" class="relative bg-black text-white w-full">
+                    <!-- BACKGROUND LAYER (Sticky) -->
+                    <div class="sticky top-0 h-screen w-screen left-1/2 -ml-[50vw] overflow-hidden z-0">
+                        <!-- BG 1: Outcomes -->
+                        <img id="why-bg-0"
+                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
+                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000"
+                            alt="Strategic Planning">
+                        <!-- BG 2: Constraints -->
+                        <img id="why-bg-1"
+                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
+                            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2000"
+                            alt="Real World Constraints">
+                        <!-- BG 3: Architecture -->
+                        <img id="why-bg-2"
+                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
+                            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000"
+                            alt="Scalable Architecture">
+                        <!-- BG 4: Clarity -->
+                        <img id="why-bg-3"
+                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
+                            src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2000"
+                            alt="Clarity">
+
+                        <!-- Overlay for readability -->
+                        <div class="absolute inset-0 bg-black/80"></div>
+                    </div>
+
+                    <!-- CONTENT LAYER (Scrollable) -->
+                    <div class="relative z-10 max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 -mt-[100vh]">
+
+                        <!-- Left Column: Sticky Icons & Title -->
+                        <div
+                            class="lg:col-span-4 hidden lg:flex flex-col justify-center h-screen sticky top-0 px-6 md:px-12">
+                            <div>
+                                <span
+                                    class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">Why
+                                    Teqqi</span>
+                                <h2
+                                    class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-white mb-16">
+                                    Built for<br>Growth
+                                </h2>
+                                <div class="flex flex-col gap-8 border-l border-zinc-800 pl-8">
+                                    <!-- Icon 1 -->
+                                    <div id="why-icon-0"
+                                        class="flex items-center gap-6 transition-all duration-500 opacity-100 translate-x-0 scale-100">
+                                        <i data-lucide="target" class="w-8 h-8 text-blue-500"></i>
+                                        <span class="text-sm uppercase tracking-widest text-white font-bold"
+                                            style="font-family: 'ABCDiatype', sans-serif;">Outcomes</span>
+                                    </div>
+                                    <!-- Icon 2 -->
+                                    <div id="why-icon-1"
+                                        class="flex items-center gap-6 transition-all duration-500 opacity-40 -translate-x-2 scale-95">
+                                        <i data-lucide="users" class="w-8 h-8 text-zinc-500"></i>
+                                        <span class="text-sm uppercase tracking-widest text-zinc-500"
+                                            style="font-family: 'ABCDiatype', sans-serif;">Constraints</span>
+                                    </div>
+                                    <!-- Icon 3 -->
+                                    <div id="why-icon-2"
+                                        class="flex items-center gap-6 transition-all duration-500 opacity-40 -translate-x-2 scale-95">
+                                        <i data-lucide="trending-up" class="w-8 h-8 text-zinc-500"></i>
+                                        <span class="text-sm uppercase tracking-widest text-zinc-500"
+                                            style="font-family: 'ABCDiatype', sans-serif;">Scalability</span>
+                                    </div>
+                                    <!-- Icon 4 -->
+                                    <div id="why-icon-3"
+                                        class="flex items-center gap-6 transition-all duration-500 opacity-40 -translate-x-2 scale-95">
+                                        <i data-lucide="message-square" class="w-8 h-8 text-zinc-500"></i>
+                                        <span class="text-sm uppercase tracking-widest text-zinc-500"
+                                            style="font-family: 'ABCDiatype', sans-serif;">Clarity</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Scrolling Text Blocks -->
+                        <div class="lg:col-span-8 flex flex-col pt-[20vh] pb-[20vh]">
+                            <!-- Block 1 -->
+                            <div class="why-block min-h-[100vh] flex flex-col justify-center px-6 md:px-12 lg:pl-32"
+                                data-index="0">
+                                <span class="text-blue-500 text-sm mb-4 block lg:hidden"
+                                    style="font-family: 'ABCDiatype', sans-serif;">01. Outcomes</span>
+                                <h3 class="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+                                    style="font-family: 'ABCDiatype', sans-serif;">Outcomes over<br>Buzzwords</h3>
+                                <p class="text-xl md:text-2xl text-zinc-300 leading-relaxed max-w-xl"
+                                    style="font-family: 'ABCDiatype', sans-serif;">
+                                    We don't sell technology for technology's sake. Every solution we build is ties
+                                    directly to a business goal—revenue, efficiency, or growth.
+                                </p>
+                            </div>
+
+                            <!-- Block 2 -->
+                            <div class="why-block min-h-[100vh] flex flex-col justify-center px-6 md:px-12 lg:pl-32"
+                                data-index="1">
+                                <span class="text-blue-500 text-sm mb-4 block lg:hidden"
+                                    style="font-family: 'ABCDiatype', sans-serif;">02. Constraints</span>
+                                <h3 class="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+                                    style="font-family: 'ABCDiatype', sans-serif;">Real-World<br>Constraints</h3>
+                                <p class="text-xl md:text-2xl text-zinc-300 leading-relaxed max-w-xl"
+                                    style="font-family: 'ABCDiatype', sans-serif;">
+                                    We understand small businesses don't have unlimited budgets or dedicated IT teams.
+                                    We build systems that you can actually manage and afford.
+                                </p>
+                            </div>
+
+                            <!-- Block 3 -->
+                            <div class="why-block min-h-[100vh] flex flex-col justify-center px-6 md:px-12 lg:pl-32"
+                                data-index="2">
+                                <span class="text-blue-500 text-sm mb-4 block lg:hidden"
+                                    style="font-family: 'ABCDiatype', sans-serif;">03. Scalability</span>
+                                <h3 class="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+                                    style="font-family: 'ABCDiatype', sans-serif;">Scalable<br>Architecture</h3>
+                                <p class="text-xl md:text-2xl text-zinc-300 leading-relaxed max-w-xl"
+                                    style="font-family: 'ABCDiatype', sans-serif;">
+                                    We design for today but build for tomorrow. Our solutions are modular and scalable,
+                                    so you don't have to rebuild when you double in size.
+                                </p>
+                            </div>
+
+                            <!-- Block 4 -->
+                            <div class="why-block min-h-[100vh] flex flex-col justify-center px-6 md:px-12 lg:pl-32"
+                                data-index="3">
+                                <span class="text-blue-500 text-sm mb-4 block lg:hidden"
+                                    style="font-family: 'ABCDiatype', sans-serif;">04. Clarity</span>
+                                <h3 class="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+                                    style="font-family: 'ABCDiatype', sans-serif;">No Jargon,<br>Just Clarity</h3>
+                                <p class="text-xl md:text-2xl text-zinc-300 leading-relaxed max-w-xl"
+                                    style="font-family: 'ABCDiatype', sans-serif;">
+                                    We speak your language. We explain technical concepts in plain English so you can
+                                    make informed decisions without a CS degree.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 8. FINAL CTA -->
+                <section class="py-48 px-6 md:px-12 bg-white border-t border-zinc-100 text-center">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
+                            Let’s Build Technology That Works for Your Business
+                        </h2>
+                        <p class="text-zinc-600 text-lg mb-12 max-w-2xl mx-auto">
+                            If you’re planning a new website, building a custom application, or exploring AI for your
+                            business—we’d love to help.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                            <a href="#"
+                                class="px-10 py-5 bg-black text-white font-bold uppercase tracking-widest text-sm hover:bg-zinc-800 transition-colors w-full sm:w-auto">
+                                Book a Free Strategy Call
+                            </a>
+                            <span class="text-zinc-400 font-mono text-xs uppercase tracking-widest">or</span>
+                            <a href="mailto:hello@theteqqi.com"
+                                class="px-10 py-5 border border-zinc-200 text-zinc-900 font-bold uppercase tracking-widest text-sm hover:bg-black hover:text-white transition-colors w-full sm:w-auto">
+                                Contact Us to Get Started
+                            </a>
+                        </div>
+                    </div>
+                </section>
+        </div>
 
 
-                   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-                       <div class="lg:col-span-4 mask-wrap">
-                           <div class="mask-inner">
-                               <p class="text-zinc-500 text-xs md:text-sm uppercase tracking-widest leading-loose max-w-sm">
-                                   Independent product studio based in London. We build technical interfaces for the next generation of commerce.
-                               </p>
-                           </div>
-                       </div>
-                       <div class="lg:col-span-8 flex justify-end mask-wrap">
-                           <div class="mask-inner">
-                               <div class="flex items-center gap-8">
-                                   <div class="w-16 h-16 rounded-full border b-white-10 flex items-center justify-center group cursor-pointer hover:border-blue-600 transition-colors">
-                                       <i data-lucide="arrow-up-right" class="w-6 h-6 text-zinc-600 group-hover:text-blue-600 transition-colors"></i>
-                                   </div>
-                                   <div class="flex flex-col">
-                                       <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-400">Available Q1 2026</span>
-                                       <span class="text-[9px] font-mono uppercase tracking-[0.4em] text-zinc-700 italic">Remote Studio — Worldwide</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
+        <!-- ABOUT PAGE VIEW -->
+        <div id="about-view" class="hidden-section">
+            <section class="relative min-h-screen flex flex-col justify-end p-8 md:p-24 overflow-hidden bg-white">
+                <div class="max-w-[1400px] w-full mx-auto">
+                    <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.6em] mb-12 block">The
+                        Studio</span>
+                    <div class="mask-wrap">
+                        <h1 class="mask-inner hero-title gradient-text text-zinc-900">Think Big.</h1>
+                    </div>
+                    <div class="mask-wrap">
+                        <h1 class="mask-inner hero-title text-zinc-900">Build Smart.</h1>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-end mt-20">
+                        <div class="md:col-span-7">
+                            <p
+                                class="text-2xl md:text-4xl font-light italic font-serif leading-snug tracking-tight text-zinc-600">
+                                "Teqqi was founded on a simple premise: technology should be invisible, yet
+                                indispensable."
+                            </p>
+                        </div>
+                        <div class="md:col-span-5 flex justify-end gap-16">
+                            <div class="text-center">
+                                <div class="text-5xl font-black tracking-tighter text-zinc-900">48+</div>
+                                <span
+                                    class="text-[8px] font-mono uppercase tracking-widest text-zinc-500">Products</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-5xl font-black tracking-tighter text-zinc-900">12</div>
+                                <span class="text-[8px] font-mono uppercase tracking-widest text-zinc-500">Awards</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
 
-               <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
-                   <span class="text-[8px] font-mono tracking-[0.6em] uppercase text-zinc-600">Scroll</span>
-                   <div class="scroll-line"></div>
-               </div>
-           </section>
 
 
-           <!-- Marquee Row -->
-           <section class="py-24 border-y b-white-10 bg-[#050505] overflow-hidden">
-               <div class="marquee-content flex whitespace-nowrap">
-                   <div class="flex items-center gap-20 px-10">
-                       <span class="text-[10vh] font-black tracking-tighter uppercase opacity-10">Product Strategy</span>
-                       <div class="w-4 h-4 bg-zinc-800 rotate-45"></div>
-                       <span class="text-[10vh] font-black tracking-tighter uppercase opacity-10 italic">High Performance</span>
-                       <div class="w-4 h-4 bg-zinc-800 rotate-45"></div>
-                       <span class="text-[10vh] font-black tracking-tighter uppercase opacity-10">Technical UX</span>
-                       <div class="w-4 h-4 bg-zinc-800 rotate-45"></div>
-                   </div>
-                   <!-- Loop duplicate -->
-                   <div class="flex items-center gap-20 px-10">
-                       <span class="text-[10vh] font-black tracking-tighter uppercase opacity-10">Product Strategy</span>
-                       <div class="w-4 h-4 bg-zinc-800 rotate-45"></div>
-                       <span class="text-[10vh] font-black tracking-tighter uppercase opacity-10 italic">High Performance</span>
-                       <div class="w-4 h-4 bg-zinc-800 rotate-45"></div>
-                       <span class="text-[10vh] font-black tracking-tighter uppercase opacity-10">Technical UX</span>
-                       <div class="w-4 h-4 bg-zinc-800 rotate-45"></div>
-                   </div>
-               </div>
-           </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-48 px-8 md:px-24 bg-white border-t b-border-10">
+            <div class="max-w-[1600px] mx-auto">
+                <div class="mask-wrap mb-32">
+                    <h2 class="mask-inner hero-title !text-[12vw] gradient-text text-zinc-900">Let's Build.</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-200 border b-border-10">
+                    <!-- UI/UX Card -->
+                    <!-- Web Design Card -->
+                    <div
+                        class="reveal-item bg-white p-12 flex flex-col justify-between hover:bg-zinc-900 hover:text-white transition-all group h-full">
+                        <div class="space-y-8">
+                            <div class="text-blue-600 group-hover:text-white transition-colors">
+                                <i data-lucide="monitor" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black uppercase tracking-tighter mb-4">Web Design</h3>
+                                <p
+                                    class="text-xs text-zinc-500 group-hover:text-zinc-300 leading-loose uppercase tracking-widest font-medium">
+                                    Crafting pixel-perfect, conversion-focused digital interfaces.
+                                </p>
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest mt-8 group-hover:text-white text-zinc-900 border-b border-zinc-200 group-hover:border-zinc-700 pb-1">Learn
+                            More</a>
+                    </div>
+                    <!-- Custom Web Apps Card -->
+                    <div
+                        class="reveal-item bg-white p-12 flex flex-col justify-between hover:bg-zinc-900 hover:text-white transition-all group h-full">
+                        <div class="space-y-8">
+                            <div class="text-blue-600 group-hover:text-white transition-colors">
+                                <i data-lucide="cpu" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black uppercase tracking-tighter mb-4">Custom Web Apps</h3>
+                                <p
+                                    class="text-xs text-zinc-500 group-hover:text-zinc-300 leading-loose uppercase tracking-widest font-medium">
+                                    Building scalable full-stack applications with modern stacks.
+                                </p>
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest mt-8 group-hover:text-white text-zinc-900 border-b border-zinc-200 group-hover:border-zinc-700 pb-1">Learn
+                            More</a>
+                    </div>
+                    <!-- AI Automation Card -->
+                    <div
+                        class="reveal-item bg-white p-12 flex flex-col justify-between hover:bg-zinc-900 hover:text-white transition-all group h-full">
+                        <div class="space-y-8">
+                            <div class="text-blue-600 group-hover:text-white transition-colors">
+                                <i data-lucide="bot" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black uppercase tracking-tighter mb-4">AI Automation &
+                                    Workflows</h3>
+                                <p
+                                    class="text-xs text-zinc-500 group-hover:text-zinc-300 leading-loose uppercase tracking-widest font-medium">
+                                    Automating repetitive tasks to optimize business efficiency.
+                                </p>
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest mt-8 group-hover:text-white text-zinc-900 border-b border-zinc-200 group-hover:border-zinc-700 pb-1">Learn
+                            More</a>
+                    </div>
+                    <!-- Technical Consulting Card -->
+                    <div
+                        class="reveal-item bg-white p-12 flex flex-col justify-between hover:bg-zinc-900 hover:text-white transition-all group h-full">
+                        <div class="space-y-8">
+                            <div class="text-blue-600 group-hover:text-white transition-colors">
+                                <i data-lucide="users" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black uppercase tracking-tighter mb-4">Technical Consulting
+                                </h3>
+                                <p
+                                    class="text-xs text-zinc-500 group-hover:text-zinc-300 leading-loose uppercase tracking-widest font-medium">
+                                    Expert guidance on architecture, stack selection, and strategy.
+                                </p>
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest mt-8 group-hover:text-white text-zinc-900 border-b border-zinc-200 group-hover:border-zinc-700 pb-1">Learn
+                            More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
-           <!-- Horizontal Gallery Section -->
-           <section id="work-trigger" class="bg-zinc-100 text-black overflow-hidden">
-               <div id="work-scroll" class="flex h-screen w-[300vw]">
-                   <div class="w-screen h-full flex flex-col justify-center px-12 md:px-24">
-                       <span class="text-xs font-mono uppercase tracking-[0.5em] text-zinc-400 mb-8">Selected Works</span>
-                       <h2 class="hero-title !text-[10vw] leading-[0.9]">Featured<br>Archives.</h2>
-                   </div>
-                   <div class="w-screen h-full flex items-center px-12 md:px-24 gap-16">
-                       <div class="w-3/5 aspect-video bg-zinc-300 overflow-hidden relative group">
-                           <img src="https://images.unsplash.com/photo-1551288049-bbbda5366991?auto=format&fit=crop&q=80&w=1200" class="parallax-img w-full h-full object-cover grayscale">
-                       </div>
-                       <div class="w-1/3 space-y-6">
-                           <h3 class="text-5xl font-black uppercase tracking-tighter">Nova Platform</h3>
-                           <p class="text-zinc-500 uppercase text-[10px] tracking-[0.3em]">Fintech / SaaS / Product Design</p>
-                           <button class="w-16 h-16 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-all group">
-                               <i data-lucide="arrow-up-right" class="group-hover:rotate-45 transition-transform"></i>
-                           </button>
-                       </div>
-                   </div>
-                   <div class="w-screen h-full flex items-center px-12 md:px-24 gap-16">
-                       <div class="w-3/5 aspect-video bg-zinc-300 overflow-hidden relative group">
-                           <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1200" class="parallax-img w-full h-full object-cover grayscale">
-                       </div>
-                       <div class="w-1/3 space-y-6">
-                           <h3 class="text-5xl font-black uppercase tracking-tighter">Apex Core</h3>
-                           <p class="text-zinc-500 uppercase text-[10px] tracking-[0.3em]">Mobile / Web 3.0 / Strategy</p>
-                           <button class="w-16 h-16 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-all group">
-                               <i data-lucide="arrow-up-right" class="group-hover:rotate-45 transition-transform"></i>
-                           </button>
-                       </div>
-                   </div>
-               </div>
-           </section>
-       </div>
+        <!-- Footer -->
+        <footer class="py-24 px-8 md:px-12 bg-white border-t b-border-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-24 mb-48">
+                <div>
+                    <h3 class="text-[10px] font-mono tracking-[0.6em] uppercase text-zinc-500 mb-12">Inquiries</h3>
+                    <a href="mailto:hello@theteqqi.com"
+                        class="hero-title !text-4xl md:!text-7xl lg:!text-8xl hover:italic transition-all duration-500 border-b b-border-10 hover:border-black inline-block leading-none text-zinc-900">
+                        hello@theteqqi.com
+                    </a>
+                </div>
+                <div class="flex md:justify-end items-end">
+                    <div class="grid grid-cols-2 gap-x-24 gap-y-8">
+                        <a href="#"
+                            class="text-[10px] font-mono tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">LinkedIn</a>
+                        <a href="#"
+                            class="text-[10px] font-mono tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center text-[9px] font-mono tracking-[0.5em] text-zinc-400 uppercase pt-12 border-t b-border-10">
+                <span>© 2026 Teqqi Studio</span>
+                <div class="mt-8 md:mt-0 flex gap-12">
+                    <a href="#" class="hover:text-zinc-800 transition-colors">Legal</a>
+                    <a href="#" class="hover:text-zinc-800 transition-colors">Privacy</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
 
-       <!-- ABOUT PAGE VIEW -->
-       <div id="about-view" class="hidden-section">
-           <section class="relative min-h-screen flex flex-col justify-end p-8 md:p-24 overflow-hidden bg-zinc-950">
-               <div class="max-w-[1400px] w-full mx-auto">
-                   <span class="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.6em] mb-12 block">The Studio</span>
-                   <div class="mask-wrap">
-                       <h1 class="mask-inner hero-title gradient-text">Think Big.</h1>
-                   </div>
-                   <div class="mask-wrap">
-                       <h1 class="mask-inner hero-title">Build Smart.</h1>
-                   </div>
-                   <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-end mt-20">
-                       <div class="md:col-span-7">
-                           <p class="text-2xl md:text-4xl font-light italic font-serif leading-snug tracking-tight text-zinc-300">
-                               "Teqqi was founded on a simple premise: technology should be invisible, yet indispensable."
-                           </p>
-                       </div>
-                       <div class="md:col-span-5 flex justify-end gap-16">
-                           <div class="text-center">
-                               <div class="text-5xl font-black tracking-tighter">48+</div>
-                               <span class="text-[8px] font-mono uppercase tracking-widest text-zinc-600">Products</span>
-                           </div>
-                           <div class="text-center">
-                               <div class="text-5xl font-black tracking-tighter">12</div>
-                               <span class="text-[8px] font-mono uppercase tracking-widest text-zinc-600">Awards</span>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </section>
-       </div>
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
 
 
-       <!-- PROCESS SECTION -->
-       <section id="approach" class="py-48 px-8 md:px-24 border-t b-white-10">
-           <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-               <div class="lg:col-span-5">
-                   <h2 class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-600 mb-12">Process</h2>
-                   <p class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight">
-                       We build products that scale and resonate.
-                   </p>
-               </div>
-               <div class="lg:col-span-7 flex flex-col gap-px bg-white/10">
-                   <div class="reveal-item bg-[#080808] p-12 flex justify-between items-center group cursor-pointer hover:bg-white hover:text-black transition-all">
-                       <div class="flex gap-12 items-center">
-                           <span class="text-xs font-mono opacity-40">01</span>
-                           <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tighter">Discovery</h3>
-                       </div>
-                       <i data-lucide="arrow-right" class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-4"></i>
-                   </div>
-                   <div class="reveal-item bg-[#080808] p-12 flex justify-between items-center group cursor-pointer hover:bg-white hover:text-black transition-all">
-                       <div class="flex gap-12 items-center">
-                           <span class="text-xs font-mono opacity-40">02</span>
-                           <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tighter">Engineering</h3>
-                       </div>
-                       <i data-lucide="arrow-right" class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-4"></i>
-                   </div>
-                   <div class="reveal-item bg-[#080808] p-12 flex justify-between items-center group cursor-pointer hover:bg-white hover:text-black transition-all">
-                       <div class="flex gap-12 items-center">
-                           <span class="text-xs font-mono opacity-40">03</span>
-                           <h3 class="text-3xl md:text-5xl font-black uppercase tracking-tighter">Optimization</h3>
-                       </div>
-                       <i data-lucide="arrow-right" class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-4"></i>
-                   </div>
-               </div>
-           </div>
-       </section>
+        let menuOpen = false;
+        let currentPage = 'home';
 
 
-       <!-- SERVICES SECTION -->
-       <section id="services" class="py-48 px-8 md:px-24 bg-zinc-950 border-t b-white-10">
-           <div class="max-w-[1600px] mx-auto">
-               <div class="mask-wrap mb-32">
-                   <h2 class="mask-inner hero-title !text-[12vw] gradient-text">The Engine.</h2>
-               </div>
-               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border b-white-10">
-                   <!-- UI/UX Card -->
-                   <div class="reveal-item bg-[#080808] p-12 space-y-8 hover:bg-white hover:text-black transition-all group h-full">
-                       <div class="text-blue-600 group-hover:text-black transition-colors">
-                           <i data-lucide="monitor" class="w-8 h-8"></i>
-                       </div>
-                       <div>
-                           <span class="text-[9px] font-mono uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100 mb-2 block">UI/UX Design</span>
-                           <h3 class="text-3xl font-black uppercase tracking-tighter">Interface</h3>
-                       </div>
-                       <p class="text-xs text-zinc-500 group-hover:text-zinc-800 leading-loose uppercase tracking-widest font-medium">
-                           Crafting pixel-perfect, conversion-focused digital interfaces.
-                       </p>
-                   </div>
-                   <!-- Engineering Card -->
-                   <div class="reveal-item bg-[#080808] p-12 space-y-8 hover:bg-white hover:text-black transition-all group h-full">
-                       <div class="text-blue-600 group-hover:text-black transition-colors">
-                           <i data-lucide="cpu" class="w-8 h-8"></i>
-                       </div>
-                       <div>
-                           <span class="text-[9px] font-mono uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100 mb-2 block">Engineering</span>
-                           <h3 class="text-3xl font-black uppercase tracking-tighter">Product</h3>
-                       </div>
-                       <p class="text-xs text-zinc-500 group-hover:text-zinc-800 leading-loose uppercase tracking-widest font-medium">
-                           Building scalable full-stack applications with modern stacks.
-                       </p>
-                   </div>
-                   <!-- Strategy Card -->
-                   <div class="reveal-item bg-[#080808] p-12 space-y-8 hover:bg-white hover:text-black transition-all group h-full">
-                       <div class="text-blue-600 group-hover:text-black transition-colors">
-                           <i data-lucide="zap" class="w-8 h-8"></i>
-                       </div>
-                       <div>
-                           <span class="text-[9px] font-mono uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100 mb-2 block">UX Strategy</span>
-                           <h3 class="text-3xl font-black uppercase tracking-tighter">Velocity</h3>
-                       </div>
-                       <p class="text-xs text-zinc-500 group-hover:text-zinc-800 leading-loose uppercase tracking-widest font-medium">
-                           Data-driven decision making to optimize user pathways.
-                       </p>
-                   </div>
-                   <!-- Branding Card -->
-                   <div class="reveal-item bg-[#080808] p-12 space-y-8 hover:bg-white hover:text-black transition-all group h-full">
-                       <div class="text-blue-600 group-hover:text-black transition-colors">
-                           <i data-lucide="layers" class="w-8 h-8"></i>
-                       </div>
-                       <div>
-                           <span class="text-[9px] font-mono uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100 mb-2 block">Branding</span>
-                           <h3 class="text-3xl font-black uppercase tracking-tighter">Identity</h3>
-                       </div>
-                       <p class="text-xs text-zinc-500 group-hover:text-zinc-800 leading-loose uppercase tracking-widest font-medium">
-                           Visual systems that define the next generation of tech.
-                       </p>
-                   </div>
-               </div>
-           </div>
-       </section>
+        // Nav Trigger
+        const navTrigger = document.getElementById('nav-trigger');
+        const menuContainer = document.getElementById('menu-container');
+        const navLabel = document.getElementById('nav-label');
+        const navIcon = document.getElementById('nav-icon');
+        const menuLinks = document.querySelectorAll('.menu-link');
 
 
-       <!-- Footer -->
-       <footer class="py-24 px-8 md:px-12 bg-black border-t b-white-10">
-           <div class="grid grid-cols-1 md:grid-cols-2 gap-24 mb-48">
-               <div>
-                   <h3 class="text-[10px] font-mono tracking-[0.6em] uppercase text-zinc-700 mb-12">Inquiries</h3>
-                   <a href="mailto:hello@theteqqi.com" class="hero-title !text-4xl md:!text-7xl lg:!text-8xl hover:italic transition-all duration-500 border-b b-white-10 hover:border-white inline-block leading-none">
-                       hello@theteqqi.com
-                   </a>
-               </div>
-               <div class="flex md:justify-end items-end">
-                   <div class="grid grid-cols-2 gap-x-24 gap-y-8">
-                       <a href="#" class="text-[10px] font-mono tracking-[0.4em] uppercase hover:text-blue-600 transition-colors">LinkedIn</a>
-                       <a href="#" class="text-[10px] font-mono tracking-[0.4em] uppercase hover:text-blue-600 transition-colors">Instagram</a>
-                       <a href="#" class="text-[10px] font-mono tracking-[0.4em] uppercase hover:text-blue-600 transition-colors">Twitter</a>
-                       <a href="#" class="text-[10px] font-mono tracking-[0.4em] uppercase hover:text-blue-600 transition-colors">Dribbble</a>
-                   </div>
-               </div>
-           </div>
-           <div class="flex flex-col md:flex-row justify-between items-center text-[9px] font-mono tracking-[0.5em] text-zinc-800 uppercase pt-12 border-t b-white-10">
-               <span>© 2026 Teqqi Studio</span>
-               <div class="mt-8 md:mt-0 flex gap-12">
-                   <a href="#" class="hover:text-zinc-500 transition-colors">Legal</a>
-                   <a href="#" class="hover:text-zinc-500 transition-colors">Privacy</a>
-               </div>
-           </div>
-       </footer>
-   </div>
+        navTrigger.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                gsap.to(menuContainer, { y: 0, duration: 1.2, ease: "expo.inOut", pointerEvents: "all" });
+                document.body.classList.add('menu-open');
+                navLabel.textContent = 'Close';
+                navIcon.classList.add('rotate-45');
+            } else {
+                gsap.to(menuContainer, { y: "-100%", duration: 1, ease: "expo.inOut", pointerEvents: "none" });
+                document.body.classList.remove('menu-open');
+                navLabel.textContent = 'Menu';
+                navIcon.classList.remove('rotate-45');
+            }
+        });
 
 
-   <script>
-       // Init Lucide
-       lucide.createIcons();
-       gsap.registerPlugin(ScrollTrigger);
+        // Menu Hover Logic
+        const menuImgs = document.querySelectorAll('.menu-img');
+        menuLinks.forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const idx = link.getAttribute('data-idx');
+                menuImgs.forEach((img, i) => {
+                    gsap.to(img, { opacity: i == idx ? 1 : 0, scale: i == idx ? 1 : 1.1, duration: 0.8, ease: "power2.out" });
+                });
+            });
+        });
 
 
-       let menuOpen = false;
-       let currentPage = 'home';
+        // Navigation Engine
+        function navigate(view) {
+            currentPage = view;
+            window.scrollTo(0, 0);
+            const homeView = document.getElementById('home-view');
+            const aboutView = document.getElementById('about-view');
+
+            // Close menu if open
+            if (menuOpen) {
+                menuOpen = false;
+                gsap.to(menuContainer, { y: "-100%", duration: 1, ease: "expo.inOut", pointerEvents: "none" });
+                document.body.classList.remove('menu-open');
+                navLabel.textContent = 'Menu';
+                navIcon.classList.remove('rotate-45');
+            }
 
 
-       // Nav Trigger
-       const navTrigger = document.getElementById('nav-trigger');
-       const menuContainer = document.getElementById('menu-container');
-       const navLabel = document.getElementById('nav-label');
-       const navIcon = document.getElementById('nav-icon');
-       const menuLinks = document.querySelectorAll('.menu-link');
+            if (view === 'home') { homeView.classList.remove('hidden-section'); aboutView.classList.add('hidden-section'); }
+            else { homeView.classList.add('hidden-section'); aboutView.classList.remove('hidden-section'); }
+
+            ScrollTrigger.getAll().forEach(t => t.kill());
+            initAnimations();
+        }
 
 
-       navTrigger.addEventListener('click', () => {
-           menuOpen = !menuOpen;
-           if (menuOpen) {
-               gsap.to(menuContainer, { y: 0, duration: 1.2, ease: "expo.inOut", pointerEvents: "all" });
-               document.body.classList.add('menu-open');
-               navLabel.textContent = 'Close';
-               navIcon.classList.add('rotate-45');
-           } else {
-               gsap.to(menuContainer, { y: "-100%", duration: 1, ease: "expo.inOut", pointerEvents: "none" });
-               document.body.classList.remove('menu-open');
-               navLabel.textContent = 'Menu';
-               navIcon.classList.remove('rotate-45');
-           }
-       });
+        // Animation Engine
+        function initAnimations() {
+            // Hero Scroll Effect
+            initHeroScroll();
+            initPinnedPanels();
+
+            // Existing reveals
+            gsap.to(".mask-inner", { y: 0, duration: 1.5, ease: "expo.out", stagger: 0.1, delay: 0.2 });
+
+            gsap.utils.toArray(".reveal-item").forEach((item) => {
+                gsap.from(item, { opacity: 0, y: 60, duration: 1.4, scrollTrigger: { trigger: item, start: "top 90%" } });
+            });
+
+            // Refresh ScrollTrigger after a slight delay to ensure layout is settled
+            setTimeout(() => ScrollTrigger.refresh(), 500);
+        }
+
+        function initPinnedPanels() {
+            var panels = gsap.utils.toArray(".pinned-section");
+            if (panels.length === 0) return; // Safety check
+            panels.pop();
+
+            panels.forEach((panel, i) => {
+                let innerpanel = panel.querySelector(".pinned-section-inner");
+                if (!innerpanel) return;
+
+                let panelHeight = innerpanel.offsetHeight;
+                let windowHeight = window.innerHeight;
+                let difference = panelHeight - windowHeight;
+                let fakeScrollRatio = difference > 0 ? (difference / (difference + windowHeight)) : 0;
+
+                if (fakeScrollRatio) {
+                    panel.style.marginBottom = panelHeight * fakeScrollRatio + "px";
+                }
+
+                let tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: "bottom bottom",
+                        end: () => fakeScrollRatio ? `+=${innerpanel.offsetHeight}` : "bottom top",
+                        pinSpacing: false,
+                        pin: true,
+                        scrub: true
+                    }
+                });
+
+                if (fakeScrollRatio) {
+                    tl.to(innerpanel, { yPercent: -100, y: window.innerHeight, duration: 1 / (1 - fakeScrollRatio) - 1, ease: "none" });
+                }
+
+                tl.fromTo(panel, { scale: 1, opacity: 1 }, { scale: 0.7, opacity: 0.5, duration: 0.9 })
+                    .to(panel, { opacity: 0, duration: 0.1 });
+            });
+        }
 
 
-       // Menu Hover Logic
-       const menuImgs = document.querySelectorAll('.menu-img');
-       menuLinks.forEach((link) => {
-           link.addEventListener('mouseenter', () => {
-               const idx = link.getAttribute('data-idx');
-               menuImgs.forEach((img, i) => {
-                   gsap.to(img, { opacity: i == idx ? 1 : 0, scale: i == idx ? 1 : 1.1, duration: 0.8, ease: "power2.out" });
-               });
-           });
-       });
+        function initHeroScroll() {
+            // Master Timeline attached to the scroll wrapper
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#hero-wrapper",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1,
+                    // pin: true // We don't need to pin the wrapper because we used position:sticky inside it
+                }
+            });
 
+            // 1. Scale down the text
+            tl.to("#hero-text-container", {
+                scale: 0.15, // Shrink significantly
+                y: "-35vh",  // Move to top (adjust based on header height)
+                transformOrigin: "center top",
+                ease: "power1.inOut"
+            }, 0); // Start at 0
 
-       // Navigation Engine
-       function navigate(view) {
-           currentPage = view;
-           window.scrollTo(0, 0);
-           const homeView = document.getElementById('home-view');
-           const aboutView = document.getElementById('about-view');
-          
-           // Close menu if open
-           if(menuOpen) {
-               menuOpen = false;
-               gsap.to(menuContainer, { y: "-100%", duration: 1, ease: "expo.inOut", pointerEvents: "none" });
-               document.body.classList.remove('menu-open');
-               navLabel.textContent = 'Menu';
-               navIcon.classList.remove('rotate-45');
-           }
+            // 2. Reveal the image (Slide up)
+            tl.to("#hero-image-container", {
+                yPercent: -100, // Slide up to 0 from 100%
+                ease: "power1.inOut"
+            }, 0); // Start same time
 
+            // 3. Fade out scroll indicator
+            tl.to("#hero-scroll-indicator", {
+                opacity: 0,
+                duration: 0.2
+            }, 0);
+        }
 
-           if (view === 'home') { homeView.classList.remove('hidden-section'); aboutView.classList.add('hidden-section'); }
-           else { homeView.classList.add('hidden-section'); aboutView.classList.remove('hidden-section'); }
-          
-           ScrollTrigger.getAll().forEach(t => t.kill());
-           initAnimations();
-       }
+        // Process Section Logic
+        const processSteps = [
+            {
+                id: 1,
+                title: "Discovery",
+                desc: "We dive deep into your workflow, data structures, and pain points to find specific opportunities to increase efficiency."
+            },
+            {
+                id: 2,
+                title: "Advisory",
+                desc: "Whether you are planning to automate business processes or improve performance, we help you define the right business strategy."
+            },
+            {
+                id: 3,
+                title: "Design",
+                desc: "We create intuitive, user-centric designs that align with your brand principles and operational goals."
+            },
+            {
+                id: 4,
+                title: "Dev & QA",
+                desc: "Our engineering team builds robust, scalable solutions, ensuring every line of code meets high-quality standards before launch."
+            },
+            {
+                id: 5,
+                title: "Support",
+                desc: "Post-launch, we provide ongoing maintenance and optimization to ensure your systems evolve with your business."
+            }
+        ];
 
+        let currentProcessStep = 0; // Renamed to avoid conflict
 
-       // Animation Engine
-       function initAnimations() {
-           gsap.to(".mask-inner", { y: 0, duration: 1.5, ease: "expo.out", stagger: 0.1, delay: 0.2 });
-           gsap.to(".marquee-content", { xPercent: -50, repeat: -1, duration: 30, ease: "none" });
-           if (currentPage === 'home') {
-               const workScroll = document.getElementById('work-scroll');
-               const workTrigger = document.getElementById('work-trigger');
-               if (workScroll && workTrigger) {
-                   gsap.to(workScroll, {
-                       xPercent: -66.6,
-                       ease: "none",
-                       scrollTrigger: { trigger: workTrigger, pin: true, scrub: 1, end: () => "+=" + workScroll.offsetWidth, invalidateOnRefresh: true }
-                   });
-               }
-           }
-           gsap.utils.toArray(".reveal-item").forEach((item) => {
-               gsap.from(item, { opacity: 0, y: 60, duration: 1.4, scrollTrigger: { trigger: item, start: "top 90%" } });
-           });
-           gsap.utils.toArray(".parallax-img").forEach((img) => {
-               gsap.to(img, { scale: 1.15, ease: "none", scrollTrigger: { trigger: img, start: "top bottom", end: "bottom top", scrub: true } });
-           });
-       }
-       window.onload = initAnimations;
-   </script>
+        function setProcessStep(index) {
+            currentProcessStep = index; // Update current step
+            const content = document.getElementById('process-content');
+
+            // Fade out
+            content.style.opacity = '0';
+
+            setTimeout(() => {
+                // Update Content
+                const step = processSteps[index];
+                document.getElementById('process-phase').innerText = `Phase ${step.id}`;
+                document.getElementById('process-title').innerText = step.title;
+                document.getElementById('process-desc').innerText = step.desc;
+
+                // Update Active States for Buttons
+                processSteps.forEach((_, i) => {
+                    // const btn = document.getElementById(`process-btn-${i}`); // This element doesn't exist in the HTML for process steps
+                    const num = document.getElementById(`process-num-${i}`);
+                    const txt = document.getElementById(`process-txt-${i}`);
+
+                    if (i === index) {
+                        // Active Style
+                        num.className = "w-10 h-10 rounded-full border border-blue-600 text-blue-600 flex items-center justify-center text-sm opacity-100 transition-all";
+                        txt.className = "text-xl font-medium text-white transition-colors";
+                    } else {
+                        // Inactive Style
+                        num.className = "w-10 h-10 rounded-full border border-zinc-800 text-zinc-500 flex items-center justify-center text-sm opacity-60 group-hover:border-zinc-600 transition-all";
+                        txt.className = "text-xl font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors";
+                    }
+                });
+
+                // Fade in
+                content.style.opacity = '1';
+            }, 300);
+        }
+
+        // Initialize Scroll-Triggered 'Why Us' Section
+        function initWhyScroll() {
+            const whyBlocks = document.querySelectorAll('.why-block');
+            const whyIcons = [
+                document.getElementById('why-icon-0'),
+                document.getElementById('why-icon-1'),
+                document.getElementById('why-icon-2'),
+                document.getElementById('why-icon-3')
+            ];
+            const whyBgs = [
+                document.getElementById('why-bg-0'),
+                document.getElementById('why-bg-1'),
+                document.getElementById('why-bg-2'),
+                document.getElementById('why-bg-3')
+            ];
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-45% 0px -45% 0px', // Wider trigger zone (10% of viewport height) to prevent skipping
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const index = parseInt(entry.target.getAttribute('data-index'));
+                        // console.log('Activating Why Step:', index); // Debug
+                        updateWhyState(index);
+                    }
+                });
+            }, observerOptions);
+
+            whyBlocks.forEach(block => observer.observe(block));
+
+            function updateWhyState(activeIndex) {
+                // Update Icons
+                whyIcons.forEach((icon, i) => {
+                    if (icon) {
+                        if (i === activeIndex) {
+                            icon.classList.remove('opacity-40', '-translate-x-2', 'scale-95');
+                            icon.classList.add('opacity-100', 'translate-x-0', 'scale-100');
+
+                            const iconEl = icon.querySelector('i');
+                            if (iconEl) {
+                                iconEl.classList.add('text-blue-500');
+                                iconEl.classList.remove('text-zinc-500');
+                            }
+
+                            const textEl = icon.querySelector('span');
+                            if (textEl) {
+                                textEl.classList.add('text-white', 'font-bold');
+                                textEl.classList.remove('text-zinc-500');
+                            }
+                        } else {
+                            icon.classList.add('opacity-40', '-translate-x-2', 'scale-95');
+                            icon.classList.remove('opacity-100', 'translate-x-0', 'scale-100');
+
+                            const iconEl = icon.querySelector('i');
+                            if (iconEl) {
+                                iconEl.classList.remove('text-blue-500');
+                                iconEl.classList.add('text-zinc-500');
+                            }
+
+                            const textEl = icon.querySelector('span');
+                            if (textEl) {
+                                textEl.classList.remove('text-white', 'font-bold');
+                                textEl.classList.add('text-zinc-500');
+                            }
+                        }
+                    }
+                });
+
+                // Update Backgrounds
+                whyBgs.forEach((bg, i) => {
+                    if (bg) {
+                        if (i === activeIndex) {
+                            bg.classList.remove('opacity-0');
+                            bg.classList.add('opacity-100');
+                        } else {
+                            bg.classList.remove('opacity-100');
+                            bg.classList.add('opacity-0');
+                        }
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initWhyScroll);
+        // Initialize Text Reveal Animation
+        function initTextReveal() {
+            const ongoingText = new SplitType('#ongoing-support-text', { types: 'lines,words', lineClass: 'line', wordClass: 'word' });
+
+            // Initially set opacity to 0 to avoid flash of un-animated text
+            gsap.set('#ongoing-support-text .word', { opacity: 0, yPercent: 100 });
+
+            ScrollTrigger.create({
+                trigger: '#ongoing-support-text',
+                start: 'top 80%', // Start animation when top of text hits 80% viewport height
+                onEnter: () => {
+                    gsap.to('#ongoing-support-text .word', {
+                        duration: 0.8,
+                        yPercent: 0,
+                        opacity: 1,
+                        stagger: 0.05,
+                        ease: "expo.out",
+                        overwrite: true
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('load', initAnimations);
+        window.addEventListener('load', initTextReveal);
+    </script>
 </body>
+
 </html>
