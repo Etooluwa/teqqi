@@ -59,6 +59,16 @@
             font-family: 'Inter', sans-serif;
         }
 
+        .nav-dark-theme {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+            border-color: rgba(0, 0, 0, 0.2) !important;
+            color: #000000 !important;
+        }
+
+        .nav-dark-theme:hover {
+            background-color: rgba(0, 0, 0, 0.1) !important;
+        }
+
         body {
             font-family: 'ABCDiatype', sans-serif;
             background-color: var(--bg-color);
@@ -148,16 +158,14 @@
                 class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
         </a>
 
-        <div class="mix-blend-difference">
-            <button id="nav-trigger"
-                class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
-                <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
-                <div id="nav-icon"
-                    class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
-                    <i data-lucide="plus" stroke-width="3"></i>
-                </div>
-            </button>
-        </div>
+        <button id="nav-trigger"
+            class="nav-dark-theme flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
+            <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
+            <div id="nav-icon"
+                class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
+                <i data-lucide="plus" stroke-width="3"></i>
+            </div>
+        </button>
     </nav>
 
     <!-- Off-Canvas Menu -->

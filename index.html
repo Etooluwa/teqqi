@@ -212,6 +212,16 @@
             border-color: rgba(0, 0, 0, 0.1);
         }
 
+        .nav-dark-theme {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+            border-color: rgba(0, 0, 0, 0.2) !important;
+            color: #000000 !important;
+        }
+
+        .nav-dark-theme:hover {
+            background-color: rgba(0, 0, 0, 0.1) !important;
+        }
+
         .dark-mode-section .b-border-10,
         .bg-zinc-950 .b-border-10,
         .bg-black .b-border-10 {
@@ -324,16 +334,14 @@
                 class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
         </a>
 
-        <div class="mix-blend-difference">
-            <button id="nav-trigger"
-                class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
-                <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
-                <div id="nav-icon"
-                    class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
-                    <i data-lucide="plus" stroke-width="3"></i>
-                </div>
-            </button>
-        </div>
+        <button id="nav-trigger"
+            class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
+            <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
+            <div id="nav-icon"
+                class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
+                <i data-lucide="plus" stroke-width="3"></i>
+            </div>
+        </button>
     </nav>
 
 
@@ -1473,7 +1481,9 @@
             trigger: ".bg-white",
             start: "top 40px",
             onEnter: () => {
+                const navTrigger = document.getElementById('nav-trigger');
                 if (!menuOpen) {
+                    navTrigger.classList.add('nav-dark-theme');
                     gsap.to("#main-logo", {
                         opacity: 0, duration: 0.2, onComplete: () => {
                             document.getElementById('main-logo').src = "https://i.imgur.com/lnicB4c.png";
@@ -1483,7 +1493,9 @@
                 }
             },
             onLeaveBack: () => {
+                const navTrigger = document.getElementById('nav-trigger');
                 if (!menuOpen) {
+                    navTrigger.classList.remove('nav-dark-theme');
                     gsap.to("#main-logo", {
                         opacity: 0, duration: 0.2, onComplete: () => {
                             document.getElementById('main-logo').src = "https://i.imgur.com/LkLSQpr.png";
@@ -1508,19 +1520,22 @@
                 document.body.classList.add('menu-open');
                 navLabel.textContent = 'Close';
                 navIcon.classList.add('rotate-45');
-                // Ensure white logo when menu is open
+                // Ensure white logo and original theme when menu is open
                 document.getElementById('main-logo').src = "https://i.imgur.com/LkLSQpr.png";
+                navTrigger.classList.remove('nav-dark-theme');
             } else {
                 gsap.to(menuContainer, { y: "-100%", duration: 1, ease: "expo.inOut", pointerEvents: "none" });
                 document.body.classList.remove('menu-open');
                 navLabel.textContent = 'Menu';
                 navIcon.classList.remove('rotate-45');
-                // Restore correct logo based on scroll position
+                // Restore correct logo and theme based on scroll position
                 const isWhiteBG = ScrollTrigger.isInViewport(".bg-white", 0.1);
                 if (isWhiteBG) {
                     document.getElementById('main-logo').src = "https://i.imgur.com/lnicB4c.png";
+                    navTrigger.classList.add('nav-dark-theme');
                 } else {
                     document.getElementById('main-logo').src = "https://i.imgur.com/LkLSQpr.png";
+                    navTrigger.classList.remove('nav-dark-theme');
                 }
                 // Close dropdown if open when closing menu
                 const submenu = document.getElementById('services-submenu');
