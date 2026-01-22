@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Consulting - Teqqi</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
+
+    <!-- Core Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://unpkg.com/split-type"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Regular.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Bold.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Black.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Black.woff') format('woff');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-color: #fafafa;
+            --text-main: #18181b;
+        }
+
+        body {
+            font-family: 'ABCDiatype', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .hero-title,
+        .menu-link {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            mix-blend-mode: overlay;
+        }
+
+        /* Nav & Menu Styles */
+        .menu-link-wrapper {
+            overflow: hidden;
+        }
+
+        .menu-link {
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .menu-open .menu-link {
+            transform: translateY(0);
+        }
+
+        .menu-indicator {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+            display: inline-flex;
+            align-items: center;
+            margin-right: 0.2em;
+        }
+
+        .menu-link:hover .menu-indicator {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .b-white-10 {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-blue-600 selection:text-white">
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-[150] flex justify-between items-center px-6 py-8 md:px-12 text-white">
+        <a href="index.html" class="flex items-center cursor-pointer group">
+            <img src="https://i.imgur.com/lnicB4c.png" alt="Teqqi"
+                class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
+        </a>
+
+        <div class="mix-blend-difference">
+            <button id="nav-trigger"
+                class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
+                <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
+                <div id="nav-icon"
+                    class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
+                    <i data-lucide="plus" stroke-width="3"></i>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Off-Canvas Menu -->
+    <div id="menu-container"
+        class="fixed inset-0 bg-[#0c0c0c] z-[140] flex pointer-events-none translate-y-[-100%] overflow-hidden">
+        <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-24">
+            <div class="space-y-4">
+                <div class="menu-link-wrapper">
+                    <a href="index.html"
+                        class="menu-link flex items-center text-5xl md:text-8xl font-black uppercase text-white hover:text-blue-500 transition-colors">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Home
+                    </a>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="https://theteqqi.com/#about"
+                        class="menu-link flex items-center text-5xl md:text-8xl font-black uppercase text-white hover:text-blue-500 transition-colors">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        About
+                    </a>
+                </div>
+                <div class="menu-link-wrapper flex flex-col">
+                    <a href="javascript:void(0)"
+                        class="menu-link flex items-center text-5xl md:text-8xl font-black uppercase text-white hover:text-blue-500 transition-colors"
+                        onclick="toggleServicesDropdown()">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Services
+                        <i data-lucide="chevron-down"
+                            class="ml-4 w-8 h-8 md:w-16 md:h-16 transition-transform duration-500"
+                            id="services-chevron"></i>
+                    </a>
+                    <!-- Services Submenu -->
+                    <div id="services-submenu"
+                        class="hidden overflow-hidden pl-12 md:pl-32 space-y-4 md:space-y-6 mt-4 pb-4">
+                        <div class="overflow-hidden">
+                            <a href="website-design.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Web
+                                Design</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="custom-apps.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Custom
+                                Applications</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="ai-automation.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">AI
+                                Automation</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="tech-consulting.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Tech
+                                Consulting</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="contact.html"
+                        class="menu-link flex items-center text-5xl md:text-8xl font-black uppercase text-white hover:text-blue-500 transition-colors">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Connect
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hidden lg:block w-1/2 h-full bg-zinc-900 border-l b-white-10"></div>
+    </div>
+
+    <!-- Page Content -->
+    <main>
+        <!-- Hero -->
+        <section
+            class="min-h-screen pt-32 pb-20 px-6 md:px-12 bg-zinc-50 flex flex-col justify-end relative overflow-hidden">
+            <!-- Background Graphic -->
+            <div
+                class="absolute top-[20%] right-[-15%] w-[70vw] h-[70vw] bg-blue-600 rounded-full blur-[140px] opacity-10">
+            </div>
+
+            <div class="max-w-[1400px] mx-auto w-full z-10">
+                <span class="text-blue-600 font-mono uppercase tracking-[0.2em] mb-6 block text-sm">AI Strategy & Tech
+                    Consulting</span>
+                <h1
+                    class="text-6xl md:text-[8vw] leading-[0.9] font-black uppercase tracking-tighter text-zinc-900 mb-12">
+                    AI-Powered<br><span class="text-blue-600">Strategy.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-zinc-600 max-w-2xl leading-relaxed">
+                    Navigate the AI revolution with confidence. We help you understand where AI fits in your business,
+                    build the right tech strategy, and avoid costly mistakes.
+                </p>
+            </div>
+        </section>
+
+        <!-- Details Grid -->
+        <section class="py-32 px-6 md:px-12 bg-white text-zinc-900 border-t b-border-10">
+            <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
+                <div>
+                    <h2 class="text-3xl font-bold uppercase tracking-tight mb-8">AI Integration & Tech Strategy</h2>
+                    <p class="text-zinc-500 text-lg leading-relaxed mb-12">
+                        AI is transforming how businesses operate, but not every AI solution is right for you.
+                        We cut through the hype and help you implement AI that actually delivers ROI.
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div
+                                class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mt-1">
+                                <i data-lucide="bot" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-zinc-900 text-lg">AI Readiness Assessment</strong>
+                                <span class="text-zinc-500">We evaluate your data, processes, and team to determine
+                                    where AI can create real value.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div
+                                class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mt-1">
+                                <i data-lucide="workflow" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-zinc-900 text-lg">AI Workflow Design</strong>
+                                <span class="text-zinc-500">From chatbots to automation pipelines, we design AI systems
+                                    that integrate seamlessly.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div
+                                class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mt-1">
+                                <i data-lucide="layers" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-zinc-900 text-lg">Tech Stack Strategy</strong>
+                                <span class="text-zinc-500">Choose the right platforms, tools, and infrastructure for
+                                    sustainable growth.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div
+                                class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mt-1">
+                                <i data-lucide="route" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-zinc-900 text-lg">Digital Roadmapping</strong>
+                                <span class="text-zinc-500">A clear, phased plan to modernize your operations without
+                                    disrupting your business.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-zinc-100 rounded-xl overflow-hidden min-h-[500px] relative group">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200"
+                        class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                        style="object-position: 40% center;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 right-8 text-white">
+                        <p class="text-2xl font-bold mb-2">AI That Works For You</p>
+                        <p class="text-white/80">Not just hype. Practical AI solutions that save time and money.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-32 px-6 md:px-12 bg-zinc-900 text-white text-center">
+            <div class="max-w-[1400px] mx-auto">
+                <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">Ready to<br><span
+                        class="text-blue-500">Integrate AI?</span></h2>
+                <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">Book a free consultation. We'll assess your AI
+                    readiness and map out a strategy that fits your business.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://calendly.com/myteqqi/30min"
+                        class="inline-block bg-blue-600 text-white px-10 py-5 font-bold uppercase tracking-widest hover:bg-blue-700 transition-colors">
+                        Book AI Consultation
+                    </a>
+                    <a href="services.html"
+                        class="inline-block bg-white/10 text-white px-10 py-5 font-bold uppercase tracking-widest hover:bg-white/20 transition-colors border border-white/20">
+                        View All Services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-24 px-8 md:px-12 bg-white border-t b-border-10">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-24 lg:mb-48">
+                    <div>
+                        <h3 class="text-[10px] font-mono tracking-[0.6em] uppercase text-zinc-500 mb-8 lg:mb-12">
+                            Inquiries</h3>
+                        <a href="mailto:info@theteqqi.com"
+                            class="hero-title !text-3xl md:!text-5xl lg:!text-7xl hover:italic transition-all duration-500 border-b b-border-10 hover:border-black inline-block leading-none text-zinc-900">
+                            info@theteqqi.com
+                        </a>
+                    </div>
+                    <div class="flex lg:justify-end items-start lg:items-end mt-8 lg:mt-0">
+                        <div class="flex gap-12 lg:gap-24">
+                            <a href="https://www.linkedin.com/company/theteqqi"
+                                class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">LinkedIn</a>
+                            <a href="https://www.instagram.com/THETEQQI"
+                                class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center text-[9px] font-mono tracking-[0.5em] text-zinc-400 uppercase pt-12 border-t b-border-10">
+                    <span>© 2026 Teqqi Consulting</span>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Nav Logic
+        const navTrigger = document.getElementById('nav-trigger');
+        const menuContainer = document.getElementById('menu-container');
+        const navIcon = document.getElementById('nav-icon');
+        let isMenuOpen = false;
+
+        navTrigger.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                gsap.to(menuContainer, { y: 0, duration: 1.2, ease: "expo.inOut", pointerEvents: "all" });
+                document.body.classList.add('menu-open');
+                // check if navLabel exists on this page (it might not based on previous view)
+                const label = document.getElementById('nav-label');
+                if (label) label.textContent = 'Close';
+                navIcon.classList.add('rotate-45');
+            } else {
+                gsap.to(menuContainer, { y: "-100%", duration: 1, ease: "expo.inOut", pointerEvents: "none" });
+                document.body.classList.remove('menu-open');
+                const label = document.getElementById('nav-label');
+                if (label) label.textContent = 'Menu';
+                navIcon.classList.remove('rotate-45');
+                // Close dropdown if open when closing menu
+                const submenu = document.getElementById('services-submenu');
+                const chevron = document.getElementById('services-chevron');
+                if (submenu) {
+                    submenu.classList.add('hidden');
+                    submenu.style.height = '0px';
+                }
+                if (chevron) chevron.classList.remove('rotate-180');
+            }
+        });
+
+        function toggleServicesDropdown() {
+            const submenu = document.getElementById('services-submenu');
+            const chevron = document.getElementById('services-chevron');
+            const isHidden = submenu.classList.contains('hidden');
+
+            if (isHidden) {
+                submenu.classList.remove('hidden');
+                gsap.fromTo(submenu, { height: 0, opacity: 0 }, { height: "auto", opacity: 1, duration: 0.8, ease: "expo.out" });
+                chevron.classList.add('rotate-180');
+            } else {
+                gsap.to(submenu, {
+                    height: 0, opacity: 0, duration: 0.5, ease: "expo.inOut", onComplete: () => {
+                        submenu.classList.add('hidden');
+                    }
+                });
+                chevron.classList.remove('rotate-180');
+            }
+        }
+    </script>
+</body>
+
+</html>

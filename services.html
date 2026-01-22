@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services — Teqqi</title>
+    <title>Services - Teqqi</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
 
     <!-- Core Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -49,7 +50,7 @@
             --text-main: #18181b;
         }
 
-        /* RESTORE INTER FOR TITLES */
+        /* TYPOGRAPHY RULES */
         h1,
         h2,
         h3,
@@ -57,9 +58,7 @@
         h5,
         h6,
         .hero-title,
-        .menu-link,
-        .font-black,
-        .font-bold {
+        .menu-link {
             font-family: 'Inter', sans-serif;
         }
 
@@ -79,12 +78,39 @@
             text-transform: uppercase;
         }
 
-        .gradient-text {
-            background: linear-gradient(90deg, #18181b 0%, #71717a 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
+        /* STACKING CARDS LOGIC */
+        .stacking-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .stacking-card {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
+            /* Subtle shadow for depth */
+        }
+
+        .stacking-card-inner {
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ECOSYSTEM ANIMATION */
+        .ecosystem-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 2s ease-out;
         }
 
         /* NOISE TEXTURE */
@@ -98,7 +124,7 @@
             mix-blend-mode: overlay;
         }
 
-        /* MENU ANIMATIONS - Copied from index.html */
+        /* MENU STYLES (MATCHING INDEX) */
         .menu-link-wrapper {
             overflow: hidden;
         }
@@ -126,7 +152,6 @@
             transform: translateX(0);
         }
 
-        /* BORDERS */
         .b-border-10 {
             border-color: rgba(0, 0, 0, 0.1);
         }
@@ -142,446 +167,643 @@
     <div class="noise-overlay"></div>
 
     <!-- Navigation -->
-    <nav
-        class="fixed top-0 w-full z-[150] flex justify-between items-center px-6 py-8 md:px-12 mix-blend-difference text-white">
-        <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
-            <div class="w-2.5 h-2.5 bg-white rounded-full group-hover:scale-150 transition-transform duration-300">
-            </div>
-            <span class="text-xl font-black tracking-tighter uppercase">Teqqi</span>
+    <nav class="fixed top-0 w-full z-[150] flex justify-between items-center px-6 py-8 md:px-12 text-white">
+        <a href="index.html" class="flex items-center cursor-pointer group">
+            <img src="https://i.imgur.com/lnicB4c.png" alt="Teqqi"
+                class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
         </a>
 
-        <button id="nav-trigger"
-            class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all">
-            <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
-            <div id="nav-icon"
-                class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
-                <i data-lucide="plus" stroke-width="3"></i>
-            </div>
-        </button>
+        <div class="mix-blend-difference">
+            <button id="nav-trigger"
+                class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
+                <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
+                <div id="nav-icon"
+                    class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
+                    <i data-lucide="plus" stroke-width="3"></i>
+                </div>
+            </button>
+        </div>
     </nav>
 
-    <!-- Off-Canvas Menu (Same as index) -->
+    <!-- Off-Canvas Menu -->
     <div id="menu-container"
         class="fixed inset-0 bg-[#0c0c0c] z-[140] flex pointer-events-none translate-y-[-100%] overflow-hidden text-white">
         <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-24">
             <div class="space-y-4">
-                <div class="menu-link-wrapper"><a href="index.html"
-                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4"><span
-                            class="menu-indicator"><i data-lucide="arrow-right"
-                                class="w-10 h-10 md:w-20 md:h-20"></i></span>Home</a></div>
-                <div class="menu-link-wrapper"><a href="services.html"
-                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4"><span
-                            class="menu-indicator"><i data-lucide="arrow-right"
-                                class="w-10 h-10 md:w-20 md:h-20"></i></span>Services</a></div>
-                <div class="menu-link-wrapper"><a href="index.html#about"
-                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4"><span
-                            class="menu-indicator"><i data-lucide="arrow-right"
-                                class="w-10 h-10 md:w-20 md:h-20"></i></span>About</a></div>
-                <div class="menu-link-wrapper"><a href="mailto:hello@theteqqi.com"
-                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4"><span
-                            class="menu-indicator"><i data-lucide="arrow-right"
-                                class="w-10 h-10 md:w-20 md:h-20"></i></span>Contact</a></div>
+                <div class="menu-link-wrapper">
+                    <a href="index.html"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Home
+                    </a>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="https://theteqqi.com/#about"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        About
+                    </a>
+                </div>
+                <div class="menu-link-wrapper flex flex-col">
+                    <a href="javascript:void(0)"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4"
+                        onclick="toggleServicesDropdown()">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Services
+                        <i data-lucide="chevron-down"
+                            class="ml-4 w-8 h-8 md:w-16 md:h-16 transition-transform duration-500"
+                            id="services-chevron"></i>
+                    </a>
+                    <!-- Services Submenu -->
+                    <div id="services-submenu"
+                        class="hidden overflow-hidden pl-12 md:pl-32 space-y-4 md:space-y-6 mt-4 pb-4">
+                        <div class="overflow-hidden">
+                            <a href="website-design.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Web
+                                Design</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="custom-apps.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Custom
+                                Applications</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="ai-automation.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">AI
+                                Automation</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="tech-consulting.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Tech
+                                Consulting</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="contact.html"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Connect
+                    </a>
+                </div>
             </div>
         </div>
         <div class="hidden lg:block w-1/2 h-full relative bg-zinc-950 border-l b-white-10 overflow-hidden">
-            <!-- Simplified menu image for specific page -->
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000"
                 class="w-full h-full object-cover grayscale brightness-50">
         </div>
     </div>
 
+    <!-- MAIN CONTENT -->
     <div id="main-content" class="bg-white">
 
         <!-- HERO SECTION -->
-        <section class="min-h-[80vh] flex flex-col justify-end px-6 md:px-12 py-32 border-b b-border-10">
-            <div class="max-w-5xl">
-                <h1
-                    class="text-5xl md:text-7xl lg:text-[7vw] leading-[0.9] font-black uppercase tracking-tighter text-zinc-900 mb-12">
-                    Technology Consulting<br><span class="text-zinc-400">Services</span> for Small<br>Businesses.
+        <section class="min-h-screen flex flex-col justify-center px-6 md:px-12 bg-white relative overflow-hidden">
+            <div class="max-w-[1400px] mx-auto w-full z-10 pt-24">
+                <h1 id="hero-title"
+                    class="text-6xl md:text-[9vw] leading-[0.8] font-black uppercase tracking-tighter text-zinc-900 mb-12 mix-blend-difference">
+                    Technology<br>
+                    <span class="text-zinc-400">Consulting.</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-zinc-600 font-light leading-relaxed max-w-3xl">
-                    We provide technology consulting services designed to help small businesses launch, grow, and
-                    operate more efficiently. From building modern websites to developing custom applications and
-                    integrating AI into workflows, we help you choose and implement technology that supports real
-                    business outcomes.
-                </p>
+                <div class="overflow-hidden">
+                    <p id="hero-subtitle"
+                        class="text-xl md:text-3xl text-zinc-600 font-light leading-relaxed max-w-4xl opacity-0 translate-y-10">
+                        We help small businesses launch, grow, and operate efficiently. <br class="hidden md:block">
+                        From custom apps to AI workflows, we build systems that work.
+                    </p>
+                </div>
+
+                <div id="hero-scroll" class="mt-24 opacity-0 flex gap-4 items-center animate-bounce">
+                    <div class="w-px h-12 bg-zinc-300"></div>
+                    <span class="text-[10px] font-mono uppercase tracking-[0.3em] text-zinc-400">Scroll to
+                        Explore</span>
+                </div>
+            </div>
+
+            <!-- Abstract Background Element -->
+            <div
+                class="absolute -right-[10%] top-[20%] w-[50vw] h-[50vw] bg-zinc-50 rounded-full blur-3xl opacity-50 z-0 pointer-events-none">
             </div>
         </section>
 
-        <!-- SERVICES -->
-        <div class="py-24 px-6 md:px-12">
-            <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-24 block">Our Core
-                Services</span>
 
-            <!-- 1. Web Design -->
-            <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 py-24 border-t b-border-10">
-                <div class="lg:col-span-5">
-                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8">Web Design
-                        &<br>Development</h2>
-                    <h3 class="text-xl font-bold mb-4">Website Design & Development for Growing Businesses</h3>
-                    <p class="text-zinc-600 leading-relaxed mb-8">
-                        Your website should do more than look good—it should support your business goals, load fast, and
-                        convert visitors into customers.
-                        <br><br>
-                        We design and develop custom websites for small businesses that are scalable, SEO-ready, and
-                        easy to manage.
-                    </p>
-                    <div class="bg-zinc-50 p-8 rounded-lg mb-8">
-                        <h4 class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">Outcome</h4>
-                        <p class="font-bold text-zinc-900">A professional, high-performance website built to grow with
-                            your business.</p>
-                    </div>
-                </div>
-                <div class="lg:col-span-7 space-y-12">
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            What We Offer</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-800 font-medium">
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Custom websiste design</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Redesigns & Migrations</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Performance optimization</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> SEO-friendly structure</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> CMS Setup</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Landing Pages</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            Who This Is For</h4>
-                        <ul class="space-y-3 text-zinc-600">
-                            <li>Businesses launching a new brand or service</li>
-                            <li>Companies outgrowing their current website</li>
-                            <li>Teams needing a site that integrates with other systems</li>
-                        </ul>
+        <!-- STACKING CARDS WRAPPER -->
+        <div class="stacking-wrapper bg-black">
+
+            <!-- 1. Web Design Card (White) -->
+            <section class="stacking-card bg-white text-zinc-900 border-t b-border-10">
+                <div class="stacking-card-inner max-w-[1600px] mx-auto px-6 md:px-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 h-full items-center">
+                        <div class="lg:col-span-5 flex flex-col justify-center">
+                            <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8">01.
+                                Foundation</span>
+                            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">
+                                Web<br>Design</h2>
+                            <p class="text-xl text-zinc-600 leading-relaxed mb-12 max-w-lg">
+                                Scalable, SEO-ready websites that support your business goals. We don't just make it
+                                look good; we make it convert.
+                            </p>
+
+                            <ul class="space-y-4 text-zinc-900 font-medium mb-12 border-l border-zinc-200 pl-6">
+                                <li class="text-sm uppercase tracking-wide">Custom Design & Dev</li>
+                                <li class="text-sm uppercase tracking-wide">Performance Optimization</li>
+                                <li class="text-sm uppercase tracking-wide">SEO Structure</li>
+                            </ul>
+
+                            <a href="website-design.html"
+                                class="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest border-b border-black pb-1 hover:gap-6 transition-all w-fit">
+                                Start Project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-7 h-[50vh] lg:h-[70vh] w-full bg-zinc-100 rounded-2xl overflow-hidden relative group">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80&w=1600"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 2. Custom Web Apps -->
-            <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 py-24 border-t b-border-10">
-                <div class="lg:col-span-5">
-                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8">Custom Web Apps
-                        &<br>Software</h2>
-                    <h3 class="text-xl font-bold mb-4">Custom Web Applications & Business Systems</h3>
-                    <p class="text-zinc-600 leading-relaxed mb-8">
-                        When existing tools don’t fit your workflow, we build custom solutions tailored to your
-                        business.
-                        <br><br>
-                        We develop web applications and internal systems that streamline operations, improve efficiency,
-                        and integrate seamlessly with your existing tools.
-                    </p>
-                    <div class="bg-zinc-50 p-8 rounded-lg mb-8">
-                        <h4 class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">Outcome</h4>
-                        <p class="font-bold text-zinc-900">Software designed around how your business actually operates.
-                        </p>
-                    </div>
-                </div>
-                <div class="lg:col-span-7 space-y-12">
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            What We Offer</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-800 font-medium">
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Custom web apps</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Client portals & dashboards</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Booking systems</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Payment systems</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> API Integrations</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Admin tools</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            Who This Is For</h4>
-                        <ul class="space-y-3 text-zinc-600">
-                            <li>Businesses with manual or repetitive processes</li>
-                            <li>Teams using multiple disconnected tools</li>
-                            <li>Companies needing custom workflows or data access</li>
-                        </ul>
+            <!-- 2. Custom Apps Card (Zinc-100) -->
+            <section class="stacking-card bg-zinc-100 text-zinc-900 border-t border-zinc-200">
+                <div class="stacking-card-inner max-w-[1600px] mx-auto px-6 md:px-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 h-full items-center">
+                        <div class="lg:col-span-5 flex flex-col justify-center">
+                            <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8">02.
+                                Systems</span>
+                            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">
+                                Custom<br>Software</h2>
+                            <p class="text-xl text-zinc-600 leading-relaxed mb-12 max-w-lg">
+                                When off-the-shelf tools limit you, we build custom. Client portals, dashboards, and
+                                booking systems tailored to your workflow.
+                            </p>
+
+                            <ul class="space-y-4 text-zinc-900 font-medium mb-12 border-l border-zinc-300 pl-6">
+                                <li class="text-sm uppercase tracking-wide">Web Applications</li>
+                                <li class="text-sm uppercase tracking-wide">Client Portals</li>
+                                <li class="text-sm uppercase tracking-wide">API Integrations</li>
+                            </ul>
+
+                            <a href="custom-apps.html"
+                                class="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest border-b border-black pb-1 hover:gap-6 transition-all w-fit">
+                                Build Your App <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-7 h-[50vh] lg:h-[70vh] w-full bg-white rounded-2xl overflow-hidden relative group shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 3. AI Consulting -->
-            <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 py-24 border-t b-border-10">
-                <div class="lg:col-span-5">
-                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-blue-600">AI
-                        Consulting &<br>Automation</h2>
-                    <h3 class="text-xl font-bold mb-4">AI Consulting for Small Businesses</h3>
-                    <p class="text-zinc-600 leading-relaxed mb-8">
-                        AI should simplify your work—not complicate it.
-                        <br><br>
-                        We help small businesses integrate AI into their workflows in practical, cost-effective ways
-                        that save time and reduce operational friction.
-                    </p>
-                    <div class="bg-zinc-50 p-8 rounded-lg mb-8">
-                        <h4 class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">Outcome</h4>
-                        <p class="font-bold text-zinc-900">Smarter workflows powered by AI that improve efficiency and
-                            decision-making.</p>
-                    </div>
-                </div>
-                <div class="lg:col-span-7 space-y-12">
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            What We Offer</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-800 font-medium">
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> AI Workflow Audits</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Automating tasks</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> AI Email & Form handling</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Chatbots</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Data processing</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Custom AI tools</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            Our Approach</h4>
-                        <p class="text-zinc-600">We focus on practical AI use cases with clear ROI—not hype or
-                            unnecessary tools.</p>
+            <!-- 3. AI Consulting (Zinc-900 / Dark Mode) -->
+            <section class="stacking-card bg-zinc-900 text-white border-t border-white/10">
+                <div class="stacking-card-inner max-w-[1600px] mx-auto px-6 md:px-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 h-full items-center">
+                        <div class="lg:col-span-5 flex flex-col justify-center">
+                            <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-blue-500 mb-8">03.
+                                Intelligence</span>
+                            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">
+                                AI<br>Automation</h2>
+                            <p class="text-xl text-zinc-400 leading-relaxed mb-12 max-w-lg">
+                                Practical AI integration that saves time. We automate repetitive tasks so you can focus
+                                on strategy.
+                            </p>
+
+                            <div class="grid grid-cols-2 gap-6 mb-12">
+                                <div
+                                    class="p-6 bg-white/5 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
+                                    <i data-lucide="workflow" class="text-blue-500 mb-4"></i>
+                                    <h4 class="font-bold text-sm uppercase mb-2">Workflows</h4>
+                                    <p class="text-xs text-zinc-500">Automate forms & data</p>
+                                </div>
+                                <div
+                                    class="p-6 bg-white/5 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
+                                    <i data-lucide="bot-message-square" class="text-blue-500 mb-4"></i>
+                                    <h4 class="font-bold text-sm uppercase mb-2">Chatbots</h4>
+                                    <p class="text-xs text-zinc-500">Customer Support</p>
+                                </div>
+                            </div>
+
+                            <a href="ai-automation.html"
+                                class="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest border-b border-blue-500 text-blue-500 pb-1 hover:gap-6 transition-all w-fit">
+                                Automate Logic <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-7 h-[50vh] lg:h-[70vh] w-full bg-zinc-800 rounded-2xl overflow-hidden relative group border border-white/10">
+                            <!-- Code/Tech Abstract Visual -->
+                            <div
+                                class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20">
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600"
+                                class="w-full h-full object-cover opacity-60 mix-blend-overlay">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div
+                                    class="text-center p-12 border border-white/20 backdrop-blur-md rounded-xl bg-black/40">
+                                    <p class="font-mono text-xs text-blue-400 mb-2">Analyzing Workflow...</p>
+                                    <div class="w-64 h-2 bg-zinc-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-blue-500 w-2/3 animate-pulse"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 4. Systems Integration -->
-            <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 py-24 border-t b-border-10">
-                <div class="lg:col-span-5">
-                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8">Systems Integration<br>&
-                        Automation</h2>
-                    <h3 class="text-xl font-bold mb-4">Workflow Automation & Systems Integration</h3>
-                    <p class="text-zinc-600 leading-relaxed mb-8">
-                        Disconnected tools slow businesses down.
-                        <br><br>
-                        We connect your systems so data flows smoothly across your website, apps, and internal tools.
-                    </p>
-                    <div class="bg-zinc-50 p-8 rounded-lg mb-8">
-                        <h4 class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">Outcome</h4>
-                        <p class="font-bold text-zinc-900">Integrated systems that reduce manual work and improve
-                            operational efficiency.</p>
-                    </div>
-                </div>
-                <div class="lg:col-span-7 space-y-12">
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            What We Offer</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-800 font-medium">
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> CRM Integrations</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Email Automation</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Payment & Invoicing</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Form Data Automation</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Third-party Connections</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            Who This Is For</h4>
-                        <ul class="space-y-3 text-zinc-600">
-                            <li>Businesses using multiple SaaS tools</li>
-                            <li>Teams spending time on manual data entry</li>
-                            <li>Companies needing better system visibility</li>
-                        </ul>
+            <!-- 4. Tech Consulting (Zinc-100 / Light Mode) -->
+            <section class="stacking-card bg-zinc-100 text-zinc-900 border-t border-zinc-200">
+                <div class="stacking-card-inner max-w-[1600px] mx-auto px-6 md:px-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 h-full items-center">
+                        <div class="lg:col-span-5 flex flex-col justify-center">
+                            <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8">04.
+                                Strategy</span>
+                            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">
+                                Tech<br>Consulting</h2>
+                            <p class="text-xl text-zinc-600 leading-relaxed mb-12 max-w-lg">
+                                Navigate the tech landscape with confidence. We help you make smart technology decisions
+                                that align with your business goals and budget.
+                            </p>
+
+                            <ul class="space-y-4 text-zinc-900 font-medium mb-12 border-l border-zinc-300 pl-6">
+                                <li class="text-sm uppercase tracking-wide">Tech Stack Strategy</li>
+                                <li class="text-sm uppercase tracking-wide">Digital Transformation</li>
+                                <li class="text-sm uppercase tracking-wide">Security & Compliance</li>
+                            </ul>
+
+                            <a href="tech-consulting.html"
+                                class="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest border-b border-black pb-1 hover:gap-6 transition-all w-fit">
+                                Get Strategic Advice <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                        <div
+                            class="lg:col-span-7 h-[50vh] lg:h-[70vh] w-full bg-white rounded-2xl overflow-hidden relative group shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1600"
+                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 5. Ongoing Consulting -->
-            <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 py-24 border-t b-border-10">
-                <div class="lg:col-span-5">
-                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8">Ongoing
-                        Technology<br>Consulting</h2>
-                    <h3 class="text-xl font-bold mb-4">Ongoing Tech Consulting & Support</h3>
-                    <p class="text-zinc-600 leading-relaxed mb-8">
-                        Technology should evolve as your business grows.
-                        <br><br>
-                        We provide ongoing consulting and support to help you continuously improve your systems and make
-                        confident technology decisions.
+            <!-- 5. Ongoing Support (White) -->
+            <section class="stacking-card bg-white text-zinc-900 border-t b-border-10">
+                <div class="stacking-card-inner max-w-[1600px] mx-auto px-6 md:px-12 text-center">
+                    <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">05.
+                        Partnership</span>
+                    <h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 max-w-4xl mx-auto">
+                        Ongoing<br>Support</h2>
+                    <p class="text-2xl text-zinc-600 font-light leading-relaxed max-w-2xl mx-auto mb-16">
+                        We don't disappear after launch. We provide ongoing consulting to help your tech stack evolve
+                        with you.
                     </p>
-                    <div class="bg-zinc-50 p-8 rounded-lg mb-8">
-                        <h4 class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">Outcome</h4>
-                        <p class="font-bold text-zinc-900">A trusted technology partner aligned with your business
-                            goals.</p>
-                    </div>
-                </div>
-                <div class="lg:col-span-7 space-y-12">
-                    <div>
-                        <h4
-                            class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 border-b b-border-10 pb-2">
-                            What We Offer</h4>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-800 font-medium">
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Monthly retainers</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Tech stack reviews</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> System Optimization</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> Feature improvements</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check"
-                                    class="w-4 h-4 text-blue-600"></i> On-demand guidance</li>
-                        </ul>
+
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <span
+                            class="px-6 py-3 rounded-full border border-zinc-200 text-xs font-bold uppercase tracking-wide text-zinc-600">Retainers</span>
+                        <span
+                            class="px-6 py-3 rounded-full border border-zinc-200 text-xs font-bold uppercase tracking-wide text-zinc-600">Tech
+                            Audits</span>
+                        <span
+                            class="px-6 py-3 rounded-full border border-zinc-200 text-xs font-bold uppercase tracking-wide text-zinc-600">Optimization</span>
                     </div>
                 </div>
             </section>
 
         </div>
 
-        <!-- HOW IT WORKS -->
-        <section class="py-24 px-6 md:px-12 bg-zinc-900 text-white">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8">A Complete Technology
-                    Ecosystem</h2>
-                <p class="text-zinc-400 text-xl font-light mb-12">Our services are designed to work together.</p>
+        <!-- ECOSYSTEM DIAGRAM -->
+        <section class="py-32 px-6 md:px-12 bg-zinc-50 border-t b-border-10 overflow-hidden">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    <div>
+                        <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">How It
+                            Works</span>
+                        <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8">The<br>Ecosystem
+                        </h2>
+                        <p class="text-xl text-zinc-600 leading-relaxed mb-8">
+                            Our services aren't isolated. They work together to create a seamless technology engine for
+                            your business. Each piece connects and amplifies the others.
+                        </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                    <div class="p-8 border border-white/10 rounded-lg">
-                        <i data-lucide="layout" class="w-8 h-8 mb-4 text-blue-500"></i>
-                        <p class="font-bold text-lg mb-2">Your website</p>
-                        <p class="text-zinc-400 text-sm">Connects to your systems</p>
+                        <!-- Ecosystem Flow Description -->
+                        <div class="space-y-6 mb-12">
+                            <div class="flex gap-4 items-start">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                                    1</div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Web Design</h4>
+                                    <p class="text-zinc-600 text-sm">Your website becomes the central hub, optimized for
+                                        conversions and SEO.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                                    2</div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Custom Software</h4>
+                                    <p class="text-zinc-600 text-sm">Client portals, dashboards, and apps tailored to
+                                        your unique workflow.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                                    3</div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">AI Automation</h4>
+                                    <p class="text-zinc-600 text-sm">Automate repetitive tasks and let AI handle the
+                                        busywork.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                                    4</div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-1">Tech Consulting</h4>
+                                    <p class="text-zinc-600 text-sm">Strategic guidance to make smart technology
+                                        decisions.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="mailto:info@theteqqi.com"
+                            class="px-8 py-4 bg-zinc-900 text-white font-bold uppercase tracking-widest text-xs hover:bg-black transition-colors inline-block">
+                            Build Your Ecosystem
+                        </a>
                     </div>
-                    <div class="p-8 border border-white/10 rounded-lg">
-                        <i data-lucide="cpu" class="w-8 h-8 mb-4 text-blue-500"></i>
-                        <p class="font-bold text-lg mb-2">Your systems</p>
-                        <p class="text-zinc-400 text-sm">Integrate with AI & Automation</p>
+
+                    <!-- SVG Interactive Diagram -->
+                    <div class="relative h-[500px] w-full flex items-center justify-center">
+                        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 600 450" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <!-- Arrow marker definition -->
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
+                                    orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6" />
+                                </marker>
+                            </defs>
+
+                            <!-- Background glow for center -->
+                            <circle cx="300" cy="225" r="130" fill="#3B82F6" opacity="0.03" />
+                            <circle cx="300" cy="225" r="90" fill="#3B82F6" opacity="0.08" />
+
+                            <!-- FLOW ARROWS: All 4 services to center Growth -->
+                            <!-- Web Design to Growth -->
+                            <path d="M130,100 Q200,180 235,200" stroke="#3B82F6" stroke-width="2"
+                                marker-end="url(#arrowhead)" />
+                            <!-- Custom Software to Growth -->
+                            <path d="M130,350 Q200,270 235,250" stroke="#3B82F6" stroke-width="2"
+                                marker-end="url(#arrowhead)" />
+                            <!-- AI Automation to Growth -->
+                            <path d="M470,100 Q400,180 365,200" stroke="#3B82F6" stroke-width="2"
+                                marker-end="url(#arrowhead)" />
+                            <!-- Tech Consulting to Growth -->
+                            <path d="M470,350 Q400,270 365,250" stroke="#3B82F6" stroke-width="2"
+                                marker-end="url(#arrowhead)" />
+
+                            <!-- Dotted connections between services showing integration -->
+                            <path d="M130,130 L130,320" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4,4" />
+                            <path d="M470,130 L470,320" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4,4" />
+                            <path d="M160,85 L440,85" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4,4" />
+                            <path d="M160,365 L440,365" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4,4" />
+
+                            <!-- NODE 1: Web Design (Top Left) -->
+                            <circle cx="100" cy="85" r="55" fill="white" stroke="#18181B" stroke-width="2" />
+                            <text x="100" y="80" text-anchor="middle" font-family="Inter" font-weight="bold"
+                                font-size="10" fill="#18181B">WEB</text>
+                            <text x="100" y="95" text-anchor="middle" font-family="Inter" font-weight="bold"
+                                font-size="10" fill="#18181B">DESIGN</text>
+
+                            <!-- NODE 2: Custom Applications (Bottom Left) -->
+                            <circle cx="100" cy="365" r="55" fill="white" stroke="#18181B" stroke-width="2" />
+                            <text x="100" y="360" text-anchor="middle" font-family="Inter" font-weight="bold"
+                                font-size="9" fill="#18181B">CUSTOM</text>
+                            <text x="100" y="375" text-anchor="middle" font-family="Inter" font-weight="bold"
+                                font-size="9" fill="#18181B">APPLICATIONS</text>
+
+                            <!-- NODE 3: AI Automation (Top Right) -->
+                            <circle cx="500" cy="85" r="55" fill="white" stroke="#18181B" stroke-width="2" />
+                            <text x="500" y="80" text-anchor="middle" font-family="Inter" font-weight="bold"
+                                font-size="10" fill="#18181B">AI</text>
+                            <text x="500" y="95" text-anchor="middle" font-family="Inter" font-weight="bold"
+                                font-size="10" fill="#18181B">AUTOMATION</text>
+
+                            <!-- NODE 4: Tech Consulting (Bottom Right) -->
+                            <circle cx="500" cy="365" r="55" fill="white" stroke="#18181B" stroke-width="2" />
+                            <text x="500" y="360" text-anchor="middle" font-family="Inter" font-weight="bold"
+                                font-size="10" fill="#18181B">TECH</text>
+                            <text x="500" y="375" text-anchor="middle" font-family="Inter" font-weight="bold"
+                                font-size="10" fill="#18181B">CONSULTING</text>
+
+                            <!-- CENTER HUB: Business Growth -->
+                            <circle cx="300" cy="225" r="70" fill="#3B82F6" />
+                            <text x="300" y="215" text-anchor="middle" font-family="Inter" font-weight="900"
+                                font-size="12" fill="white">BUSINESS</text>
+                            <text x="300" y="235" text-anchor="middle" font-family="Inter" font-weight="900"
+                                font-size="12" fill="white">GROWTH</text>
+
+                            <!-- Small decorative circles on paths -->
+                            <circle cx="180" cy="145" r="4" fill="#3B82F6" opacity="0.5" />
+                            <circle cx="180" cy="305" r="4" fill="#3B82F6" opacity="0.5" />
+                            <circle cx="420" cy="145" r="4" fill="#3B82F6" opacity="0.5" />
+                            <circle cx="420" cy="305" r="4" fill="#3B82F6" opacity="0.5" />
+
+                        </svg>
                     </div>
-                    <div class="p-8 border border-white/10 rounded-lg">
-                        <i data-lucide="trending-up" class="w-8 h-8 mb-4 text-blue-500"></i>
-                        <p class="font-bold text-lg mb-2">Your technology</p>
-                        <p class="text-zinc-400 text-sm">Supports growth, not friction</p>
-                    </div>
+                    </svg>
                 </div>
-                <p class="mt-12 text-zinc-400 text-sm max-w-2xl mx-auto">Whether you need one service or a complete
-                    technology overhaul, we build solutions that scale with your business.</p>
             </div>
-        </section>
+    </div>
+    </section>
 
-        <!-- WHY CHOOSE US -->
-        <section class="py-24 px-6 md:px-12 bg-white">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16 text-center text-zinc-900">
-                    Why Choose Us</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-12">
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Consulting-First Approach</h3>
-                        <p class="text-zinc-600 text-sm leading-relaxed">We focus on small business needs and strategy
-                            before code.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Clear Communication</h3>
-                        <p class="text-zinc-600 text-sm leading-relaxed">No jargon. We explain clearly so you can make
-                            informed decisions.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Modern Technology</h3>
-                        <p class="text-zinc-600 text-sm leading-relaxed">We build with scalable, modern stacks that
-                            last.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Practical AI</h3>
-                        <p class="text-zinc-600 text-sm leading-relaxed">Implementations that actually save time, not
-                            just hype.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Long-term Partners</h3>
-                        <p class="text-zinc-600 text-sm leading-relaxed">We don't just build and leave; we support your
-                            growth.</p>
-                    </div>
+
+    <!-- WHY CHOOSE US (Horizontal Scroll Concept - Simplified to Grid with ScrollReveal for stability) -->
+    <section class="py-32 px-6 md:px-12 bg-white border-t border-zinc-200">
+        <div class="max-w-[1400px] mx-auto">
+            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-24 text-center">Why Choose Us
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-200 border border-zinc-200">
+                <div class="bg-white p-12 why-card hover:bg-zinc-50 transition-colors opacity-0 translate-y-8">
+                    <span class="text-4xl mb-6 block">01</span>
+                    <h3 class="text-xl font-bold mb-4">Consulting First</h3>
+                    <p class="text-sm text-zinc-600 leading-relaxed">We focus on strategy before code. Technology is
+                        an investment, not an expense.</p>
                 </div>
-                <p class="mt-16 text-center text-xl font-medium text-zinc-900">We don’t just build technology—we help
-                    you use it effectively.</p>
-            </div>
-        </section>
-
-
-        <!-- FINAL CTA -->
-        <section class="py-48 px-6 md:px-12 bg-white border-t border-zinc-100 text-center">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
-                    Let’s Talk About Your Technology Needs
-                </h2>
-                <p class="text-zinc-600 text-lg mb-12 max-w-2xl mx-auto">
-                    If you’re planning a website, building a custom app, or exploring AI for your business, we’ll help
-                    you find the right solution.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                    <a href="#"
-                        class="px-10 py-5 bg-black text-white font-bold uppercase tracking-widest text-sm hover:bg-zinc-800 transition-colors w-full sm:w-auto">
-                        Book a Free Strategy Call
-                    </a>
-                    <span class="text-zinc-400 font-mono text-xs uppercase tracking-widest">or</span>
-                    <a href="mailto:hello@theteqqi.com"
-                        class="px-10 py-5 border border-zinc-200 text-zinc-900 font-bold uppercase tracking-widest text-sm hover:bg-black hover:text-white transition-colors w-full sm:w-auto">
-                        Contact Us to Get Started
-                    </a>
+                <div class="bg-white p-12 why-card hover:bg-zinc-50 transition-colors opacity-0 translate-y-8">
+                    <span class="text-4xl mb-6 block">02</span>
+                    <h3 class="text-xl font-bold mb-4">No Jargon</h3>
+                    <p class="text-sm text-zinc-600 leading-relaxed">We speak your language. Clear communication so
+                        you can make confident decisions.</p>
+                </div>
+                <div class="bg-white p-12 why-card hover:bg-zinc-50 transition-colors opacity-0 translate-y-8">
+                    <span class="text-4xl mb-6 block">03</span>
+                    <h3 class="text-xl font-bold mb-4">Long Term</h3>
+                    <p class="text-sm text-zinc-600 leading-relaxed">We build for scale and stick around to help you
+                        grow. A true partnership.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
 
-        <!-- FOOTER -->
-        <footer class="py-24 px-8 md:px-12 bg-white border-t b-border-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-24 mb-48">
+    <!-- FINAL CTA -->
+    <section class="py-48 px-6 md:px-12 bg-white border-t border-zinc-100 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
+                Let’s Talk About Your Technology Needs
+            </h2>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="https://calendly.com/myteqqi/30min"
+                    class="px-10 py-5 bg-black text-white font-bold uppercase tracking-widest text-sm hover:bg-zinc-800 transition-colors w-full sm:w-auto">
+                    Book a Free Strategy Call
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="py-24 px-8 md:px-12 bg-white border-t b-border-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-24 lg:mb-48">
                 <div>
-                    <h3 class="text-[10px] font-mono tracking-[0.6em] uppercase text-zinc-500 mb-12">Inquiries</h3>
-                    <a href="mailto:hello@theteqqi.com"
-                        class="hero-title !text-4xl md:!text-7xl lg:!text-8xl hover:italic transition-all duration-500 border-b b-border-10 hover:border-black inline-block leading-none text-zinc-900">
-                        hello@theteqqi.com
+                    <h3 class="text-[10px] font-mono tracking-[0.6em] uppercase text-zinc-500 mb-8 lg:mb-12">Inquiries
+                    </h3>
+                    <a href="mailto:info@theteqqi.com"
+                        class="hero-title !text-3xl md:!text-5xl lg:!text-7xl hover:italic transition-all duration-500 border-b b-border-10 hover:border-black inline-block leading-none text-zinc-900">
+                        info@theteqqi.com
                     </a>
                 </div>
-                <div class="flex md:justify-end items-end">
-                    <div class="grid grid-cols-2 gap-x-24 gap-y-8">
-                        <a href="#"
-                            class="text-[10px] font-mono tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">LinkedIn</a>
-                        <a href="#"
-                            class="text-[10px] font-mono tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">Instagram</a>
+                <div class="flex lg:justify-end items-start lg:items-end mt-8 lg:mt-0">
+                    <div class="flex gap-12 lg:gap-24">
+                        <a href="https://www.linkedin.com/company/theteqqi"
+                            class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">LinkedIn</a>
+                        <a href="https://www.instagram.com/THETEQQI"
+                            class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">Instagram</a>
                     </div>
                 </div>
             </div>
             <div
                 class="flex flex-col md:flex-row justify-between items-center text-[9px] font-mono tracking-[0.5em] text-zinc-400 uppercase pt-12 border-t b-border-10">
-                <span>© 2026 Teqqi Studio</span>
-                <div class="mt-8 md:mt-0 flex gap-12">
-                    <a href="#" class="hover:text-zinc-800 transition-colors">Legal</a>
-                    <a href="#" class="hover:text-zinc-800 transition-colors">Privacy</a>
-                </div>
+                <span>© 2026 Teqqi Consulting</span>
             </div>
-        </footer>
+        </div>
+    </footer>
 
     </div>
 
     <!-- SCRIPTS -->
     <script>
         lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
 
-        // Mobile Menu Logic (Same as index)
+        // 1. HERO ANIMATION
+        const heroTitle = new SplitType('#hero-title', { types: 'lines' });
+
+        const tl = gsap.timeline();
+
+        tl.from(heroTitle.lines, {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "power4.out",
+            delay: 0.2
+        })
+            .to('#hero-subtitle', {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out"
+            }, "-=0.8")
+            .to('#hero-scroll', {
+                opacity: 1,
+                duration: 0.5
+            }, "-=0.5");
+
+
+        // 2. STACKING CARDS PARALLAX (Inner Content move slightly)
+        const stackingCards = document.querySelectorAll('.stacking-card');
+        stackingCards.forEach(card => {
+            const inner = card.querySelector('.stacking-card-inner');
+            if (inner) {
+                gsap.to(inner, {
+                    y: -50,
+                    opacity: 0.8,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                });
+            }
+        });
+
+
+        // 3. ECOSYSTEM ANIMATION
+        // Animate lines drawing
+        gsap.from(".ecosystem-line", {
+            strokeDashoffset: 1000,
+            duration: 2,
+            ease: "power2.inOut",
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: ".ecosystem-line",
+                start: "top 80%"
+            }
+        });
+
+        // Animate Nodes pop in
+        gsap.from("circle, text", {
+            scale: 0,
+            opacity: 0,
+            transformOrigin: "center",
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+                trigger: ".ecosystem-line",
+                start: "top 80%"
+            }
+        });
+
+
+        // 4. WHY US REVEAL
+        gsap.utils.toArray('.why-card').forEach((card, i) => {
+            gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                delay: i * 0.1
+            });
+        });
+
+
+        // Mobile Menu Logic
         let menuOpen = false;
         const navTrigger = document.getElementById('nav-trigger');
         const menuContainer = document.getElementById('menu-container');
@@ -600,8 +822,33 @@
                 document.body.classList.remove('menu-open');
                 navLabel.textContent = 'Menu';
                 navIcon.classList.remove('rotate-45');
+                // Close dropdown if open when closing menu
+                const submenu = document.getElementById('services-submenu');
+                const chevron = document.getElementById('services-chevron');
+                submenu.classList.add('hidden');
+                submenu.style.height = '0px';
+                chevron.classList.remove('rotate-180');
             }
         });
+
+        function toggleServicesDropdown() {
+            const submenu = document.getElementById('services-submenu');
+            const chevron = document.getElementById('services-chevron');
+            const isHidden = submenu.classList.contains('hidden');
+
+            if (isHidden) {
+                submenu.classList.remove('hidden');
+                gsap.fromTo(submenu, { height: 0, opacity: 0 }, { height: "auto", opacity: 1, duration: 0.8, ease: "expo.out" });
+                chevron.classList.add('rotate-180');
+            } else {
+                gsap.to(submenu, {
+                    height: 0, opacity: 0, duration: 0.5, ease: "expo.inOut", onComplete: () => {
+                        submenu.classList.add('hidden');
+                    }
+                });
+                chevron.classList.remove('rotate-180');
+            }
+        }
     </script>
 </body>
 

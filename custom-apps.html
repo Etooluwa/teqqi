@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Applications - Teqqi</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
+    <meta name="description"
+        content="Custom web applications built for your business. Client portals, dashboards, booking systems, and SaaS products designed to scale.">
+
+    <!-- Core Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Regular.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Bold.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Black.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Black.woff') format('woff');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #18181b;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .hero-title,
+        .menu-link {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: 'ABCDiatype', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero-title {
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            mix-blend-mode: overlay;
+        }
+
+        .menu-link-wrapper {
+            overflow: hidden;
+        }
+
+        .menu-link {
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .menu-open .menu-link {
+            transform: translateY(0);
+        }
+
+        .menu-indicator {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+            display: inline-flex;
+            align-items: center;
+            margin-right: 0.2em;
+        }
+
+        .menu-link:hover .menu-indicator {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .b-border-10 {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .b-white-10 {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-blue-600 selection:text-white">
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-[150] flex justify-between items-center px-6 py-8 md:px-12 text-white">
+        <a href="index.html" class="flex items-center cursor-pointer group">
+            <img src="https://i.imgur.com/lnicB4c.png" alt="Teqqi"
+                class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
+        </a>
+
+        <div class="mix-blend-difference">
+            <button id="nav-trigger"
+                class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
+                <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
+                <div id="nav-icon"
+                    class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
+                    <i data-lucide="plus" stroke-width="3"></i>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Off-Canvas Menu -->
+    <div id="menu-container"
+        class="fixed inset-0 bg-[#0c0c0c] z-[140] flex pointer-events-none translate-y-[-100%] overflow-hidden text-white">
+        <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-24">
+            <div class="space-y-4">
+                <div class="menu-link-wrapper">
+                    <a href="index.html"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Home
+                    </a>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="https://theteqqi.com/#about"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        About
+                    </a>
+                </div>
+                <div class="menu-link-wrapper flex flex-col">
+                    <a href="javascript:void(0)"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4"
+                        onclick="toggleServicesDropdown()">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Services
+                        <i data-lucide="chevron-down"
+                            class="ml-4 w-8 h-8 md:w-16 md:h-16 transition-transform duration-500"
+                            id="services-chevron"></i>
+                    </a>
+                    <!-- Services Submenu -->
+                    <div id="services-submenu"
+                        class="hidden overflow-hidden pl-12 md:pl-32 space-y-4 md:space-y-6 mt-4 pb-4">
+                        <div class="overflow-hidden">
+                            <a href="website-design.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Web
+                                Design</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="custom-apps.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Custom
+                                Applications</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="ai-automation.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">AI
+                                Automation</a>
+                        </div>
+                        <div class="overflow-hidden">
+                            <a href="tech-consulting.html"
+                                class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Tech
+                                Consulting</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-link-wrapper">
+                    <a href="contact.html"
+                        class="menu-link flex items-center hero-title !text-5xl md:!text-8xl transition-all duration-300 hover:translate-x-4">
+                        <span class="menu-indicator"><i data-lucide="arrow-right"
+                                class="w-10 h-10 md:w-20 md:h-20"></i></span>
+                        Connect
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hidden lg:block w-1/2 h-full relative bg-zinc-950 border-l b-white-10 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000"
+                class="w-full h-full object-cover grayscale brightness-50">
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content" class="bg-white">
+
+        <!-- HERO SECTION -->
+        <section class="min-h-screen flex flex-col justify-center px-6 md:px-12 bg-white relative overflow-hidden">
+            <!-- Background -->
+            <div
+                class="absolute top-[30%] right-[-10%] w-[60vw] h-[60vw] bg-blue-600 rounded-full blur-[200px] opacity-10">
+            </div>
+
+            <div class="max-w-[1400px] mx-auto w-full z-10 pt-24">
+                <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-blue-600 mb-8 block">Custom
+                    Development</span>
+                <h1 id="hero-title"
+                    class="text-6xl md:text-[9vw] leading-[0.8] font-black uppercase tracking-tighter text-zinc-900 mb-12">
+                    Custom<br>
+                    <span class="text-blue-600">Applications.</span>
+                </h1>
+                <div class="overflow-hidden">
+                    <p id="hero-subtitle"
+                        class="text-xl md:text-2xl text-zinc-600 font-light leading-relaxed max-w-3xl opacity-0 translate-y-10">
+                        Off-the-shelf software holds you back. We build the exact tools <br class="hidden md:block">
+                        you need to operate efficiently and outperform competitors.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT WE BUILD SECTION -->
+        <section class="py-32 px-6 md:px-12 bg-white border-t b-border-10">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+                    <div>
+                        <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">What We
+                            Build</span>
+                        <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8">
+                            Tailored<br>Solutions</h2>
+                        <p class="text-xl text-zinc-600 leading-relaxed mb-8">
+                            From internal dashboards to customer-facing SaaS products, we architect solutions
+                            that are secure, scalable, and delightful to use.
+                        </p>
+                        <p class="text-lg text-zinc-500 leading-relaxed">
+                            Every application we build is designed around your specific workflows, not the other
+                            way around. No compromises, no workarounds.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Service Card 1 -->
+                        <div class="service-card bg-zinc-50 p-8 border border-zinc-200 rounded-xl">
+                            <div class="flex items-start gap-6">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                                    <i data-lucide="layout-dashboard" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Client Portals</h3>
+                                    <p class="text-zinc-600">Secure gateways for clients, employees, or partners.
+                                        Self-service dashboards that reduce support load.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 2 -->
+                        <div class="service-card bg-zinc-50 p-8 border border-zinc-200 rounded-xl">
+                            <div class="flex items-start gap-6">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                                    <i data-lucide="calendar-check" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Booking Systems</h3>
+                                    <p class="text-zinc-600">Complex scheduling aligned with your business rules.
+                                        Appointments, resources, and availability. Handled.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 3 -->
+                        <div class="service-card bg-zinc-50 p-8 border border-zinc-200 rounded-xl">
+                            <div class="flex items-start gap-6">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                                    <i data-lucide="bar-chart-3" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Internal Dashboards</h3>
+                                    <p class="text-zinc-600">Real-time data visualization for your team. Make decisions
+                                        faster with the metrics that matter.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 4 -->
+                        <div class="service-card bg-zinc-50 p-8 border border-zinc-200 rounded-xl">
+                            <div class="flex items-start gap-6">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                                    <i data-lucide="rocket" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">SaaS MVPs</h3>
+                                    <p class="text-zinc-600">Launch your product idea fast with a solid technical
+                                        foundation. Built to scale from day one.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW WE BUILD SECTION -->
+        <section class="py-32 px-6 md:px-12 bg-zinc-50 border-t b-border-10">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="text-center mb-24">
+                    <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">Our
+                        Process</span>
+                    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">How We Build</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                    <!-- Connecting Line -->
+                    <div class="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-0.5 bg-zinc-300"></div>
+
+                    <!-- Step 1 -->
+                    <div class="text-center relative">
+                        <div
+                            class="w-16 h-16 bg-zinc-900 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 relative z-10">
+                            1</div>
+                        <h3 class="font-bold text-xl mb-4">Discovery</h3>
+                        <p class="text-zinc-600">We map your workflows, understand your users, and define clear success
+                            metrics.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center relative">
+                        <div
+                            class="w-16 h-16 bg-zinc-900 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 relative z-10">
+                            2</div>
+                        <h3 class="font-bold text-xl mb-4">Design</h3>
+                        <p class="text-zinc-600">We prototype the user experience and validate with stakeholders before
+                            writing code.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center relative">
+                        <div
+                            class="w-16 h-16 bg-zinc-900 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 relative z-10">
+                            3</div>
+                        <h3 class="font-bold text-xl mb-4">Develop</h3>
+                        <p class="text-zinc-600">We build in sprints with regular demos. You see progress every step of
+                            the way.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="text-center relative">
+                        <div
+                            class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-6 relative z-10">
+                            4</div>
+                        <h3 class="font-bold text-xl mb-4">Launch & Iterate</h3>
+                        <p class="text-zinc-600">We deploy, monitor, and continuously improve based on real user
+                            feedback.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECH STACK SECTION -->
+        <section class="py-32 px-6 md:px-12 bg-white border-t b-border-10">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    <div class="bg-zinc-900 rounded-2xl overflow-hidden min-h-[500px] relative group">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200"
+                            class="w-full h-full object-cover opacity-70 transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 right-8 text-white">
+                            <p class="text-3xl font-bold mb-2">Built to Last</p>
+                            <p class="text-white/80">Modern tech stack. Clean code. Comprehensive documentation.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-zinc-500 mb-8 block">Our
+                            Approach</span>
+                        <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8">Built With<br>Modern
+                            Tech</h2>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4 p-4 bg-zinc-50 rounded-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">React, Next.js & Modern Frameworks</h4>
+                                    <p class="text-zinc-500 text-sm">Fast, responsive interfaces that users love.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-zinc-50 rounded-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">Secure Authentication & Authorization</h4>
+                                    <p class="text-zinc-500 text-sm">Role-based access control and industry-standard
+                                        security.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-zinc-50 rounded-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">Cloud-Native Architecture</h4>
+                                    <p class="text-zinc-500 text-sm">Scales automatically. Pays only for what you use.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-zinc-50 rounded-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">API-First Design</h4>
+                                    <p class="text-zinc-500 text-sm">Integrate with any system. Future-proof by design.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-zinc-50 rounded-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold mb-1">Comprehensive Testing</h4>
+                                    <p class="text-zinc-500 text-sm">Automated tests ensure reliability before every
+                                        deployment.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="py-32 px-6 md:px-12 bg-zinc-900 text-white text-center">
+            <div class="max-w-[1400px] mx-auto">
+                <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">Got An<br><span
+                        class="text-blue-500">Idea?</span></h2>
+                <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">Let's turn your vision into a working product.
+                    Book a free consultation to discuss scope, timeline, and budget.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://calendly.com/myteqqi/30min"
+                        class="inline-block bg-blue-600 text-white px-10 py-5 font-bold uppercase tracking-widest hover:bg-blue-700 transition-colors">
+                        Start Your Project
+                    </a>
+                    <a href="services.html"
+                        class="inline-block bg-white/10 text-white px-10 py-5 font-bold uppercase tracking-widest hover:bg-white/20 transition-colors border border-white/20">
+                        View All Services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-24 px-8 md:px-12 bg-white border-t b-border-10">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-24 lg:mb-48">
+                    <div>
+                        <h3 class="text-[10px] font-mono tracking-[0.6em] uppercase text-zinc-500 mb-8 lg:mb-12">
+                            Inquiries</h3>
+                        <a href="mailto:info@theteqqi.com"
+                            class="hero-title !text-3xl md:!text-5xl lg:!text-7xl hover:italic transition-all duration-500 border-b b-border-10 hover:border-black inline-block leading-none text-zinc-900">
+                            info@theteqqi.com
+                        </a>
+                    </div>
+                    <div class="flex lg:justify-end items-start lg:items-end mt-8 lg:mt-0">
+                        <div class="flex gap-12 lg:gap-24">
+                            <a href="https://www.linkedin.com/company/theteqqi"
+                                class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">LinkedIn</a>
+                            <a href="https://www.instagram.com/THETEQQI"
+                                class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center text-[9px] font-mono tracking-[0.5em] text-zinc-400 uppercase pt-12 border-t b-border-10">
+                    <span>© 2026 Teqqi Consulting</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animation
+        gsap.to('#hero-subtitle', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.5,
+            ease: 'power3.out'
+        });
+
+        gsap.to('#hero-scroll', {
+            opacity: 1,
+            duration: 1,
+            delay: 1
+        });
+
+        // Menu Toggle
+        const navTrigger = document.getElementById('nav-trigger');
+        const menuContainer = document.getElementById('menu-container');
+        const navLabel = document.getElementById('nav-label');
+        const navIcon = document.getElementById('nav-icon');
+        let menuOpen = false;
+
+        navTrigger.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                menuContainer.style.pointerEvents = 'auto';
+                menuContainer.classList.add('menu-open');
+                gsap.to(menuContainer, { y: '0%', duration: 0.8, ease: 'power4.inOut' });
+                navLabel.textContent = 'Close';
+                navIcon.style.transform = 'rotate(45deg)';
+            } else {
+                gsap.to(menuContainer, {
+                    y: '-100%', duration: 0.8, ease: 'power4.inOut', onComplete: () => {
+                        menuContainer.style.pointerEvents = 'none';
+                        menuContainer.classList.remove('menu-open');
+                    }
+                });
+                navLabel.textContent = 'Menu';
+                navIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
