@@ -1704,10 +1704,11 @@
                 }
             });
 
-            // 1. Scale down the text
+            // 1. Scale down the text and fade out
             tl.to("#hero-text-container", {
                 scale: 0.15, // Shrink significantly
                 y: "-35vh",  // Move to top (adjust based on header height)
+                opacity: 0, // Fade out completely
                 transformOrigin: "center top",
                 ease: "power1.inOut"
             }, 0); // Start at 0
