@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Pricing - Teqqi</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
+    <meta name="description"
+        content="Transparent web design pricing for small businesses. Landing pages from $500, multi-page websites from $750, e-commerce from $900.">
+
+    <!-- Core Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Regular.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Bold.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCDiatype';
+            src: url('fonts/ABCDiatype-Black.woff2') format('woff2'),
+                url('fonts/ABCDiatype-Black.woff') format('woff');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #18181b;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .hero-title {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: 'ABCDiatype', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero-title {
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            mix-blend-mode: overlay;
+        }
+
+        .b-border-10 {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card.featured {
+            border-color: #2563eb;
+        }
+
+        .pricing-card.featured:hover {
+            box-shadow: 0 25px 50px rgba(37, 99, 235, 0.2);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-blue-600 selection:text-white">
+
+    <div class="noise-overlay"></div>
+
+    <!-- Simple Navigation -->
+    <nav class="w-full flex justify-between items-center px-6 py-8 md:px-12">
+        <a href="index.html" class="flex items-center cursor-pointer group">
+            <img src="https://i.imgur.com/lnicB4c.png" alt="Teqqi"
+                class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
+        </a>
+        <a href="website-design.html"
+            class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-blue-600 transition-colors">
+            ← Back to Web Design
+        </a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content" class="bg-white">
+
+        <!-- HERO SECTION -->
+        <section class="py-16 px-6 md:px-12 bg-white relative overflow-hidden">
+            <div class="max-w-[1400px] mx-auto text-center">
+                <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-blue-600 mb-4 block">Transparent
+                    Pricing</span>
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-zinc-900 mb-6">
+                    Web Design<br><span class="text-blue-600">Packages</span>
+                </h1>
+                <p class="text-xl text-zinc-600 font-light max-w-2xl mx-auto">
+                    Clear, upfront pricing for every budget. No hidden fees, no surprises.
+                </p>
+            </div>
+        </section>
+
+        <!-- PRICING GRID -->
+        <section class="py-16 px-6 md:px-12 bg-zinc-50">
+            <div class="max-w-[1400px] mx-auto">
+
+                <!-- Standard Websites Section -->
+                <div class="mb-16">
+                    <h2 class="text-2xl font-black uppercase tracking-tighter mb-8 text-center">🌐 Standard Websites
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                        <!-- Landing Page -->
+                        <div class="pricing-card bg-white rounded-2xl border border-zinc-200 p-8 flex flex-col">
+                            <div class="mb-6">
+                                <h3 class="text-lg font-bold uppercase tracking-tight mb-2">Landing Page</h3>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-black text-zinc-900">$500</span>
+                                </div>
+                            </div>
+
+                            <div class="flex-1">
+                                <p class="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-4">Includes:
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        A landing page
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Mobile responsive
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Basic design customization
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Contact form
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Domain & hosting connection
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="pt-6 border-t border-zinc-100">
+                                <p class="text-xs text-zinc-500 flex items-center gap-2">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    Timeline: 1–2 weeks
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Starter Website -->
+                        <div class="pricing-card bg-white rounded-2xl border border-zinc-200 p-8 flex flex-col">
+                            <div class="mb-6">
+                                <h3 class="text-lg font-bold uppercase tracking-tight mb-2">Starter Website</h3>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-black text-zinc-900">$750</span>
+                                </div>
+                            </div>
+
+                            <div class="flex-1">
+                                <p class="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-4">Includes:
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        1–3 page website
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Mobile responsive
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Basic design customization
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Contact form
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Domain & hosting connection
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="pt-6 border-t border-zinc-100">
+                                <p class="text-xs text-zinc-500 flex items-center gap-2">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    Timeline: 1–2 weeks
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Business Website -->
+                        <div
+                            class="pricing-card featured bg-white rounded-2xl border-2 border-blue-600 p-8 flex flex-col relative">
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                                <span
+                                    class="bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full">Popular</span>
+                            </div>
+                            <div class="mb-6">
+                                <h3 class="text-lg font-bold uppercase tracking-tight mb-2">Business Website</h3>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-black text-zinc-900">$900</span>
+                                </div>
+                            </div>
+
+                            <div class="flex-1">
+                                <p class="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-4">Includes:
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        4–6 pages
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Custom layout
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Mobile optimization
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Basic SEO (titles + descriptions)
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Contact forms
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        2 revisions
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="pt-6 border-t border-zinc-100">
+                                <p class="text-xs text-zinc-500 flex items-center gap-2">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    Timeline: 2–3 weeks
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Business Pro -->
+                        <div class="pricing-card bg-zinc-900 text-white rounded-2xl p-8 flex flex-col">
+                            <div class="mb-6">
+                                <h3 class="text-lg font-bold uppercase tracking-tight mb-2">Business Pro</h3>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-black">$1200</span>
+                                </div>
+                            </div>
+
+                            <div class="flex-1">
+                                <p class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 mb-4">Includes:
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3 text-sm text-zinc-300">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                        4–8 pages
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-300">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                        Custom UI styling
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-300">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                        Light animations
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-300">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                        SEO foundations
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-300">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                        Performance optimization
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-300">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                        3 revisions
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="pt-6 border-t border-zinc-700">
+                                <p class="text-xs text-zinc-400 flex items-center gap-2">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    Timeline: 3–4 weeks
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- E-Commerce Section -->
+                <div class="mb-16">
+                    <h2 class="text-2xl font-black uppercase tracking-tighter mb-8 text-center">🛒 E-Commerce</h2>
+
+                    <div class="max-w-md mx-auto">
+                        <!-- Starter Store -->
+                        <div class="pricing-card bg-white rounded-2xl border border-zinc-200 p-8 flex flex-col">
+                            <div class="mb-6">
+                                <h3 class="text-lg font-bold uppercase tracking-tight mb-2">Starter Store</h3>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-black text-zinc-900">$900</span>
+                                </div>
+                            </div>
+
+                            <div class="flex-1">
+                                <p class="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-4">Includes:
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Shopify or WooCommerce
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Payments setup
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Basic email notifications
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-zinc-600">
+                                        <i data-lucide="check" class="w-4 h-4 text-blue-600 mt-0.5 shrink-0"></i>
+                                        Mobile-friendly checkout
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="py-24 px-6 md:px-12 bg-zinc-900 text-white text-center">
+            <div class="max-w-[1400px] mx-auto">
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6">Ready to<br><span
+                        class="text-blue-500">Get Started?</span></h2>
+                <p class="text-lg text-zinc-400 max-w-xl mx-auto mb-10">Book a free consultation to discuss your project
+                    and find the right package for you.</p>
+                <a href="https://calendly.com/myteqqi/30min"
+                    class="inline-block bg-blue-600 text-white px-10 py-5 font-bold uppercase tracking-widest hover:bg-blue-700 transition-colors">
+                    Book Free Consultation
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-16 px-8 md:px-12 bg-white border-t b-border-10">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <a href="mailto:info@theteqqi.com" class="text-lg font-bold hover:text-blue-600 transition-colors">
+                        info@theteqqi.com
+                    </a>
+                    <div class="flex gap-8">
+                        <a href="https://www.linkedin.com/company/theteqqi"
+                            class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">LinkedIn</a>
+                        <a href="https://www.instagram.com/THETEQQI"
+                            class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">Instagram</a>
+                    </div>
+                </div>
+                <div class="text-center text-[9px] font-mono tracking-[0.5em] text-zinc-400 uppercase mt-12">
+                    <span>© 2026 Teqqi Consulting</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate pricing cards on scroll
+        gsap.utils.toArray('.pricing-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: 'power3.out'
+            });
+        });
+    </script>
+
+</body>
+
+</html>
