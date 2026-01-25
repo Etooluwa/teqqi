@@ -1484,36 +1484,93 @@
         let currentPage = 'home';
 
 
+
         // Nav Trigger
-        // Create explicit trigger for logo swap on white sections
-        ScrollTrigger.create({
-            trigger: ".bg-white",
-            start: "top 40px",
-            onEnter: () => {
-                const navTrigger = document.getElementById('nav-trigger');
-                if (!menuOpen) {
-                    navTrigger.classList.add('nav-dark-theme');
-                    gsap.to("#main-logo", {
-                        opacity: 0, duration: 0.2, onComplete: () => {
-                            document.getElementById('main-logo').src = "https://i.imgur.com/lnicB4c.png";
-                            gsap.to("#main-logo", { opacity: 1, duration: 0.2 });
+        // Comprehensive scroll-based nav theme detection
+        const darkLogo = "https://i.imgur.com/lnicB4c.png"; // For light backgrounds
+        const lightLogo = "https://i.imgur.com/LkLSQpr.png"; // For dark backgrounds
+        let currentNavTheme = 'dark'; // Start with dark theme (hero is dark)
+
+        function isNavOverDarkSection() {
+            // Define all dark section selectors
+            const darkSelectors = [
+                '.bg-\\[\\#080808\\]',
+                '.bg-\\[\\#0c0c0c\\]',
+                '.bg-zinc-900',
+                '.bg-zinc-950',
+                '.bg-black',
+                '#hero-wrapper',
+                '.pinned-section.bg-zinc-900',
+                '#approach',
+                '#why-scroll'
+            ];
+
+            const navHeight = 80; // Approximate nav bar height/position to check
+
+            // Check each dark selector
+            for (const selector of darkSelectors) {
+                try {
+                    const elements = document.querySelectorAll(selector);
+                    for (const el of elements) {
+                        const rect = el.getBoundingClientRect();
+                        // Check if this dark section overlaps with the nav position
+                        if (rect.top <= navHeight && rect.bottom >= navHeight) {
+                            return true;
+                        }
+                    }
+                } catch (e) {
+                    // Skip invalid selectors
+                }
+            }
+            return false;
+        }
+
+        function updateNavTheme() {
+            if (menuOpen) return; // Don't update while menu is open
+
+            const shouldBeDark = isNavOverDarkSection();
+            const newTheme = shouldBeDark ? 'dark' : 'light';
+
+            if (newTheme !== currentNavTheme) {
+                currentNavTheme = newTheme;
+                const navBtn = document.getElementById('nav-trigger');
+                const logo = document.getElementById('main-logo');
+
+                if (shouldBeDark) {
+                    // Over dark section: use light logo, remove dark theme from button
+                    navBtn.classList.remove('nav-dark-theme');
+                    gsap.to(logo, {
+                        opacity: 0, duration: 0.15, onComplete: () => {
+                            logo.src = lightLogo;
+                            gsap.to(logo, { opacity: 1, duration: 0.15 });
                         }
                     });
-                }
-            },
-            onLeaveBack: () => {
-                const navTrigger = document.getElementById('nav-trigger');
-                if (!menuOpen) {
-                    navTrigger.classList.remove('nav-dark-theme');
-                    gsap.to("#main-logo", {
-                        opacity: 0, duration: 0.2, onComplete: () => {
-                            document.getElementById('main-logo').src = "https://i.imgur.com/LkLSQpr.png";
-                            gsap.to("#main-logo", { opacity: 1, duration: 0.2 });
+                } else {
+                    // Over light section: use dark logo, add dark theme to button
+                    navBtn.classList.add('nav-dark-theme');
+                    gsap.to(logo, {
+                        opacity: 0, duration: 0.15, onComplete: () => {
+                            logo.src = darkLogo;
+                            gsap.to(logo, { opacity: 1, duration: 0.15 });
                         }
                     });
                 }
             }
-        });
+        }
+
+        // Throttled scroll handler for performance
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) return;
+            scrollTimeout = setTimeout(() => {
+                updateNavTheme();
+                scrollTimeout = null;
+            }, 50);
+        }, { passive: true });
+
+        // Initial check
+        updateNavTheme();
+
 
         const navTrigger = document.getElementById('nav-trigger');
         const menuContainer = document.getElementById('menu-container');
@@ -1537,15 +1594,9 @@
                 document.body.classList.remove('menu-open');
                 navLabel.textContent = 'Menu';
                 navIcon.classList.remove('rotate-45');
-                // Restore correct logo and theme based on scroll position
-                const isWhiteBG = ScrollTrigger.isInViewport(".bg-white", 0.1);
-                if (isWhiteBG) {
-                    document.getElementById('main-logo').src = "https://i.imgur.com/lnicB4c.png";
-                    navTrigger.classList.add('nav-dark-theme');
-                } else {
-                    document.getElementById('main-logo').src = "https://i.imgur.com/LkLSQpr.png";
-                    navTrigger.classList.remove('nav-dark-theme');
-                }
+                // Restore correct logo and theme based on scroll position using our new detection
+                currentNavTheme = ''; // Reset to force update
+                updateNavTheme();
                 // Close dropdown if open when closing menu
                 const submenu = document.getElementById('services-submenu');
                 const chevron = document.getElementById('services-chevron');
