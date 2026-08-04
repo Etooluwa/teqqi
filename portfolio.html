@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Teqqi</title>
+    <title>Technology and Website Portfolio | TEQQI Ottawa</title>
     <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
     <meta name="description"
-        content="View our portfolio of website designs, custom applications, and digital solutions built for small businesses.">
+        content="Explore websites and digital experiences delivered by TEQQI for professional firms, growing teams, and organizations across diverse sectors.">
+    <link rel="canonical" href="https://theteqqi.com/portfolio.html">
 
     <!-- Core Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,32 +19,7 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Regular.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Bold.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Bold.woff') format('woff');
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Black.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Black.woff') format('woff');
-            font-weight: 900;
-            font-style: normal;
-        }
-
-        :root {
+:root {
             --bg-color: #ffffff;
             --text-main: #18181b;
         }
@@ -70,7 +46,7 @@
         }
 
         body {
-            font-family: 'ABCDiatype', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
@@ -158,13 +134,13 @@
                 class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
         </a>
 
-        <button id="nav-trigger"
+        <button type="button" id="nav-trigger"
             class="nav-dark-theme flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
             <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
-            <div id="nav-icon"
+            <span id="nav-icon"
                 class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
                 <i data-lucide="plus" stroke-width="3"></i>
-            </div>
+            </span>
         </button>
     </nav>
 
@@ -182,7 +158,7 @@
                     </a>
                 </div>
                 <div class="menu-link-wrapper">
-                    <a href="https://theteqqi.com/#about"
+                    <a href="index.html#about"
                         class="menu-link flex items-center hero-title !text-5xl md:!text-7xl transition-all duration-300 hover:translate-x-4">
                         <span class="menu-indicator"><i data-lucide="arrow-right"
                                 class="w-10 h-10 md:w-20 md:h-20"></i></span>
@@ -245,7 +221,7 @@
         </div>
         <div class="hidden lg:block w-1/2 h-full relative bg-zinc-950 border-l b-white-10 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80&w=2000"
-                class="w-full h-full object-cover grayscale brightness-50">
+                alt="" class="w-full h-full object-cover grayscale brightness-50">
         </div>
     </div>
 
@@ -286,17 +262,21 @@
                     <a href="https://realinfluencehouse.com" target="_blank" rel="noopener noreferrer"
                         class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="assets/portfolio/real-influence-house.png" alt="Real Influence House"
-                                class="project-image w-full h-full object-cover transition-transform duration-700">
+                            <picture class="block w-full h-full">
+                                <source srcset="assets/portfolio/real-influence-house.webp" type="image/webp">
+                                <img src="assets/portfolio/real-influence-house.png" alt="Real Influence House website"
+                                    loading="lazy" decoding="async"
+                                    class="project-image w-full h-full object-cover transition-transform duration-700">
+                            </picture>
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                <span class="text-white font-bold uppercase tracking-widest text-sm">Personal Branding &
+                                <span class="text-white font-bold uppercase tracking-widest text-sm">Personal Branding &amp;
                                     Public Relations</span>
                             </div>
                         </div>
                         <div>
                             <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">
-                                Personal Branding & Public Relations
+                                Personal Branding &amp; Public Relations
                             </span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
@@ -310,7 +290,8 @@
                     <!-- Project: Akili Group -->
                     <a href="https://akiligroup.ca" target="_blank" class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="https://i.imgur.com/aEcR9Rm.png" alt="Akili Group"
+                            <img src="https://i.imgur.com/aEcR9Rm.png" alt="Akili Group website" loading="lazy"
+                                decoding="async"
                                 class="project-image w-full h-full object-cover transition-transform duration-700">
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
@@ -335,17 +316,21 @@
                     <a href="https://lingowire.com" target="_blank" rel="noopener noreferrer"
                         class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="assets/portfolio/lingowire.png" alt="Lingowire"
-                                class="project-image w-full h-full object-cover transition-transform duration-700">
+                            <picture class="block w-full h-full">
+                                <source srcset="assets/portfolio/lingowire.webp" type="image/webp">
+                                <img src="assets/portfolio/lingowire.png" alt="Lingowire website" loading="lazy"
+                                    decoding="async"
+                                    class="project-image w-full h-full object-cover transition-transform duration-700">
+                            </picture>
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
                                 <span class="text-white font-bold uppercase tracking-widest text-sm">Language Learning
-                                    & Technology</span>
+                                    &amp; Technology</span>
                             </div>
                         </div>
                         <div>
                             <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">
-                                Language Learning & Technology
+                                Language Learning &amp; Technology
                             </span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
@@ -359,18 +344,19 @@
                     <!-- Project: Feast Companions -->
                     <a href="https://feastcompanions.com" target="_blank" class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="https://i.imgur.com/9OeGXqh.png" alt="Feast Companions"
+                            <img src="https://i.imgur.com/9OeGXqh.png" alt="Feast Companions website" loading="lazy"
+                                decoding="async"
                                 class="project-image w-full h-full object-cover transition-transform duration-700">
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                <span class="text-white font-bold uppercase tracking-widest text-sm">Catering &
+                                <span class="text-white font-bold uppercase tracking-widest text-sm">Catering &amp;
                                     Hospitality</span>
                             </div>
                         </div>
                         <div>
                             <span
                                 class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">Catering
-                                & Hospitality</span>
+                                &amp; Hospitality</span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
                                 Feast Companions</h3>
@@ -383,17 +369,21 @@
                     <a href="https://tentglobal.org/" target="_blank" rel="noopener noreferrer"
                         class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="assets/portfolio/the-tent.png" alt="The Tent"
-                                class="project-image w-full h-full object-cover transition-transform duration-700">
+                            <picture class="block w-full h-full">
+                                <source srcset="assets/portfolio/the-tent.webp" type="image/webp">
+                                <img src="assets/portfolio/the-tent.png" alt="The Tent website" loading="lazy"
+                                    decoding="async"
+                                    class="project-image w-full h-full object-cover transition-transform duration-700">
+                            </picture>
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                <span class="text-white font-bold uppercase tracking-widest text-sm">Church &
+                                <span class="text-white font-bold uppercase tracking-widest text-sm">Church &amp;
                                     Community</span>
                             </div>
                         </div>
                         <div>
                             <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">
-                                Church & Community
+                                Church &amp; Community
                             </span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
@@ -408,17 +398,21 @@
                     <a href="https://mykliques.com" target="_blank" rel="noopener noreferrer"
                         class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="assets/portfolio/kliques.png" alt="Kliques"
-                                class="project-image w-full h-full object-cover transition-transform duration-700">
+                            <picture class="block w-full h-full">
+                                <source srcset="assets/portfolio/kliques.webp" type="image/webp">
+                                <img src="assets/portfolio/kliques.png" alt="Kliques website" loading="lazy"
+                                    decoding="async"
+                                    class="project-image w-full h-full object-cover transition-transform duration-700">
+                            </picture>
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                <span class="text-white font-bold uppercase tracking-widest text-sm">SaaS & Client
+                                <span class="text-white font-bold uppercase tracking-widest text-sm">SaaS &amp; Client
                                     Management</span>
                             </div>
                         </div>
                         <div>
                             <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">
-                                SaaS & Client Management
+                                SaaS &amp; Client Management
                             </span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
@@ -433,17 +427,21 @@
                     <a href="https://annywangvocals.pages.dev/" target="_blank" rel="noopener noreferrer"
                         class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="assets/portfolio/anny-wang.jpg" alt="Anny Wang Vocal Training"
-                                class="project-image w-full h-full object-cover transition-transform duration-700">
+                            <picture class="block w-full h-full">
+                                <source srcset="assets/portfolio/anny-wang.webp" type="image/webp">
+                                <img src="assets/portfolio/anny-wang.jpg" alt="Anny Wang Vocal Training website"
+                                    loading="lazy" decoding="async"
+                                    class="project-image w-full h-full object-cover transition-transform duration-700">
+                            </picture>
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                <span class="text-white font-bold uppercase tracking-widest text-sm">Vocal Training &
+                                <span class="text-white font-bold uppercase tracking-widest text-sm">Vocal Training &amp;
                                     Performance Coaching</span>
                             </div>
                         </div>
                         <div>
                             <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">
-                                Vocal Training & Performance Coaching
+                                Vocal Training &amp; Performance Coaching
                             </span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
@@ -458,17 +456,21 @@
                     <a href="https://titan-viz.pages.dev/" target="_blank" rel="noopener noreferrer"
                         class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="assets/portfolio/titan-construction.jpg" alt="Titan Construction Services"
-                                class="project-image w-full h-full object-cover transition-transform duration-700">
+                            <picture class="block w-full h-full">
+                                <source srcset="assets/portfolio/titan-construction.webp" type="image/webp">
+                                <img src="assets/portfolio/titan-construction.jpg" alt="Titan Construction Services website"
+                                    loading="lazy" decoding="async"
+                                    class="project-image w-full h-full object-cover transition-transform duration-700">
+                            </picture>
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                <span class="text-white font-bold uppercase tracking-widest text-sm">Construction &
+                                <span class="text-white font-bold uppercase tracking-widest text-sm">Construction &amp;
                                     Home Renovations</span>
                             </div>
                         </div>
                         <div>
                             <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">
-                                Construction & Home Renovations
+                                Construction &amp; Home Renovations
                             </span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
@@ -483,8 +485,12 @@
                     <a href="https://amormaison.pages.dev/" target="_blank" rel="noopener noreferrer"
                         class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="assets/portfolio/amor-maison.jpg" alt="Amor Maison"
-                                class="project-image w-full h-full object-cover transition-transform duration-700">
+                            <picture class="block w-full h-full">
+                                <source srcset="assets/portfolio/amor-maison.webp" type="image/webp">
+                                <img src="assets/portfolio/amor-maison.jpg" alt="Amor Maison website" loading="lazy"
+                                    decoding="async"
+                                    class="project-image w-full h-full object-cover transition-transform duration-700">
+                            </picture>
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
                                 <span class="text-white font-bold uppercase tracking-widest text-sm">Luxury Brand
@@ -507,11 +513,12 @@
                     <!-- Project: The Ginga Life -->
                     <a href="https://thegingalife.com" target="_blank" class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="https://i.imgur.com/7Uw2v35.png" alt="The Ginga Life"
+                            <img src="https://i.imgur.com/7Uw2v35.png" alt="The Ginga Life website" loading="lazy"
+                                decoding="async"
                                 class="project-image w-full h-full object-cover transition-transform duration-700">
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                <span class="text-white font-bold uppercase tracking-widest text-sm">Fitness &
+                                <span class="text-white font-bold uppercase tracking-widest text-sm">Fitness &amp;
                                     Dance</span>
                             </div>
                         </div>
@@ -530,17 +537,18 @@
                     <!-- Project: Ryan Ofei -->
                     <a href="https://ryanofei.com" target="_blank" class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="https://i.imgur.com/ssgil0b.png" alt="Ryan Ofei"
+                            <img src="https://i.imgur.com/ssgil0b.png" alt="Ryan Ofei website" loading="lazy"
+                                decoding="async"
                                 class="project-image w-full h-full object-cover transition-transform duration-700">
                             <div
                                 class="project-overlay absolute inset-0 bg-blue-600/80 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                <span class="text-white font-bold uppercase tracking-widest text-sm">Art &
+                                <span class="text-white font-bold uppercase tracking-widest text-sm">Art &amp;
                                     Entertainment</span>
                             </div>
                         </div>
                         <div>
                             <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">Art
-                                & Entertainment</span>
+                                &amp; Entertainment</span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
                                 Ryan Ofei</h3>
@@ -559,8 +567,8 @@
             <div class="max-w-[1400px] mx-auto">
                 <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">Ready To<br><span
                         class="text-blue-500">Start Yours?</span></h2>
-                <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">Let's build something great together. Book a
-                    free consultation to discuss your project.</p>
+                <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">Let's build something useful together. Tell us
+                    what your organization is planning and where technology can help.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="https://calendly.com/myteqqi/30min"
                         class="inline-block bg-blue-600 text-white px-10 py-5 font-bold uppercase tracking-widest hover:bg-blue-700 transition-colors">

@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Teqqi</title>
+    <title>Technology Consulting Services | TEQQI Ottawa</title>
+    <meta name="description"
+        content="Explore TEQQI's website design, custom application, automation, and technology consulting services for growing organizations and professional firms.">
+    <link rel="canonical" href="https://theteqqi.com/services.html">
     <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
 
     <!-- Core Dependencies -->
@@ -17,34 +20,7 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-
-        /* CUSTOM FONT: ABCDiatype */
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Regular.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Bold.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Bold.woff') format('woff');
-            font-weight: 700;
-            font-style: normal;
-            background-color: var(--bg-color);
-        }
-
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Black.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Black.woff') format('woff');
-            font-weight: 900;
-            font-style: normal;
-        }
-
-        :root {
+:root {
             --bg-color: #ffffff;
             --zinc-700: #3f3f46;
             --text-main: #18181b;
@@ -73,7 +49,7 @@
         }
 
         body {
-            font-family: 'ABCDiatype', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
@@ -183,13 +159,13 @@
                 class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
         </a>
 
-        <button id="nav-trigger"
+        <button type="button" id="nav-trigger"
             class="nav-dark-theme flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
             <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
-            <div id="nav-icon"
+            <span id="nav-icon"
                 class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
                 <i data-lucide="plus" stroke-width="3"></i>
-            </div>
+            </span>
         </button>
     </nav>
 
@@ -207,7 +183,7 @@
                     </a>
                 </div>
                 <div class="menu-link-wrapper">
-                    <a href="https://theteqqi.com/#about"
+                    <a href="index.html#about"
                         class="menu-link flex items-center hero-title !text-5xl md:!text-7xl transition-all duration-300 hover:translate-x-4">
                         <span class="menu-indicator"><i data-lucide="arrow-right"
                                 class="w-10 h-10 md:w-20 md:h-20"></i></span>
@@ -270,7 +246,7 @@
         </div>
         <div class="hidden lg:block w-1/2 h-full relative bg-zinc-950 border-l b-white-10 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000"
-                class="w-full h-full object-cover grayscale brightness-50">
+                alt="" class="w-full h-full object-cover grayscale brightness-50">
         </div>
     </div>
 
@@ -288,8 +264,9 @@
                 <div class="overflow-hidden">
                     <p id="hero-subtitle"
                         class="text-xl md:text-3xl text-zinc-600 font-light leading-relaxed max-w-4xl opacity-0 translate-y-10">
-                        We help small businesses launch, grow, and operate efficiently. <br class="hidden md:block">
-                        From custom apps to AI workflows, we build systems that work.
+                        We help growing organizations strengthen their digital presence and operate more effectively.
+                        <br class="hidden md:block">
+                        From custom applications to automation, we build systems that support real business goals.
                     </p>
                 </div>
 
@@ -325,7 +302,7 @@
                             </p>
 
                             <ul class="space-y-4 text-zinc-900 font-medium mb-12 border-l border-zinc-200 pl-6">
-                                <li class="text-sm uppercase tracking-wide">Custom Design & Dev</li>
+                                <li class="text-sm uppercase tracking-wide">Custom Design &amp; Development</li>
                                 <li class="text-sm uppercase tracking-wide">Performance Optimization</li>
                                 <li class="text-sm uppercase tracking-wide">SEO Structure</li>
                             </ul>
@@ -338,6 +315,7 @@
                         <div
                             class="lg:col-span-7 h-[50vh] lg:h-[70vh] w-full bg-zinc-100 rounded-2xl overflow-hidden relative group">
                             <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80&w=1600"
+                                alt="Website design workspace"
                                 class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
                             <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
                         </div>
@@ -373,6 +351,7 @@
                         <div
                             class="lg:col-span-7 h-[50vh] lg:h-[70vh] w-full bg-white rounded-2xl overflow-hidden relative group shadow-xl">
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600"
+                                alt="Custom application dashboard"
                                 class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
                             <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
                         </div>
@@ -390,8 +369,8 @@
                             <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">
                                 AI<br>Automation</h2>
                             <p class="text-xl text-zinc-400 leading-relaxed mb-12 max-w-lg">
-                                Practical AI integration that saves time. We automate repetitive tasks so you can focus
-                                on strategy.
+                                Practical AI integration that reduces repetitive work, improves consistency, and gives
+                                your team more room for strategy and service.
                             </p>
 
                             <div class="grid grid-cols-2 gap-6 mb-12">
@@ -399,7 +378,7 @@
                                     class="p-6 bg-white/5 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
                                     <i data-lucide="workflow" class="text-blue-500 mb-4"></i>
                                     <h4 class="font-bold text-sm uppercase mb-2">Workflows</h4>
-                                    <p class="text-xs text-zinc-500">Automate forms & data</p>
+                                    <p class="text-xs text-zinc-500">Automate forms &amp; data</p>
                                 </div>
                                 <div
                                     class="p-6 bg-white/5 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
@@ -421,6 +400,7 @@
                                 class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20">
                             </div>
                             <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600"
+                                alt="AI automation network"
                                 class="w-full h-full object-cover opacity-60 mix-blend-overlay">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <div
@@ -453,7 +433,7 @@
                             <ul class="space-y-4 text-zinc-900 font-medium mb-12 border-l border-zinc-300 pl-6">
                                 <li class="text-sm uppercase tracking-wide">Tech Stack Strategy</li>
                                 <li class="text-sm uppercase tracking-wide">Digital Transformation</li>
-                                <li class="text-sm uppercase tracking-wide">Security & Compliance</li>
+                                <li class="text-sm uppercase tracking-wide">Security &amp; Compliance</li>
                             </ul>
 
                             <a href="tech-consulting.html"
@@ -464,6 +444,7 @@
                         <div
                             class="lg:col-span-7 h-[50vh] lg:h-[70vh] w-full bg-white rounded-2xl overflow-hidden relative group shadow-xl">
                             <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1600"
+                                alt="Technology consulting workshop"
                                 class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
                             <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
                         </div>
@@ -641,11 +622,9 @@
 
                         </svg>
                     </div>
-                    </svg>
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
 
 
     <!-- WHY CHOOSE US (Horizontal Scroll Concept - Simplified to Grid with ScrollReveal for stability) -->
@@ -687,7 +666,7 @@
             <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
                 <a href="https://calendly.com/myteqqi/30min"
                     class="px-10 py-5 bg-black text-white font-bold uppercase tracking-widest text-sm hover:bg-zinc-800 transition-colors w-full sm:w-auto">
-                    Book a Free Strategy Call
+                    Discuss a Project
                 </a>
             </div>
         </div>
