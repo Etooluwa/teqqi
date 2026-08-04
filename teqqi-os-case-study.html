@@ -47,7 +47,7 @@
     <div class="noise-overlay"></div>
     <nav class="fixed top-0 w-full z-[150] flex justify-between items-center px-6 py-8 md:px-12 text-white">
         <a href="index.html" class="flex items-center cursor-pointer group">
-            <img src="https://i.imgur.com/lnicB4c.png" alt="Teqqi"
+            <img id="site-logo" src="https://i.imgur.com/LkLSQpr.png" alt="Teqqi"
                 class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
         </a>
         <button type="button" id="nav-trigger"
@@ -198,21 +198,45 @@
         const menuContainer = document.getElementById('menu-container');
         const navLabel = document.getElementById('nav-label');
         const navIcon = document.getElementById('nav-icon');
+        const siteLogo = document.getElementById('site-logo');
+        const darkBackgroundLogo = 'https://i.imgur.com/LkLSQpr.png';
+        const lightBackgroundLogo = 'https://i.imgur.com/lnicB4c.png';
         let menuOpen = false;
+
+        function updateNavigationTheme() {
+            if (menuOpen) {
+                siteLogo.src = darkBackgroundLogo;
+                navTrigger.classList.remove('nav-dark-theme');
+                return;
+            }
+            const surfaces = document.querySelectorAll('main > section, footer');
+            const activeSurface = Array.from(surfaces).find((surface) => {
+                const bounds = surface.getBoundingClientRect();
+                return bounds.top <= 72 && bounds.bottom > 72;
+            });
+            const isDark = activeSurface && (activeSurface.classList.contains('bg-zinc-950') || activeSurface.classList.contains('bg-blue-600'));
+            siteLogo.src = isDark ? darkBackgroundLogo : lightBackgroundLogo;
+            navTrigger.classList.toggle('nav-dark-theme', !isDark);
+        }
+
         navTrigger.addEventListener('click', () => {
             menuOpen = !menuOpen;
             if (menuOpen) {
+                updateNavigationTheme();
                 gsap.to(menuContainer, { y: 0, duration: 1.2, ease: 'expo.inOut', pointerEvents: 'all' });
                 document.body.classList.add('menu-open');
                 navLabel.textContent = 'Close';
                 navIcon.classList.add('rotate-45');
             } else {
-                gsap.to(menuContainer, { y: '-100%', duration: 1, ease: 'expo.inOut', pointerEvents: 'none' });
+                gsap.to(menuContainer, { y: '-100%', duration: 1, ease: 'expo.inOut', pointerEvents: 'none', onComplete: updateNavigationTheme });
                 document.body.classList.remove('menu-open');
                 navLabel.textContent = 'Menu';
                 navIcon.classList.remove('rotate-45');
             }
         });
+        window.addEventListener('scroll', updateNavigationTheme, { passive: true });
+        window.addEventListener('resize', updateNavigationTheme);
+        updateNavigationTheme();
         function toggleServicesDropdown() {
             const submenu = document.getElementById('services-submenu');
             const chevron = document.getElementById('services-chevron');
