@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kliques Product Case Study | TEQQI Ottawa</title>
+    <meta name="description"
+        content="See how TEQQI shaped Kliques, a relationship-focused digital product for independent service providers managing clients, bookings, and payments.">
+    <link rel="canonical" href="https://theteqqi.com/kliques-case-study.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Kliques Product Case Study | TEQQI">
+    <meta property="og:description"
+        content="A TEQQI product case study covering the strategy, experience, and development of the Kliques client-management platform.">
+    <meta property="og:url" content="https://theteqqi.com/kliques-case-study.html">
+    <meta property="og:image" content="https://theteqqi.com/assets/portfolio/kliques.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kliques Product Case Study | TEQQI">
+    <meta name="twitter:description"
+        content="Explore how TEQQI approached the Kliques digital product and client-management experience.">
+    <meta name="twitter:image" content="https://theteqqi.com/assets/portfolio/kliques.png">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #18181b;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero-title {
+            font-weight: 900;
+            line-height: .88;
+            letter-spacing: -.055em;
+            text-transform: uppercase;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
+            opacity: .025;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+    </style>
+</head>
+
+<body class="bg-white selection:bg-blue-600 selection:text-white">
+    <div class="noise-overlay"></div>
+
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950/95 text-white backdrop-blur">
+        <nav class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-12" aria-label="Primary">
+            <a href="index.html" class="text-xl font-black uppercase tracking-tighter">TEQQI</a>
+            <div class="hidden items-center gap-8 text-xs font-bold uppercase tracking-[0.2em] md:flex">
+                <a href="services.html" class="transition-colors hover:text-blue-400">Services</a>
+                <a href="portfolio.html" class="text-blue-400">Portfolio</a>
+                <a href="index.html#about" class="transition-colors hover:text-blue-400">About</a>
+                <a href="contact.html" class="transition-colors hover:text-blue-400">Contact</a>
+            </div>
+            <button type="button" id="menu-button" class="rounded-full border border-white/20 px-5 py-2 text-xs font-bold uppercase tracking-widest md:hidden"
+                aria-controls="mobile-menu" aria-expanded="false">Menu</button>
+        </nav>
+        <div id="mobile-menu" hidden
+            class="absolute inset-x-0 top-full bg-zinc-950 px-6 py-8 md:hidden">
+            <div class="flex flex-col gap-6 text-xl font-black uppercase">
+                <a href="services.html">Services</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="index.html#about">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="bg-zinc-950 px-6 pb-20 pt-40 text-white md:px-12 md:pb-28 md:pt-48">
+            <div class="mx-auto max-w-[1400px]">
+                <a href="portfolio.html" class="mb-12 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-blue-400">
+                    <i data-lucide="arrow-left" class="h-4 w-4"></i> Full Portfolio
+                </a>
+                <p class="mb-6 font-mono text-[10px] uppercase tracking-[0.45em] text-blue-400">Digital Product / SaaS Platform</p>
+                <h1 class="hero-title max-w-5xl text-6xl sm:text-7xl md:text-[9vw]">Kliques.</h1>
+                <div class="mt-12 grid gap-10 lg:grid-cols-[1.3fr_.7fr] lg:items-end">
+                    <p class="max-w-3xl text-xl font-light leading-relaxed text-zinc-300 md:text-2xl">A relationship-focused
+                        platform designed to help independent service providers manage clients, bookings, payments, and
+                        ongoing engagement from one coherent experience.</p>
+                    <a href="https://mykliques.com" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex w-fit items-center gap-3 bg-blue-600 px-8 py-5 text-sm font-bold uppercase tracking-widest transition-colors hover:bg-blue-500">
+                        View Kliques <i data-lucide="arrow-up-right" class="h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#fbf4ef] px-6 py-12 md:px-12 md:py-20">
+            <div class="mx-auto max-w-[1400px] overflow-hidden rounded-2xl border border-zinc-900/10 bg-white shadow-2xl shadow-orange-950/10">
+                <picture>
+                    <source srcset="assets/portfolio/kliques.webp" type="image/webp">
+                    <img src="assets/portfolio/kliques.png" alt="Kliques relationship management product homepage"
+                        class="h-auto w-full" decoding="async">
+                </picture>
+            </div>
+        </section>
+
+        <section class="px-6 py-24 md:px-12 md:py-32">
+            <div class="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2">
+                <article class="reveal">
+                    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">The Challenge</p>
+                    <h2 class="mb-6 text-4xl font-black uppercase tracking-tighter">Client work creates connected demands.</h2>
+                    <p class="text-lg leading-relaxed text-zinc-600">Independent service providers often coordinate
+                        relationships, bookings, payment details, preferences, and follow-up across separate tools. That
+                        fragmentation can make it harder to maintain a clear view of each client relationship.</p>
+                </article>
+                <article class="reveal">
+                    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">The Product Opportunity</p>
+                    <h2 class="mb-6 text-4xl font-black uppercase tracking-tighter">Put the relationship at the center.</h2>
+                    <p class="text-lg leading-relaxed text-zinc-600">Kliques brings the essential parts of service
+                        delivery into a focused product model, helping providers keep important client context close to
+                        the activities that move the relationship forward.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="bg-zinc-100 px-6 py-24 md:px-12 md:py-32">
+            <div class="mx-auto max-w-[1200px]">
+                <div class="reveal mb-16 max-w-3xl">
+                    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">The Solution</p>
+                    <h2 class="mb-6 text-4xl font-black uppercase tracking-tighter md:text-6xl">A clearer operating space for service providers.</h2>
+                    <p class="text-lg leading-relaxed text-zinc-600">The product experience is organized around the
+                        recurring work visible in the Kliques platform: client management, bookings, payments, notes,
+                        preferences, milestones, and relationship history.</p>
+                </div>
+                <div class="grid gap-px overflow-hidden rounded-2xl bg-zinc-300 md:grid-cols-2 lg:grid-cols-4">
+                    <div class="reveal bg-white p-8"><span class="mb-5 block font-mono text-xs text-blue-600">01</span><h3 class="mb-3 text-xl font-black uppercase">Client context</h3><p class="text-sm leading-relaxed text-zinc-500">Keep relationship details and preferences available in one place.</p></div>
+                    <div class="reveal bg-white p-8"><span class="mb-5 block font-mono text-xs text-blue-600">02</span><h3 class="mb-3 text-xl font-black uppercase">Bookings</h3><p class="text-sm leading-relaxed text-zinc-500">Connect scheduled services to the clients receiving them.</p></div>
+                    <div class="reveal bg-white p-8"><span class="mb-5 block font-mono text-xs text-blue-600">03</span><h3 class="mb-3 text-xl font-black uppercase">Payments</h3><p class="text-sm leading-relaxed text-zinc-500">Support the commercial side of an ongoing service relationship.</p></div>
+                    <div class="reveal bg-white p-8"><span class="mb-5 block font-mono text-xs text-blue-600">04</span><h3 class="mb-3 text-xl font-black uppercase">History</h3><p class="text-sm leading-relaxed text-zinc-500">Build continuity through notes, milestones, and past activity.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-24 md:px-12 md:py-32">
+            <div class="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-[.75fr_1.25fr]">
+                <div class="reveal">
+                    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">TEQQI's Role</p>
+                    <h2 class="text-4xl font-black uppercase tracking-tighter">From product thinking to a usable experience.</h2>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <div class="reveal border-t border-zinc-300 py-5 font-bold">Product strategy</div>
+                    <div class="reveal border-t border-zinc-300 py-5 font-bold">Workflow analysis</div>
+                    <div class="reveal border-t border-zinc-300 py-5 font-bold">Information architecture</div>
+                    <div class="reveal border-t border-zinc-300 py-5 font-bold">Interface design</div>
+                    <div class="reveal border-t border-zinc-300 py-5 font-bold">Application development</div>
+                    <div class="reveal border-t border-zinc-300 py-5 font-bold">Responsive implementation</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-blue-600 px-6 py-24 text-white md:px-12 md:py-32">
+            <div class="reveal mx-auto max-w-5xl text-center">
+                <p class="mb-5 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-100">Build a Focused Digital Product</p>
+                <h2 class="mb-8 text-4xl font-black uppercase tracking-tighter md:text-7xl">Have a workflow that deserves a better system?</h2>
+                <div class="flex flex-col justify-center gap-4 sm:flex-row">
+                    <a href="https://mykliques.com" target="_blank" rel="noopener noreferrer" class="bg-white px-8 py-5 text-sm font-bold uppercase tracking-widest text-blue-700">View Kliques</a>
+                    <a href="contact.html" class="border border-white/40 px-8 py-5 text-sm font-bold uppercase tracking-widest">Discuss a Digital Product</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-zinc-200 bg-white px-6 py-14 md:px-12">
+        <div class="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div><p class="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">Inquiries</p><a href="mailto:info@theteqqi.com" class="text-2xl font-black">info@theteqqi.com</a></div>
+            <div class="flex gap-6 text-xs font-bold uppercase tracking-widest"><a href="portfolio.html">Portfolio</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuButton.addEventListener('click', () => {
+            const open = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', String(!open));
+            mobileMenu.hidden = open;
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal').forEach((element) => {
+            gsap.to(element, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 88%' } });
+        });
+    </script>
+</body>
+
+</html>
