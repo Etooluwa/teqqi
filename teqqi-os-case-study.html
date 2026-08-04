@@ -31,27 +31,52 @@
         .hero-title { font-weight: 900; line-height: .88; letter-spacing: -.055em; text-transform: uppercase; }
         .noise-overlay { position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: .025; background-image: url("https://grainy-gradients.vercel.app/noise.svg"); }
         .reveal { opacity: 0; transform: translateY(30px); }
+        .nav-dark-theme { background-color: rgba(0, 0, 0, .05) !important; border-color: rgba(0, 0, 0, .2) !important; color: #000 !important; }
+        .nav-dark-theme:hover { background-color: rgba(0, 0, 0, .1) !important; }
+        .menu-link-wrapper { overflow: hidden; }
+        .menu-link { transform: translateY(100%); transition: transform .6s cubic-bezier(.85, 0, .15, 1); }
+        .menu-open .menu-link { transform: translateY(0); }
+        .menu-indicator { opacity: 0; transform: translateX(-30px); transition: all .5s cubic-bezier(.85, 0, .15, 1); display: inline-flex; align-items: center; margin-right: .2em; }
+        .menu-link:hover .menu-indicator { opacity: 1; transform: translateX(0); }
+        .b-border-10 { border-color: rgba(0, 0, 0, .1); }
+        .b-white-10 { border-color: rgba(255, 255, 255, .1); }
     </style>
 </head>
 
 <body class="bg-white selection:bg-blue-600 selection:text-white">
     <div class="noise-overlay"></div>
-    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950/95 text-white backdrop-blur">
-        <nav class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-12" aria-label="Primary">
-            <a href="index.html" class="text-xl font-black uppercase tracking-tighter">TEQQI</a>
-            <div class="hidden items-center gap-8 text-xs font-bold uppercase tracking-[0.2em] md:flex">
-                <a href="services.html" class="transition-colors hover:text-blue-400">Services</a>
-                <a href="portfolio.html" class="text-blue-400">Portfolio</a>
-                <a href="index.html#about" class="transition-colors hover:text-blue-400">About</a>
-                <a href="contact.html" class="transition-colors hover:text-blue-400">Contact</a>
+    <nav class="fixed top-0 w-full z-[150] flex justify-between items-center px-6 py-8 md:px-12 text-white">
+        <a href="index.html" class="flex items-center cursor-pointer group">
+            <img src="https://i.imgur.com/lnicB4c.png" alt="Teqqi"
+                class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
+        </a>
+        <button type="button" id="nav-trigger"
+            class="flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
+            <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
+            <span id="nav-icon" class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center"><i data-lucide="plus" stroke-width="3"></i></span>
+        </button>
+    </nav>
+
+    <div id="menu-container" class="fixed inset-0 bg-[#0c0c0c] z-[140] flex pointer-events-none translate-y-[-100%] overflow-hidden text-white">
+        <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-24">
+            <div class="space-y-4">
+                <div class="menu-link-wrapper"><a href="index.html" class="menu-link flex items-center hero-title !text-5xl md:!text-7xl transition-all duration-300 hover:translate-x-4"><span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>Home</a></div>
+                <div class="menu-link-wrapper"><a href="index.html#about" class="menu-link flex items-center hero-title !text-5xl md:!text-7xl transition-all duration-300 hover:translate-x-4"><span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>About</a></div>
+                <div class="menu-link-wrapper flex flex-col">
+                    <a href="javascript:void(0)" class="menu-link flex items-center hero-title !text-5xl md:!text-7xl transition-all duration-300 hover:translate-x-4" onclick="toggleServicesDropdown()"><span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>Services<i data-lucide="chevron-down" class="ml-4 w-8 h-8 md:w-16 md:h-16 transition-transform duration-500" id="services-chevron"></i></a>
+                    <div id="services-submenu" class="hidden overflow-hidden pl-12 md:pl-32 space-y-4 md:space-y-6 mt-4 pb-4">
+                        <div><a href="website-design.html" class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Web Design</a></div>
+                        <div><a href="custom-apps.html" class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Custom Applications</a></div>
+                        <div><a href="ai-automation.html" class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">AI Automation</a></div>
+                        <div><a href="tech-consulting.html" class="block text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-500 hover:text-blue-600 transition-colors">Tech Consulting</a></div>
+                    </div>
+                </div>
+                <div class="menu-link-wrapper"><a href="portfolio.html" class="menu-link flex items-center hero-title !text-5xl md:!text-7xl transition-all duration-300 hover:translate-x-4"><span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>Portfolio</a></div>
+                <div class="menu-link-wrapper"><a href="contact.html" class="menu-link flex items-center hero-title !text-5xl md:!text-7xl transition-all duration-300 hover:translate-x-4"><span class="menu-indicator"><i data-lucide="arrow-right" class="w-10 h-10 md:w-20 md:h-20"></i></span>Connect</a></div>
             </div>
-            <button type="button" id="menu-button" class="rounded-full border border-white/20 px-5 py-2 text-xs font-bold uppercase tracking-widest md:hidden"
-                aria-controls="mobile-menu" aria-expanded="false">Menu</button>
-        </nav>
-        <div id="mobile-menu" hidden class="absolute inset-x-0 top-full bg-zinc-950 px-6 py-8 md:hidden">
-            <div class="flex flex-col gap-6 text-xl font-black uppercase"><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="index.html#about">About</a><a href="contact.html">Contact</a></div>
         </div>
-    </header>
+        <div class="hidden lg:block w-1/2 h-full relative bg-zinc-950 border-l b-white-10 overflow-hidden"><img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80&w=2000" alt="" class="w-full h-full object-cover grayscale brightness-50"></div>
+    </div>
 
     <main>
         <section class="bg-zinc-950 px-6 pb-20 pt-40 text-white md:px-12 md:pb-28 md:pt-48">
@@ -153,21 +178,54 @@
         </section>
     </main>
 
-    <footer class="border-t border-zinc-200 bg-white px-6 py-14 md:px-12"><div class="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-end md:justify-between"><div><p class="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">Inquiries</p><a href="mailto:info@theteqqi.com" class="text-2xl font-black">info@theteqqi.com</a></div><div class="flex gap-6 text-xs font-bold uppercase tracking-widest"><a href="portfolio.html">Portfolio</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div></div></footer>
+    <footer class="py-24 px-8 md:px-12 bg-white border-t b-border-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-24 lg:mb-48">
+                <div><h3 class="text-[10px] font-mono tracking-[0.6em] uppercase text-zinc-500 mb-8 lg:mb-12">Inquiries</h3><a href="mailto:info@theteqqi.com" class="hero-title !text-3xl md:!text-5xl lg:!text-7xl hover:italic transition-all duration-500 border-b b-border-10 hover:border-black inline-block leading-none text-zinc-900">info@theteqqi.com</a></div>
+                <div class="flex lg:justify-end items-start lg:items-end mt-8 lg:mt-0"><div class="flex gap-12 lg:gap-24"><a href="https://www.linkedin.com/company/theteqqi" class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">LinkedIn</a><a href="https://www.instagram.com/THETEQQI" class="text-[10px] font-mono font-bold tracking-[0.4em] uppercase hover:text-blue-600 transition-colors text-zinc-600">Instagram</a></div></div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-[9px] font-mono tracking-[0.5em] text-zinc-400 uppercase pt-12 border-t b-border-10"><span>© 2026 Teqqi Consulting</span></div>
+        </div>
+    </footer>
 
     <script>
         lucide.createIcons();
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuButton.addEventListener('click', () => {
-            const open = menuButton.getAttribute('aria-expanded') === 'true';
-            menuButton.setAttribute('aria-expanded', String(!open));
-            mobileMenu.hidden = open;
-        });
         gsap.registerPlugin(ScrollTrigger);
         gsap.utils.toArray('.reveal').forEach((element) => {
             gsap.to(element, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 88%' } });
         });
+        const navTrigger = document.getElementById('nav-trigger');
+        const menuContainer = document.getElementById('menu-container');
+        const navLabel = document.getElementById('nav-label');
+        const navIcon = document.getElementById('nav-icon');
+        let menuOpen = false;
+        navTrigger.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                gsap.to(menuContainer, { y: 0, duration: 1.2, ease: 'expo.inOut', pointerEvents: 'all' });
+                document.body.classList.add('menu-open');
+                navLabel.textContent = 'Close';
+                navIcon.classList.add('rotate-45');
+            } else {
+                gsap.to(menuContainer, { y: '-100%', duration: 1, ease: 'expo.inOut', pointerEvents: 'none' });
+                document.body.classList.remove('menu-open');
+                navLabel.textContent = 'Menu';
+                navIcon.classList.remove('rotate-45');
+            }
+        });
+        function toggleServicesDropdown() {
+            const submenu = document.getElementById('services-submenu');
+            const chevron = document.getElementById('services-chevron');
+            const hidden = submenu.classList.contains('hidden');
+            if (hidden) {
+                submenu.classList.remove('hidden');
+                gsap.fromTo(submenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.8, ease: 'expo.out' });
+                chevron.classList.add('rotate-180');
+            } else {
+                gsap.to(submenu, { height: 0, opacity: 0, duration: 0.5, ease: 'expo.inOut', onComplete: () => submenu.classList.add('hidden') });
+                chevron.classList.remove('rotate-180');
+            }
+        }
     </script>
 </body>
 
