@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Design - Teqqi</title>
+    <title>Website Design and Development | TEQQI Ottawa</title>
     <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
     <meta name="description"
-        content="Custom website design and development for small businesses. SEO-optimized, high-converting websites built to grow your business.">
+        content="Strategic website design and development for growing organizations and professional-service firms that need a credible, high-performing digital presence.">
+    <link rel="canonical" href="https://theteqqi.com/website-design.html">
 
     <!-- Core Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,32 +19,7 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Regular.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Bold.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Bold.woff') format('woff');
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'ABCDiatype';
-            src: url('fonts/ABCDiatype-Black.woff2') format('woff2'),
-                url('fonts/ABCDiatype-Black.woff') format('woff');
-            font-weight: 900;
-            font-style: normal;
-        }
-
-        :root {
+:root {
             --bg-color: #ffffff;
             --text-main: #18181b;
         }
@@ -70,7 +46,7 @@
         }
 
         body {
-            font-family: 'ABCDiatype', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
@@ -177,13 +153,13 @@
                 class="h-12 md:h-16 group-hover:scale-110 transition-transform duration-300">
         </a>
 
-        <button id="nav-trigger"
+        <button type="button" id="nav-trigger"
             class="nav-dark-theme flex items-center gap-4 bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full border b-white-10 transition-all text-white">
             <span id="nav-label" class="text-[10px] font-bold uppercase tracking-widest">Menu</span>
-            <div id="nav-icon"
+            <span id="nav-icon"
                 class="relative w-4 h-4 transition-transform duration-500 flex items-center justify-center">
                 <i data-lucide="plus" stroke-width="3"></i>
-            </div>
+            </span>
         </button>
     </nav>
 
@@ -201,7 +177,7 @@
                     </a>
                 </div>
                 <div class="menu-link-wrapper">
-                    <a href="https://theteqqi.com/#about"
+                    <a href="index.html#about"
                         class="menu-link flex items-center hero-title !text-5xl md:!text-7xl transition-all duration-300 hover:translate-x-4">
                         <span class="menu-indicator"><i data-lucide="arrow-right"
                                 class="w-10 h-10 md:w-20 md:h-20"></i></span>
@@ -264,7 +240,7 @@
         </div>
         <div class="hidden lg:block w-1/2 h-full relative bg-zinc-950 border-l b-white-10 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80&w=2000"
-                class="w-full h-full object-cover grayscale brightness-50">
+                alt="" class="w-full h-full object-cover grayscale brightness-50">
         </div>
     </div>
 
@@ -280,7 +256,7 @@
 
             <div class="max-w-[1400px] mx-auto w-full z-10 pt-24">
                 <span class="text-[10px] font-mono uppercase tracking-[0.6em] text-blue-600 mb-8 block">Website
-                    Design & Development</span>
+                    Design &amp; Development</span>
                 <h1 id="hero-title"
                     class="text-6xl md:text-[9vw] leading-[0.8] font-black uppercase tracking-tighter text-zinc-900 mb-12">
                     Websites<br>That <span class="text-blue-600">Convert.</span>
@@ -352,7 +328,7 @@
                         <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
                             <i data-lucide="user" class="w-6 h-6 text-blue-600"></i>
                         </div>
-                        <h3 class="font-bold text-xl mb-2">Personal & Portfolio</h3>
+                        <h3 class="font-bold text-xl mb-2">Personal &amp; Portfolio</h3>
                         <p class="text-zinc-500 text-sm">Stand out with a personal brand site or portfolio that
                             showcases your work and story.</p>
                     </div>
@@ -481,7 +457,7 @@
                                     <i data-lucide="check" class="w-4 h-4 text-white"></i>
                                 </div>
                                 <div>
-                                    <strong class="block text-white text-lg">SSL & Security</strong>
+                                    <strong class="block text-white text-lg">SSL &amp; Security</strong>
                                     <span class="text-zinc-400">Secure HTTPS connection and security best practices
                                         included.</span>
                                 </div>
@@ -491,7 +467,7 @@
                     <div class="relative">
                         <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-800">
                             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
-                                class="w-full h-full object-cover opacity-80">
+                                alt="Website analytics dashboard" class="w-full h-full object-cover opacity-80">
                         </div>
                         <!-- Stats overlay -->
                         <div class="absolute -bottom-8 -right-8 bg-blue-600 p-6 rounded-xl text-center hidden md:block">
@@ -524,7 +500,7 @@
                         <div>
                             <span
                                 class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">Catering
-                                & Hospitality</span>
+                                &amp; Hospitality</span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
                                 Feast Companions</h3>
@@ -534,7 +510,7 @@
                     <!-- Project 2 -->
                     <div class="project-card group block">
                         <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                            <img src="https://i.imgur.com/7Uw2v35.png" alt="The Ginag Life"
+                            <img src="https://i.imgur.com/7Uw2v35.png" alt="The Ginga Life"
                                 class="project-image w-full h-full object-cover transition-transform duration-700">
                         </div>
                         <div>
@@ -543,7 +519,7 @@
                                 and Dance</span>
                             <h3
                                 class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
-                                The Ginag Life</h3>
+                                The Ginga Life</h3>
                         </div>
                     </div>
 
@@ -564,16 +540,18 @@
                     </div>
 
                     <!-- Project 4 -->
-                    <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
-                        <img src="https://i.imgur.com/ssgil0b.png" alt="Ryan Ofei"
-                            class="project-image w-full h-full object-cover transition-transform duration-700">
-                    </div>
-                    <div>
-                        <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">Art
-                            & Entertainment</span>
-                        <h3
-                            class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
-                            Ryan Ofei</h3>
+                    <div class="project-card group block">
+                        <div class="aspect-[16/9] rounded-xl overflow-hidden bg-zinc-200 relative mb-6">
+                            <img src="https://i.imgur.com/ssgil0b.png" alt="Ryan Ofei"
+                                class="project-image w-full h-full object-cover transition-transform duration-700">
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-blue-600 mb-2 block">Art
+                                &amp; Entertainment</span>
+                            <h3
+                                class="text-2xl font-black uppercase tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">
+                                Ryan Ofei</h3>
+                        </div>
                     </div>
                 </div>
 
@@ -587,16 +565,15 @@
                 </div>
 
             </div>
-    </div>
-    </section>
+        </section>
 
     <!-- CTA SECTION -->
     <section class="py-32 px-6 md:px-12 bg-zinc-900 text-white text-center">
         <div class="max-w-[1400px] mx-auto">
             <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">Ready To<br><span
                     class="text-blue-500">Launch?</span></h2>
-            <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">Your new website is closer than you think.
-                Book a free consultation to discuss your project.</p>
+            <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">Tell us what your organization needs from its
+                website, and we will help define a practical path forward.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="https://calendly.com/myteqqi/30min"
                     class="inline-block bg-blue-600 text-white px-10 py-5 font-bold uppercase tracking-widest hover:bg-blue-700 transition-colors">
