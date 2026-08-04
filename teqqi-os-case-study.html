@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEQQI OS Internal Tool Case Study | TEQQI Ottawa</title>
+    <meta name="description"
+        content="Explore TEQQI OS, a purpose-built internal system for structured prospect discovery, website evaluation, lead prioritization, and audit-led outreach.">
+    <link rel="canonical" href="https://theteqqi.com/teqqi-os-case-study.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="TEQQI OS Internal Tool Case Study">
+    <meta property="og:description"
+        content="See how TEQQI designed and built an internal opportunity-intelligence workflow for website research and informed outreach.">
+    <meta property="og:url" content="https://theteqqi.com/teqqi-os-case-study.html">
+    <meta property="og:image" content="https://theteqqi.com/assets/portfolio/teqqi-os.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TEQQI OS Internal Tool Case Study">
+    <meta name="twitter:description"
+        content="A TEQQI case study in product strategy, workflow design, information architecture, and internal-tool development.">
+    <meta name="twitter:image" content="https://theteqqi.com/assets/portfolio/teqqi-os.jpg">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/LkLSQpr.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+        body { font-family: 'Inter', sans-serif; color: #18181b; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        .hero-title { font-weight: 900; line-height: .88; letter-spacing: -.055em; text-transform: uppercase; }
+        .noise-overlay { position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: .025; background-image: url("https://grainy-gradients.vercel.app/noise.svg"); }
+        .reveal { opacity: 0; transform: translateY(30px); }
+    </style>
+</head>
+
+<body class="bg-white selection:bg-blue-600 selection:text-white">
+    <div class="noise-overlay"></div>
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950/95 text-white backdrop-blur">
+        <nav class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-12" aria-label="Primary">
+            <a href="index.html" class="text-xl font-black uppercase tracking-tighter">TEQQI</a>
+            <div class="hidden items-center gap-8 text-xs font-bold uppercase tracking-[0.2em] md:flex">
+                <a href="services.html" class="transition-colors hover:text-blue-400">Services</a>
+                <a href="portfolio.html" class="text-blue-400">Portfolio</a>
+                <a href="index.html#about" class="transition-colors hover:text-blue-400">About</a>
+                <a href="contact.html" class="transition-colors hover:text-blue-400">Contact</a>
+            </div>
+            <button type="button" id="menu-button" class="rounded-full border border-white/20 px-5 py-2 text-xs font-bold uppercase tracking-widest md:hidden"
+                aria-controls="mobile-menu" aria-expanded="false">Menu</button>
+        </nav>
+        <div id="mobile-menu" hidden class="absolute inset-x-0 top-full bg-zinc-950 px-6 py-8 md:hidden">
+            <div class="flex flex-col gap-6 text-xl font-black uppercase"><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="index.html#about">About</a><a href="contact.html">Contact</a></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="bg-zinc-950 px-6 pb-20 pt-40 text-white md:px-12 md:pb-28 md:pt-48">
+            <div class="mx-auto max-w-[1400px]">
+                <a href="portfolio.html" class="mb-12 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-blue-400"><i data-lucide="arrow-left" class="h-4 w-4"></i> Full Portfolio</a>
+                <p class="mb-6 font-mono text-[10px] uppercase tracking-[0.45em] text-blue-400">Internal Tool / Business Development System</p>
+                <h1 class="hero-title max-w-6xl text-6xl sm:text-7xl md:text-[9vw]">TEQQI OS.</h1>
+                <div class="mt-12 grid gap-10 lg:grid-cols-[1.3fr_.7fr] lg:items-end">
+                    <p class="max-w-3xl text-xl font-light leading-relaxed text-zinc-300 md:text-2xl">TEQQI OS is a
+                        purpose-built internal system created to make TEQQI's prospect discovery, website evaluation,
+                        lead prioritization and audit-led outreach process more structured and consistent.</p>
+                    <a href="https://teqqi-os.etosegun.workers.dev/" target="_blank" rel="noopener noreferrer" class="inline-flex w-fit items-center gap-3 bg-blue-600 px-8 py-5 text-sm font-bold uppercase tracking-widest transition-colors hover:bg-blue-500">View TEQQI OS <i data-lucide="arrow-up-right" class="h-5 w-5"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#f4f3ef] px-6 py-12 md:px-12 md:py-20">
+            <div class="mx-auto max-w-[1400px] overflow-hidden rounded-2xl border border-zinc-900/10 bg-white shadow-2xl shadow-zinc-900/10">
+                <img src="assets/portfolio/teqqi-os.jpg"
+                    alt="TEQQI OS opportunity intelligence header with no prospect records shown" class="h-auto w-full"
+                    decoding="async">
+            </div>
+            <p class="mx-auto mt-4 max-w-[1400px] text-xs text-zinc-500">Authentic product view cropped before the prospect table to protect internal lead information.</p>
+        </section>
+
+        <section class="px-6 py-24 md:px-12 md:py-32">
+            <div class="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2">
+                <article class="reveal">
+                    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">The Challenge</p>
+                    <h2 class="mb-6 text-4xl font-black uppercase tracking-tighter">Research was spread across disconnected steps.</h2>
+                    <p class="text-lg leading-relaxed text-zinc-600">Website-prospect research can require moving
+                        between search results, company websites, notes, and spreadsheets. When the process is entirely
+                        manual, relevant findings can become inconsistent or difficult to compare and prioritize.</p>
+                </article>
+                <article class="reveal">
+                    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">The Internal-Tool Opportunity</p>
+                    <h2 class="mb-6 text-4xl font-black uppercase tracking-tighter">Build around the actual decision workflow.</h2>
+                    <p class="text-lg leading-relaxed text-zinc-600">TEQQI chose a purpose-specific system to connect
+                        market discovery, business records, website evidence, analysis, and prioritization in one
+                        structured environment rather than continue relying on disconnected research and notes.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="bg-zinc-100 px-6 py-24 md:px-12 md:py-32">
+            <div class="mx-auto max-w-[1200px]">
+                <div class="reveal mb-16 max-w-4xl">
+                    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">The Solution</p>
+                    <h2 class="mb-6 text-4xl font-black uppercase tracking-tighter md:text-6xl">Opportunity intelligence built around website evidence.</h2>
+                    <p class="text-lg leading-relaxed text-zinc-600">The live system provides market and business
+                        views, website analysis coverage, score and opportunity summaries, service categories, filters,
+                        priority and confidence indicators, and business-level detail pages. Together, these elements
+                        support more focused research and informed outreach preparation.</p>
+                </div>
+                <div class="grid gap-px overflow-hidden rounded-2xl bg-zinc-300 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="reveal bg-white p-8"><h3 class="mb-3 text-xl font-black uppercase">Discover prospects</h3><p class="text-sm leading-relaxed text-zinc-500">Search a market and record potential organizations with their websites.</p></div>
+                    <div class="reveal bg-white p-8"><h3 class="mb-3 text-xl font-black uppercase">Review websites</h3><p class="text-sm leading-relaxed text-zinc-500">Collect structured website evidence, scores, and issue categories.</p></div>
+                    <div class="reveal bg-white p-8"><h3 class="mb-3 text-xl font-black uppercase">Organize findings</h3><p class="text-sm leading-relaxed text-zinc-500">Connect audit observations to relevant opportunity and service areas.</p></div>
+                    <div class="reveal bg-white p-8"><h3 class="mb-3 text-xl font-black uppercase">Assess opportunity</h3><p class="text-sm leading-relaxed text-zinc-500">Use evidence rank, priority, confidence, and filters to compare records.</p></div>
+                    <div class="reveal bg-white p-8"><h3 class="mb-3 text-xl font-black uppercase">Prioritize prospects</h3><p class="text-sm leading-relaxed text-zinc-500">Focus attention on businesses with clearer website opportunities.</p></div>
+                    <div class="reveal bg-white p-8"><h3 class="mb-3 text-xl font-black uppercase">Prepare outreach</h3><p class="text-sm leading-relaxed text-zinc-500">Use recorded evidence to support more relevant and informed conversations.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-24 md:px-12 md:py-32">
+            <div class="mx-auto max-w-[1200px]">
+                <div class="reveal mb-14 max-w-3xl">
+                    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">Workflow Design</p>
+                    <h2 class="text-4xl font-black uppercase tracking-tighter md:text-6xl">A deliberate path from discovery to outreach.</h2>
+                </div>
+                <ol class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    <li class="reveal border-t-2 border-blue-600 py-6"><span class="font-mono text-xs text-blue-600">01</span><p class="mt-3 font-bold">Search a target market</p></li>
+                    <li class="reveal border-t-2 border-blue-600 py-6"><span class="font-mono text-xs text-blue-600">02</span><p class="mt-3 font-bold">Discover and record businesses</p></li>
+                    <li class="reveal border-t-2 border-blue-600 py-6"><span class="font-mono text-xs text-blue-600">03</span><p class="mt-3 font-bold">Analyze website evidence</p></li>
+                    <li class="reveal border-t-2 border-blue-600 py-6"><span class="font-mono text-xs text-blue-600">04</span><p class="mt-3 font-bold">Organize opportunities</p></li>
+                    <li class="reveal border-t-2 border-blue-600 py-6"><span class="font-mono text-xs text-blue-600">05</span><p class="mt-3 font-bold">Filter and prioritize prospects</p></li>
+                    <li class="reveal border-t-2 border-blue-600 py-6"><span class="font-mono text-xs text-blue-600">06</span><p class="mt-3 font-bold">Prepare evidence-led outreach</p></li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="bg-zinc-950 px-6 py-24 text-white md:px-12 md:py-32">
+            <div class="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2">
+                <div class="reveal"><p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-400">TEQQI's Role</p><h2 class="text-4xl font-black uppercase tracking-tighter">Strategy through continued iteration.</h2></div>
+                <div class="grid gap-4 sm:grid-cols-2"><div class="reveal border-t border-white/20 py-5 font-bold">Product strategy</div><div class="reveal border-t border-white/20 py-5 font-bold">Workflow analysis</div><div class="reveal border-t border-white/20 py-5 font-bold">Information architecture</div><div class="reveal border-t border-white/20 py-5 font-bold">Interface design</div><div class="reveal border-t border-white/20 py-5 font-bold">Internal-tool development</div><div class="reveal border-t border-white/20 py-5 font-bold">Deployment and iteration</div></div>
+            </div>
+        </section>
+
+        <section class="px-6 py-24 md:px-12 md:py-32">
+            <div class="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-[1fr_1fr]">
+                <article class="reveal"><p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">What the Project Demonstrates</p><h2 class="mb-6 text-4xl font-black uppercase tracking-tighter">A maintainable system for a growing process.</h2><p class="text-lg leading-relaxed text-zinc-600">TEQQI OS demonstrates the ability to identify an internal operational problem, map its workflow, design a focused interface, structure complex information, build a maintainable internal system, and improve the foundation for a growing business process.</p></article>
+                <aside class="reveal rounded-2xl bg-zinc-100 p-10"><p class="mb-4 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-600">Current Status</p><p class="text-3xl font-black uppercase tracking-tighter">Internal TEQQI product under continued development.</p></aside>
+            </div>
+        </section>
+
+        <section class="bg-blue-600 px-6 py-24 text-white md:px-12 md:py-32">
+            <div class="reveal mx-auto max-w-5xl text-center"><p class="mb-5 font-mono text-[10px] uppercase tracking-[0.4em] text-blue-100">Turn a Workflow into a Focused System</p><h2 class="mb-8 text-4xl font-black uppercase tracking-tighter md:text-7xl">Need an internal tool shaped around how your team works?</h2><div class="flex flex-col justify-center gap-4 sm:flex-row"><a href="https://teqqi-os.etosegun.workers.dev/" target="_blank" rel="noopener noreferrer" class="bg-white px-8 py-5 text-sm font-bold uppercase tracking-widest text-blue-700">View TEQQI OS</a><a href="contact.html" class="border border-white/40 px-8 py-5 text-sm font-bold uppercase tracking-widest">Discuss an Internal Tool</a></div></div>
+        </section>
+    </main>
+
+    <footer class="border-t border-zinc-200 bg-white px-6 py-14 md:px-12"><div class="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-end md:justify-between"><div><p class="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">Inquiries</p><a href="mailto:info@theteqqi.com" class="text-2xl font-black">info@theteqqi.com</a></div><div class="flex gap-6 text-xs font-bold uppercase tracking-widest"><a href="portfolio.html">Portfolio</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div></div></footer>
+
+    <script>
+        lucide.createIcons();
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuButton.addEventListener('click', () => {
+            const open = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', String(!open));
+            mobileMenu.hidden = open;
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal').forEach((element) => {
+            gsap.to(element, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 88%' } });
+        });
+    </script>
+</body>
+
+</html>
