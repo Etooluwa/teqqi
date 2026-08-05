@@ -485,7 +485,7 @@
         <!-- HOME PAGE -->
         <div id="home-view">
             <!-- 1. HERO SECTION (DARK MODE PRESERVED) -->
-            <section class="relative bg-[#080808] dark-mode-section" id="about" style="height: 300vh;">
+            <section class="relative bg-[#080808] dark-mode-section" id="hero-wrapper" style="height: 300vh;">
                 <div class="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center">
 
                     <!-- BACKGROUND NOISE (Kept dark for consistency with dark bg) -->
@@ -518,8 +518,8 @@
                             </h2>
                             <p class="text-zinc-200 text-lg md:text-xl max-w-3xl font-light leading-relaxed mb-10">
                                 TEQQI is an Ottawa-based technology consultancy that designs high-performing websites,
-                                app development, and internal tools for organizations ready to modernize, grow, and
-                                operate more effectively.
+                                develops web and mobile apps, and builds internal tools for organizations ready to
+                                modernize, grow, and operate more effectively.
                             </p>
 
                             <div class="flex flex-wrap gap-6 justify-center">
@@ -542,6 +542,33 @@
                         <div class="scroll-line"></div>
                     </div>
 
+                </div>
+            </section>
+
+            <!-- ABOUT / TEQQI INTRODUCTION -->
+            <section id="about"
+                class="relative min-h-screen overflow-hidden bg-[#080808] text-white flex items-center justify-center px-6 py-32 md:px-12">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000"
+                    class="absolute inset-0 h-full w-full object-cover grayscale brightness-75"
+                    alt="Ottawa-inspired modern office towers viewed from below">
+                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
+                    <h2 class="mb-6 text-5xl font-black uppercase tracking-tighter text-white md:text-7xl">TEQQI</h2>
+                    <p class="mb-10 max-w-3xl text-lg font-light leading-relaxed text-zinc-200 md:text-xl">
+                        TEQQI is an Ottawa-based technology consultancy that designs high-performing websites, develops
+                        web and mobile apps, and builds internal tools for organizations ready to modernize, grow, and
+                        operate more effectively.
+                    </p>
+                    <div class="flex flex-col justify-center gap-4 sm:flex-row sm:gap-6">
+                        <a href="https://calendly.com/myteqqi/30min"
+                            class="bg-white px-8 py-4 text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-zinc-200">
+                            Discuss a Project
+                        </a>
+                        <a href="services.html"
+                            class="border border-zinc-500 px-8 py-4 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-white hover:text-black">
+                            See Our Services
+                        </a>
+                    </div>
                 </div>
             </section>
 
@@ -1624,17 +1651,15 @@
                 navigate('home');
             }
 
-            // Wait for the menu transition, then reveal the TEQQI introduction inside the homepage hero.
+            // Wait for the menu transition, then scroll to the permanent About section.
             setTimeout(() => {
-                window.scrollTo({ top: window.innerHeight * 2, behavior: 'smooth' });
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 500);
         }
 
         // Handle #about hash on load
         window.addEventListener('load', () => {
             if (window.location.hash === '#about') {
-                // Clear the hash without jumping
-                history.replaceState(null, null, ' ');
                 setTimeout(scrollToAbout, 1000);
             }
         });
