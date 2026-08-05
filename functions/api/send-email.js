@@ -13,7 +13,7 @@ export async function onRequestPost(context) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                from: 'Teqqi Website <info@contact.theteqqi.com>',
+                from: 'TEQQI Website <info@theteqqi.com>',
                 to: ['eto@byteqqi.com'],
                 subject: `New Contact Form Submission from ${name}`,
                 html: `
